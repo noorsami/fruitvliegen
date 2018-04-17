@@ -101,4 +101,4 @@ ENV/
 .mypy_cache/
 
 # macbook ds store
-.DS_store
+.DS_Store
