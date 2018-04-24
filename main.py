@@ -1,0 +1,22 @@
+import random as rm
+import math as m
+import copy
+
+import os, sys
+directory = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(directory, "code"))
+sys.path.append(os.path.join(directory, "code", "classes"))
+sys.path.append(os.path.join(directory, "code", "algoritmes"))
+
+from datastructuur import data, node, linkedList
+from helper import helper
+from pancakeSort import pancakeSort
+from beamSearch import beamSearch
+
+# ll = linkedList()
+# ll.addNode(data.mel)
+# ll.addNode(data.mir)
+
+# ll.listPrint()
+
+pancakeSort(data.mel, data.mir)
