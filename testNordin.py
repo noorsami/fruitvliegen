@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 #  nordin
-=======
+
 import random as rm
 import math as m
 import sys
@@ -35,10 +35,9 @@ def randomGen(mel, mir):
 		print(i)
 	print(mel)
 
-<<<<<<< HEAD:testNor.py
-=======
+
 # randomGen(mel,mir)
->>>>>>> 01fe1f492bc668f22415e485370c78448e75a960:test.py
+
 
 def pancakeSort(mel, mir):
 	swapCount = 0
@@ -84,4 +83,3 @@ def beamSearch(mel, mir):
 
 
 beamSearch(mel,mir)
->>>>>>> 1be0556032cf4cbeb0ce9b7662d74bd8ab3bc6ae

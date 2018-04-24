@@ -23,14 +23,11 @@ from randomSort import randomSort
 # for i in range(10)
 # 	print(data.mel[i])
 
-<<<<<<< HEAD
 # pancakeSort(data.mel, data.mir)
 # beamSearch(data.mel, data.mir)
 # randomSort(data.mel, data.mir)
 
 print(helper.gen(data.mel, 100))
-
-=======
 
 pancakeSort(data.mel, data.mir)
 #beamSearch(data.mel, data.mir)
@@ -38,6 +35,4 @@ pancakeSort(data.mel, data.mir)
 
 
 # randomSort(data.mel, data.mir)
-
->>>>>>> 1be0556032cf4cbeb0ce9b7662d74bd8ab3bc6ae
 

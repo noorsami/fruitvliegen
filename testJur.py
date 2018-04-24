@@ -14,23 +14,25 @@ from pancakeSort import pancakeSort
 from beamSearch import beamSearch
 from randomSort import randomSort
 
-def gen(mel, int):
+# def gen(mel, int):
 
-	mel_len = len(mel)
-	swapList = []
+# 	mel_len = len(mel)
+# 	swapList = []
 
-	for i in range(int):
-		melTemp = copy.copy(mel)
-		a = rm.randint(0, mel_len - 1)
-		b = rm.randint(0, mel_len - 1)
+# 	for i in range(int):
+# 		melTemp = copy.copy(mel)
+# 		a = rm.randint(0, mel_len - 1)
+# 		b = rm.randint(0, mel_len - 1)
 
-		if a > b:
-			b, a = a, b
+# 		if a > b:
+# 			b, a = a, b
 
-		melTemp = helper.swapMel(a,b,melTemp)
+# 		melTemp = helper.swapMel(a,b,melTemp)
 		
-		swapList.append(melTemp)
+# 		swapList.append(melTemp)
 
-	return swapList
+# 	return swapList
 
-print(gen(data.mel, 10))
+# print(gen(data.mel, 10))
+
+beamSearch(data.mel, data.mir)
