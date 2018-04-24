@@ -32,7 +32,7 @@ def randomGen(mel, mir):
 		print(i)
 	print(mel)
 
-randomGen(mel,mir)
+# randomGen(mel,mir)
 
 def pancakeSort(mel, mir):
 	swapCount = 0
@@ -111,3 +111,5 @@ def gen(mel, int):
 
 
 	return array
+
+gen(mel, 10)

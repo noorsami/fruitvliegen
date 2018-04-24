@@ -24,6 +24,6 @@ from randomSort import randomSort
 # 	print(data.mel[i])
 
 # pancakeSort(data.mel, data.mir)
-# beamSearch(data.mel, data.mir)
-randomSort(data.mel, data.mir)
+beamSearch(data.mel, data.mir)
+# randomSort(data.mel, data.mir)
 
