@@ -23,7 +23,7 @@ from randomSort import randomSort
 # for i in range(10):
 # 	print(data.mel[i])
 
-# pancakeSort(data.mel, data.mir)
-# beamSearch(data.mel, data.mir)
-randomSort(data.mel, data.mir)
+pancakeSort(data.mel, data.mir)
+#beamSearch(data.mel, data.mir)
+#randomSort(data.mel, data.mir)
 

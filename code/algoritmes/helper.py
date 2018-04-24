@@ -1,6 +1,5 @@
 import random as rm
 
-
 class helper: 
 	def randomGen():
 		a = rm.randint(0,24)
