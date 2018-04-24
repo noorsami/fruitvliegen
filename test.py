@@ -80,3 +80,32 @@ def beamSearch(mel, mir):
 beamSearch(mel,mir)
 
 
+class data:
+	def __init__(self):
+		self.swaplist = []
+		self.correctness = 0
+
+	def addCorr(self, corr):
+		self.correctness += corr
+
+	def minCorr():
+		self.correctness -= 1
+
+
+def gen(mel, int):
+
+	# 10 random swaps genereren -> array vullen met random swapped
+	array = []
+
+	for i in range(int):
+
+		a = rm.randint(0,len(mel)-1)
+		b = rm.randint(0,len(mel)-1)
+
+
+		temp = swapMel(a, b, mel)
+		print("temp: ",temp)
+		array.append(temp)
+
+
+	return array
