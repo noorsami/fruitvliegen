@@ -5,6 +5,7 @@ import sys
 mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
 mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
+
 # define swap function
 def swapMel(a, b, mel):
 	mel[a:b + 1] = mel[a:b + 1][::-1]
@@ -34,8 +35,8 @@ def randomGen(mel, mir):
 	print(mel)
 
 
-def hasjSort(mel, mir):
-	swapcount = 0
+def pancakeSort(mel, mir):
+	swapCount = 0
 	mel_len = len(mel)
 	mir_len = len(mir)
 	if mel_len is not mir_len:
@@ -49,11 +50,33 @@ def hasjSort(mel, mir):
 						mel = swapMel(i,j,mel)
 						swapcount += 1
 	print(mel)
-	print(swapcount)
+	print(swapCount)
 
 	return mel
 
-hasjSort(mel, mir)
+def beamSearch(mel, mir):
+	mel_len = len(mel)
+	mir_len = len(mir)
+	swapList = []
 
+	for i in range(10):
+		
+		a = rm.randint(0, mel_len - 1)
+		b = rm.randint(0, mir_len - 1)
+
+		if a > b:
+			b, a = a, b
+
+
+		mel = swapMel(a,b,mel)
+		print(swapList)
+		swapList.append(mel)
+		print(mel[a])
+
+	
+	print(swapList)
+	return swapList
+
+beamSearch(mel,mir)
 
 
