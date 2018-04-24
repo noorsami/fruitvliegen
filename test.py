@@ -9,7 +9,7 @@ mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
 # define swap function
 def swapMel(a, b, mel):
 	mel[a:b + 1] = mel[a:b + 1][::-1]
-	return mel
+	# return mel
 
 # random generator
 def randomGen(mel, mir):
@@ -77,7 +77,7 @@ def beamSearch(mel, mir):
 	print(swapList)
 	return swapList
 
-beamSearch(mel,mir)
+# beamSearch(mel,mir)
 
 
 class data:
@@ -107,5 +107,8 @@ def gen(mel, int):
 		print("temp: ",temp)
 		array.append(temp)
 
+	print(array)
 
 	return array
+
+gen(mel, 10)
