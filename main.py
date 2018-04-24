@@ -23,13 +23,12 @@ from randomSort import randomSort
 # for i in range(10):
 # 	print(data.mel[i])
 
-<<<<<<< HEAD
+
 pancakeSort(data.mel, data.mir)
 #beamSearch(data.mel, data.mir)
 #randomSort(data.mel, data.mir)
-=======
-# pancakeSort(data.mel, data.mir)
-beamSearch(data.mel, data.mir)
+
+
 # randomSort(data.mel, data.mir)
->>>>>>> 01fe1f492bc668f22415e485370c78448e75a960
+
 
