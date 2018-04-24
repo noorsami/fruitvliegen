@@ -20,10 +20,13 @@ from randomSort import randomSort
 
 # ll.listPrint()
 
-# for i in range(10):
+# for i in range(10)
 # 	print(data.mel[i])
 
 # pancakeSort(data.mel, data.mir)
-beamSearch(data.mel, data.mir)
+# beamSearch(data.mel, data.mir)
 # randomSort(data.mel, data.mir)
+
+print(helper.gen(data.mel, 100))
+
 
