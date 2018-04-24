@@ -39,11 +39,7 @@ def hasjSort(mel, mir):
 	mel_len = len(mel)
 	mir_len = len(mir)
 	if mel_len is not mir_len:
-<<<<<<< HEAD
 		message = "error, lists are not the same length"
-=======
-		message = "error lists not same length"
->>>>>>> 0d5c3de14f9ca785bd1ec8a991ee29441f3e90c9
 		return message
 	else:
 		for i in range(mel_len):
@@ -51,7 +47,6 @@ def hasjSort(mel, mir):
 				for j in range(i,mel_len):
 					if mir[i] is mel[j]:
 						mel = swapMel(i,j,mel)
-<<<<<<< HEAD
 						swapcount += 1
 	print(mel)
 	print(swapcount)
@@ -61,10 +56,4 @@ def hasjSort(mel, mir):
 hasjSort(mel, mir)
 
 
-=======
-	print(mel)
-	return mel
 
-
-hasjSort(mel, mir)
->>>>>>> 0d5c3de14f9ca785bd1ec8a991ee29441f3e90c9
