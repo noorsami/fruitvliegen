@@ -17,9 +17,9 @@ def beamSearch(mel, mir):
 		if a > b:
 			b, a = a, b
 
-		print(mel[a:b])
+		# print(mel[a:b])
 		
-		swapMel(a,b,melTemp)
+		melTemp = helper.swapMel(a,b,melTemp)
 		
 		swapList.append(melTemp)
 

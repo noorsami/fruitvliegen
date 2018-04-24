@@ -1,5 +1,6 @@
 from helper import helper
 
+
 def pancakeSort(mel, mir):
 	swapCount = 0
 	mel_len = len(mel)
@@ -9,12 +10,19 @@ def pancakeSort(mel, mir):
 		return message
 	else:
 		for i in range(mel_len):
+
+
 			if mir[i] is not mel[i]:
+
+
 				for j in range(i,mel_len):
+
+
 					if mir[i] is mel[j]:
 						mel = helper.swapMel(i,j,mel)
 						swapCount += 1
-	print(mel)
-	print(swapCount)
+						print(mel)
+	print("Final swap: ", mel)
+	print("swaps: ", swapCount)
 
 	return mel
