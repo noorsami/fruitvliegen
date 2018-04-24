@@ -1,6 +1,7 @@
 import random as rm
 import math as m
 import sys
+import copy
 
 mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
 mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
@@ -9,7 +10,6 @@ mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
 # define swap function
 def swapMel(a, b, mel):
 	mel[a:b + 1] = mel[a:b + 1][::-1]
-	return mel
 
 # random generator
 def randomGen(mel, mir):
@@ -60,20 +60,21 @@ def beamSearch(mel, mir):
 	swapList = []
 
 	for i in range(10):
-		
+		melTemp = copy.copy(mel)
 		a = rm.randint(0, mel_len - 1)
 		b = rm.randint(0, mir_len - 1)
 
 		if a > b:
 			b, a = a, b
 
+		print(mel[a:b])
+		
+		swapMel(a,b,melTemp)
+		
+		swapList.append(melTemp)
 
-		mel = swapMel(a,b,mel)
-		print(swapList)
-		swapList.append(mel)
-		print(mel[a])
 
-	
+
 	print(swapList)
 	return swapList
 
