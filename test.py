@@ -15,25 +15,24 @@ def swapMel(a, b, mel):
 def randomGen(mel, mir):
 
 	# run until mel and mir are the same
-	#while mel != mir:
+	i = 0
+	while mel != mir:
 
-	# generate random numbers
-	a = rm.randint(0,24)
-	b = rm.randint(0,24)
+		# generate random numbers
+		a = rm.randint(0,24)
+		b = rm.randint(0,24)
 
 
-	if a > b:
-		b, a = a, b
+		if a > b:
+			b, a = a, b
 
-	print(mel[a])
-	print(mel[b])
+		# call swap function
+		swapMel(a, b, mel)
+		i += 1
+		print(i)
 	print(mel)
 
-	# call swap function
-	swapMel(a, b, mel)
-
-	print(mel)
-
+randomGen(mel,mir)
 
 def pancakeSort(mel, mir):
 	swapCount = 0
@@ -53,6 +52,7 @@ def pancakeSort(mel, mir):
 	print(swapCount)
 
 	return mel
+
 
 def beamSearch(mel, mir):
 	mel_len = len(mel)
@@ -78,10 +78,11 @@ def beamSearch(mel, mir):
 	print(swapList)
 	return swapList
 
-beamSearch(mel,mir)
+
 
 
 class data:
+
 	def __init__(self):
 		self.swaplist = []
 		self.correctness = 0
