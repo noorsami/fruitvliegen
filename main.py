@@ -12,6 +12,7 @@ from datastructuur import data, node, linkedList
 from helper import helper
 from pancakeSort import pancakeSort
 from beamSearch import beamSearch
+from randomSort import randomSort
 
 # ll = linkedList()
 # ll.addNode(data.mel)
@@ -23,5 +24,6 @@ from beamSearch import beamSearch
 # 	print(data.mel[i])
 
 # pancakeSort(data.mel, data.mir)
-beamSearch(data.mel, data.mir)
+# beamSearch(data.mel, data.mir)
+randomSort(data.mel, data.mir)
 
