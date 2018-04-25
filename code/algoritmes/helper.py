@@ -1,3 +1,4 @@
+
 import random as rm
 import copy
 
@@ -29,6 +30,4 @@ class helper:
 			swapList.append(melTemp)
 
 		return swapList
-		
-
-
+	
