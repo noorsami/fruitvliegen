@@ -35,6 +35,12 @@ def randomGen(mel, mir):
 		print(i)
 	print(mel)
 
+<<<<<<< HEAD
+=======
+
+# randomGen(mel,mir)
+
+>>>>>>> ca152ab9f40fe8726892ef75093f0df99f808368
 
 def pancakeSort(mel, mir):
 	swapCount = 0
@@ -77,6 +83,9 @@ def beamSearch(mel, mir):
 	return swapList
 
 beamSearch(mel,mir)
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> ca152ab9f40fe8726892ef75093f0df99f808368

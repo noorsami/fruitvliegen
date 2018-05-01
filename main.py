@@ -23,19 +23,29 @@ from randomSort import randomSort
 # for i in range(10)
 # 	print(data.mel[i])
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ca152ab9f40fe8726892ef75093f0df99f808368
 # pancakeSort(data.mel, data.mir)
 # beamSearch(data.mel, data.mir)
 # randomSort(data.mel, data.mir)
 
-print(helper.gen(data.mel, 100))
+# print(helper.gen(data.mel, 100))
 
+<<<<<<< HEAD
 
 #pancakeSort(data.mel, data.mir)
+=======
+# pancakeSort(data.mel, data.mir)
+>>>>>>> ca152ab9f40fe8726892ef75093f0df99f808368
 #beamSearch(data.mel, data.mir)
 #randomSort(data.mel, data.mir)
 
 
 # randomSort(data.mel, data.mir)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ca152ab9f40fe8726892ef75093f0df99f808368
