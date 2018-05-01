@@ -28,13 +28,6 @@ class listGen:
 			if a > b:
 				b, a = a, b
 
-
-	# 		melTemp = helper.swapMel(a,b,melTemp)
-
-	# 		swapList.append(melTemp)
-
-	# 	return swapList
-
 			melTemp = helper.swapMel(a,b,melTemp)
 
 			swapList.append(melTemp)
