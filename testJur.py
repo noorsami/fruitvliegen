@@ -21,9 +21,6 @@ def beamSearch(mel, mir):
 	array = []
 
 
-
-
-
 onzin = ["bla"]
 	
 def genTable(mel, int):
