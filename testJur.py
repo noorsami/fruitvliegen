@@ -61,8 +61,6 @@ table = genTable(data.mel, 10)
 muTable(table, 10)
 printTable(table)
 
-
-
 # print(data.mel)
 # print(mutate(data.mel))
 
