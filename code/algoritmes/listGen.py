@@ -2,7 +2,8 @@ import copy
 
 # listGenerators
 class listGen:
-# generates array with copys of mel
+	
+	# generates x arrays with copys of mel
 	def genX(mel, int):
 		mel_len = len(mel)
 		list = []
@@ -13,22 +14,30 @@ class listGen:
 
 		return list;
 
-	# generates list with random mutations
-	# def genRandom(mel, int):
+	# generates x arrays with random mutations from mel
+	def genRandom(mel, int):
 
-	# 	mel_len = len(mel)
-	# 	swapList = []
+		mel_len = len(mel)
+		swapList = []
 
-	# 	for i in range(int):
-	# 		melTemp = copy.copy(mel)
-	# 		a = rm.randint(0, mel_len - 1)
-	# 		b = rm.randint(0, mel_len - 1)
+		for i in range(int):
+			melTemp = copy.copy(mel)
+			a = rm.randint(0, mel_len - 1)
+			b = rm.randint(0, mel_len - 1)
 
-	# 		if a > b:
-	# 			b, a = a, b
+			if a > b:
+				b, a = a, b
 
+<<<<<<< HEAD
 	# 		melTemp = helper.swapMel(a,b,melTemp)
 
 	# 		swapList.append(melTemp)
 
 	# 	return swapList
+=======
+			melTemp = helper.swapMel(a,b,melTemp)
+			
+			swapList.append(melTemp)
+
+		return swapList
+>>>>>>> fc271ade96bf2fbd74619a39a8bcf4c68fae4f2f

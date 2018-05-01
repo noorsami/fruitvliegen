@@ -6,6 +6,13 @@ class data:
 class node:
 	def __init__(self):
 		self.swapMel = []
+
+
+		self.history = []
+		self.score = 0
+
+
+
 		self.next = None
 
 class linkedList:
