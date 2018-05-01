@@ -36,6 +36,7 @@ def randomGen(mel, mir):
 	print(mel)
 
 
+
 # randomGen(mel,mir)
 
 
@@ -71,9 +72,7 @@ def beamSearch(mel, mir):
 
 		if a > b:
 			b, a = a, b
-
-
-		
+					
 		swapMel(a,b,melTemp)
 		
 		swapList.append(melTemp)
@@ -81,5 +80,5 @@ def beamSearch(mel, mir):
 	print(swapList)
 	return swapList
 
-
 beamSearch(mel,mir)
+

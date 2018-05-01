@@ -19,12 +19,24 @@ from listGen import *
 from mutate import *
 from randomSort import randomSort
 
+<<<<<<< HEAD:testJur.py
 def printTable(table):
 	for i in range(len(table)):
 		table[i].listPrint()
 		print(" ")
 
 def genTable(mel, int, listGen):
+=======
+def beamSearch(mel, mir):
+
+	swaps = helper.gen(mel, 10)
+	array = []
+
+
+onzin = ["bla"]
+	
+def genTable(mel, int):
+>>>>>>> ef571cadc47b54d930b95b953859c99eb5935d66:code/testJur.py
 
 	array = []
 	# for mel in helper.genRandom(mel, int):
@@ -47,8 +59,6 @@ def muTable(table, rate, mutation):
 table = genTable(data.mel, 10, listGen.genX)
 muTable(table, 10, mutate.random)
 printTable(table)
-
-
 
 # print(data.mel)
 # print(mutate(data.mel))
