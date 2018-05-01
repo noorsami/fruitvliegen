@@ -2,7 +2,7 @@ import copy
 
 # listGenerators
 class listGen:
-	
+
 	# generates x arrays with copys of mel
 	def genX(mel, int):
 		mel_len = len(mel)
@@ -28,16 +28,15 @@ class listGen:
 			if a > b:
 				b, a = a, b
 
-<<<<<<< HEAD
+
 	# 		melTemp = helper.swapMel(a,b,melTemp)
 
 	# 		swapList.append(melTemp)
 
 	# 	return swapList
-=======
+
 			melTemp = helper.swapMel(a,b,melTemp)
-			
+
 			swapList.append(melTemp)
 
 		return swapList
->>>>>>> fc271ade96bf2fbd74619a39a8bcf4c68fae4f2f

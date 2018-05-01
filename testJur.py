@@ -57,5 +57,3 @@ printTable(table)
 
 # print(data.mel)
 # print(mutate(data.mel))
-
-
