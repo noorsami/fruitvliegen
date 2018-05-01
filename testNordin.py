@@ -77,5 +77,3 @@ def beamSearch(mel, mir):
 
 	print(swapList)
 	return swapList
-
-beamSearch(mel,mir)
