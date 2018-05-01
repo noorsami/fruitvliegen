@@ -42,3 +42,7 @@ def breadthFirst(mel,mir):
                     print("newMelList: ",newMelList)
 
 breadthFirst(data.mel,data.mir)
+
+# queue functie API
+
+# swapAll(data.mel)

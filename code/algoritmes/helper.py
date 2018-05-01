@@ -3,6 +3,9 @@ import random as rm
 import copy
 
 class helper: 
+
+# basic helper functions
+
 	def randomGen():
 		a = rm.randint(0,24)
 		b = rm.randint(0,24)
@@ -12,22 +15,22 @@ class helper:
 		mel[a:b + 1] = mel[a:b + 1][::-1]
 		return mel
 
-	def gen(mel, int):
 
-		mel_len = len(mel)
-		swapList = []
 
-		for i in range(int):
-			melTemp = copy.copy(mel)
-			a = rm.randint(0, mel_len - 1)
-			b = rm.randint(0, mel_len - 1)
+# mutators
 
-			if a > b:
-				b, a = a, b
+	def mutateRandom(mel):
+		melTemp = copy.copy(mel)
+		a, b = helper.randomGen()
 
-			melTemp = helper.swapMel(a,b,melTemp)
-			
-			swapList.append(melTemp)
+		if a > b:
+			b, a = a, b
 
-		return swapList
+		melTemp = helper.swapMel(a,b, melTemp)
+		return melTemp
+
+
+
+
+
 	
