@@ -1,6 +1,6 @@
 
 #  nordin
-
+#test github push
 import random as rm
 import math as m
 import sys
@@ -16,7 +16,6 @@ def swapMel(a, b, mel):
 
 # random generator
 def randomGen(mel, mir):
-
 	# run until mel and mir are the same
 	i = 0
 	while mel != mir:
@@ -72,13 +71,12 @@ def beamSearch(mel, mir):
 
 		if a > b:
 			b, a = a, b
-					
+
 		swapMel(a,b,melTemp)
-		
+
 		swapList.append(melTemp)
 
 	print(swapList)
 	return swapList
 
 beamSearch(mel,mir)
-
