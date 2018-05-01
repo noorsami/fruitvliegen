@@ -42,3 +42,4 @@ python main.py
 
 * StackOverflow
 * minor programmeren van de UvA
+* Tamrell
