@@ -8,10 +8,6 @@ class node:
 		self.swapMel = []
 		self.next = None
 
-	# def __str__(self):
- #        return ('Node ['+str(self.swaplist)+']')
-
-
 class linkedList:
 	def __init__(self):
 		self.currNode = None
