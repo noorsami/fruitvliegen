@@ -1,5 +1,7 @@
 
 #  nordin
+#test github
+
 import random as rm
 import math as m
 import sys
