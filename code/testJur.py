@@ -11,10 +11,22 @@ sys.path.append(os.path.join(directory, "code", "algoritmes"))
 
 from datastructuur import data, node, linkedList
 from helper import helper
+from mutate import *
+from listGen import *
 from pancakeSort import pancakeSort
 from beamSearch import beamSearch
+from listGen import *
+from mutate import *
 from randomSort import randomSort
 
+<<<<<<< HEAD:testJur.py
+def printTable(table):
+	for i in range(len(table)):
+		table[i].listPrint()
+		print(" ")
+
+def genTable(mel, int, listGen):
+=======
 def beamSearch(mel, mir):
 
 	swaps = helper.gen(mel, 10)
@@ -24,9 +36,11 @@ def beamSearch(mel, mir):
 onzin = ["bla"]
 	
 def genTable(mel, int):
+>>>>>>> ef571cadc47b54d930b95b953859c99eb5935d66:code/testJur.py
 
 	array = []
-	for mel in helper.gen(mel, int):
+	# for mel in helper.genRandom(mel, int):
+	for mel in listGen(mel, int):
 
 		ll = linkedList()
 		ll.addNode(mel)
@@ -34,31 +48,16 @@ def genTable(mel, int):
 		array.append(ll)
 	return array
 
-def printTable(table):
-	for i in range(len(table)):
-		table[i].listPrint()
-		print(" ")
-
-def mutate(mel):
-	melTemp = copy.copy(mel)
-	a, b = helper.randomGen()
-
-	if a > b:
-		b, a = a, b
-
-	melTemp = helper.swapMel(a,b, melTemp)
-	return melTemp
-
-def muTable(table, rate):
+def muTable(table, rate, mutation):
 	for i in range(rate):
 		for ll in table:
 			node = ll.currNode
 			swapMel = node.swapMel
-			swapMel = mutate(node.swapMel)
+			swapMel = mutation(node.swapMel)
 			ll.addNode(swapMel)
 
-table = genTable(data.mel, 10)
-muTable(table, 10)
+table = genTable(data.mel, 10, listGen.genX)
+muTable(table, 10, mutate.random)
 printTable(table)
 
 # print(data.mel)
