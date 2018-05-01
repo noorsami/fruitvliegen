@@ -60,8 +60,8 @@ def muTable(table, rate):
 			swapMel = mutate(node.swapMel)
 			ll.addNode(swapMel)
 
-table = genTable(data.mel, 100)
-muTable(table, 1000)
+table = genTable(data.mel, 10)
+muTable(table, 10)
 printTable(table)
 
 
