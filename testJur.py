@@ -36,6 +36,9 @@ def genTable(mel, int, listGen):
 		array.append(ll)
 	return array
 
+
+
+
 def muTable(table, rate, mutation):
 	for i in range(rate):
 		for ll in table:
