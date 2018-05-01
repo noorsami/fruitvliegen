@@ -28,7 +28,7 @@ class listGen:
 	# 			b, a = a, b
 
 	# 		melTemp = helper.swapMel(a,b,melTemp)
-			
+
 	# 		swapList.append(melTemp)
 
 	# 	return swapList

@@ -14,4 +14,3 @@ class mutate:
 
 		melTemp = helper.swapMel(a,b, melTemp)
 		return melTemp
-
