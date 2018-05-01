@@ -36,9 +36,6 @@ def genTable(mel, int, listGen):
 		array.append(ll)
 	return array
 
-
-
-
 def muTable(table, rate, mutation):
 	for i in range(rate):
 		for ll in table:
@@ -46,7 +43,8 @@ def muTable(table, rate, mutation):
 			swapMel = node.swapMel
 			swapMel = mutation(node.swapMel)
 
-			
+			#testtesttest
+
 
 			ll.addNode(swapMel)
 
