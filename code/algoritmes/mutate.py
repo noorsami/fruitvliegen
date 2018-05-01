@@ -5,6 +5,7 @@ from helper import *
 
 class mutate:
 
+	# mutates randomly
 	def random(mel):
 		melTemp = copy.copy(mel)
 		a, b = helper.randomGen()

@@ -16,21 +16,4 @@ class helper:
 		return mel
 
 
-
-# mutators
-
-	def mutateRandom(mel):
-		melTemp = copy.copy(mel)
-		a, b = helper.randomGen()
-
-		if a > b:
-			b, a = a, b
-
-		melTemp = helper.swapMel(a,b, melTemp)
-		return melTemp
-
-
-
-
-
 	
