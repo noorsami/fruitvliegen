@@ -45,6 +45,9 @@ def muTable(table, rate, mutation):
 			node = ll.currNode
 			swapMel = node.swapMel
 			swapMel = mutation(node.swapMel)
+
+			
+
 			ll.addNode(swapMel)
 
 table = genTable(data.mel, 10, listGen.genX)
