@@ -19,20 +19,11 @@ from listGen import *
 from mutate import *
 from randomSort import randomSort
 
-def printTable(table):
-	for i in range(len(table)):
-		table[i].listPrint()
-		print(" ")
-
 def genTable(mel, int, listGen):
-
 	array = []
-	# for mel in helper.genRandom(mel, int):
 	for mel in listGen(mel, int):
-
 		ll = linkedList()
-		ll.addNode(mel)
-
+		ll.addNode(mel, 0, 0)
 		array.append(ll)
 	return array
 
@@ -40,17 +31,82 @@ def muTable(table, rate, mutation):
 	for i in range(rate):
 		for ll in table:
 			node = ll.currNode
-			swapMel = node.swapMel
 			swapMel = mutation(node.swapMel)
+			scoreX = score(swapMel)
+			swaps = node.swaps
+			swaps += 1
+			ll.addNode(swapMel, scoreX, swaps)
+			ll.reverse()
 
-			#testtesttest
+def checkTable(table):
+	for i in range(rate):
+		for ll in table:
+			if ll.next is None:
+				return ll.score
+			else:
+				return min(ll.score, get_min(ll.score))
+
+def get_min(ll):
+    if ll.next is None:
+        return ll.score
+    else:
+        return min(ll.score, get_min(ll.score))
 
 
-			ll.addNode(swapMel)
 
-table = genTable(data.mel, 10, listGen.genX)
+
+
+
+def printTable(table):
+	for i in range(len(table)):
+		print("Bucket nr: ", + (i+1))
+		table[i].listPrint()
+		print(" ")
+
+def score(mel):
+	score = 0
+	for i in range(24):
+		# staat genoom op goede plek?
+		if mel[i] is i+1:
+			score += 1
+		# is het rechtergenoom naast mel (mel +1)?
+		if mel[i+1] is mel[i] + 1:
+			score += 1
+		# is het linkergenoom naast mel (mel-1)?
+		if mel[i-1] is mel[i] - 1:
+			score += 1
+	return score
+
+def score2(mel):
+	score = 0
+	for i in range(24):
+		# staat genoom op goede plek?
+		if mel[i] is i+1:
+			score += 1
+
+		if mel[i+1] is mel[i] + 1 and mel[i-1] is mel[i] - 1:
+			score += 1
+
+	return score
+
+
+def checkTable(table):
+	for ll in table:
+		max, node = ll.Max()
+		node.next = None
+		print(node.swapMel, + node.score)
+	return table
+
+
+table = genTable(data.mel, 2, listGen.genX)
 muTable(table, 10, mutate.random)
+checkTable(table)
 printTable(table)
+
+
+# printTable(table)
+
+
 
 
 
