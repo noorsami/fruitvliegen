@@ -1,6 +1,7 @@
 class data:
 	mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
 	mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+	swaps = 0
 
 class node:
 	def __init__(self):
@@ -39,29 +40,31 @@ class linkedList:
 		node = self.currNode
 		while node:
 			print("Swaps: ", + node.swaps, node.swapMel, " Score:", + node.score)
+			# print("Swaps: x", node.swapMel, " Score:", + node.score)
+
 			node = node.next
 
-	def Max(self):
-		start = self.currNode
-		maxScore = start.getScore()
-		while start:
-			if maxScore < start.getScore():
-				maxScore = start.getScore()
-				node = start
-			start = start.next
-			# getNextNode()
-		return maxScore, node
-
-	def reverse(self):
-		prev = None
-		node = self.currNode
-		next = node.getNextNode()
-
-		while node:
-			node.setNext(prev)
-
-			prev = node
-			node = next
-			if next:
-				next = next.getNextNode()
-		self.currNode = prev
+	# def Max(self):
+	# 	start = self.currNode
+	# 	maxScore = start.getScore()
+	# 	while start:
+	# 		if maxScore < start.getScore():
+	# 			maxScore = start.getScore()
+	# 			node = start
+	# 		start = start.next
+	# 		# getNextNode()
+	# 	return maxScore, node
+	#
+	# def reverse(self):
+	# 	prev = None
+	# 	node = self.currNode
+	# 	next = node.getNextNode()
+	#
+	# 	while node:
+	# 		node.setNext(prev)
+	#
+	# 		prev = node
+	# 		node = next
+	# 		if next:
+	# 			next = next.getNextNode()
+	# 	self.currNode = prev

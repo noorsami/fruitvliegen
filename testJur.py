@@ -36,7 +36,6 @@ def muTable(table, rate, mutation):
 			swaps = node.swaps
 			swaps += 1
 			ll.addNode(swapMel, scoreX, swaps)
-			ll.reverse()
 
 def checkTable(table):
 	for i in range(rate):
@@ -90,17 +89,17 @@ def score2(mel):
 	return score
 
 
-def checkTable(table):
-	for ll in table:
-		max, node = ll.Max()
-		node.next = None
-		print(node.swapMel, + node.score)
-	return table
+# def checkTable(table):
+# 	for ll in table:
+# 		max, node = ll.Max()
+# 		node.next = None
+# 		print(node.swapMel, + node.score)
+# 	return table
 
 
-table = genTable(data.mel, 2, listGen.genX)
+table = genTable(data.mel, 10, listGen.genX)
 muTable(table, 10, mutate.random)
-checkTable(table)
+# checkTable(table)
 printTable(table)
 
 
