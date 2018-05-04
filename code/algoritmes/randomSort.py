@@ -21,6 +21,6 @@ def randomSort(mel, mir):
 
 		helper.swapMel(a, b, mel)
 		i += 1
-	
+
 		print(i)
 	print(mel)

@@ -10,7 +10,7 @@ class node:
 		self.history = []
 		self.score = 0
 
-		
+
 		self.next = None
 
 class linkedList:

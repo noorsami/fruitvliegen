@@ -29,11 +29,9 @@ from randomSort import randomSort
 
 # print(helper.gen(data.mel, 100))
 
-
-
-#pancakeSort(data.mel, data.mir)
-
 # pancakeSort(data.mel, data.mir)
+
+pancakeSort(data.mel, data.mir)
 
 #beamSearch(data.mel, data.mir)
 #randomSort(data.mel, data.mir)
