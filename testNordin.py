@@ -90,3 +90,10 @@ def beamSearch(mel, mir):
 
 	print(swapList)
 	return swapList
+<<<<<<< HEAD
+=======
+
+
+plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
+plt.show()
+>>>>>>> 319f9128b6569b5c7f4f7b3153f083e766b19c71
