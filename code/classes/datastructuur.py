@@ -8,12 +8,8 @@ class node:
 		self.swapMel = []
 		self.swaps = 0
 		self.score = 0
-<<<<<<< HEAD
 
 
-=======
-		self.best = False
->>>>>>> 319f9128b6569b5c7f4f7b3153f083e766b19c71
 		self.next = None
 
 	def getScore(self):

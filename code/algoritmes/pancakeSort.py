@@ -1,6 +1,6 @@
 from helper import helper
 import time
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
 def pancakeSort(mel, mir):
 
