@@ -23,4 +23,5 @@ def randomSort(mel, mir):
 		i += 1
 
 		print(i)
+		
 	print(mel)
