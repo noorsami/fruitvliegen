@@ -35,6 +35,7 @@ def randomGen(mel, mir):
 		swapMel(a, b, mel)
 		i += 1
 		print(i)
+
 	print(mel)
 
 def pancakeSort(mel, mir):
@@ -164,6 +165,7 @@ def selection(scoreList, swapList):
 	print(swapList)
 	print(scoreList)
 
+	## get index
 	for i in range(len(scoreList)):
 		if scoreList[i] == max(scoreList):
 			winner = swapList[i]
@@ -171,6 +173,9 @@ def selection(scoreList, swapList):
 
 	print(len(swapList))
 	print(winner)
+	print(generation)
+
+	swapList = []
 	genRandom(winner, 10)
 
 	print(swapList)
@@ -189,3 +194,9 @@ def selection(scoreList, swapList):
 mel_len = len(mel)
 
 selection(scoreList, swapList)
+
+#database = []
+
+#lijst = [(1, [1, 2]), (0, [4, 4])]
+#ordered = sorted(lijst)
+#best = ordered[-1][1]
