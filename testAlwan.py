@@ -17,32 +17,32 @@ def swapAll(mel):
     newMelList = []
     for i in range(len(mel)):
         for j in range(i):
-            newMel = copy.copy(mel)
-            newMelList.append(helper.swapMel(i,j,newMel))
+            newMelList.append(helper.swapped(i,j,mel))
 
     return newMelList
 
-def breadthFirst(mel,mir):
+def noDublicates(list):
+    listSet = set(tuple(item) for item in list)
+    noDublicate = []
+    for item in listSet:
+        noDublicate.append(item)
+    return noDublicate
 
+
+def breadthFirst(mel,mir):
+    mir = tuple(mir)
     newMel = copy.copy(mel)
     newMelList = [newMel]
-    swap = 0
-
+    swaps = 0
     while mir not in newMelList:
-        for i in newMelList:
-            swappedList = swapAll(i)
-            print("i: ", i)
-            time.sleep(0.5)
-            for j in swappedList:
-                print("j: ", j)
-                time.sleep(0.5)
-                if j not in newMelList:
-                    newMelList.append(j)
-                    swap+=1
-                    print("newMelList: ",newMelList)
+        for gen in newMelList:
+            swappedList = swapAll(gen)
+            for swap in swappedList:
+                newMelList.append(swap)
+            newMelList = noDublicates(newMelList)
+            print("swaps: ", swaps,len(newMelList))
+        swaps+=1
 
-breadthFirst(data.mel,data.mir)
+breadthFirst(data.mir,data.mel)
 
 # queue functie API
-
-# swapAll(data.mel)
