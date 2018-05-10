@@ -34,7 +34,7 @@ python main.py
 
 ## Auteurs (Authors)
 
-* Jurrian Schleuder
+* Jurrian Schreuder
 * Alwan Rashid
 * Nordin Bouchrit
 
