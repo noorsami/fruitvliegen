@@ -143,18 +143,6 @@ def score(mel):
 	scoreList.append(score)
 	return score
 
-def score2(mel):
-	score = 0
-	for i in range(24):
-
-		# staat genoom op goede plek?
-		if mel[i] is i+1:
-			score += 1
-
-		if mel[i+1] is mel[i] + 1 and mel[i-1] is mel[i] - 1:
-			score += 1
-
-	return score
 
 generation = []
 def selection(scoreList, swapList):

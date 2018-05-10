@@ -1,4 +1,5 @@
-#  nordin
+from helper import helper
+
 import random as rm
 import math as m
 import sys
@@ -6,14 +7,6 @@ import copy
 import time
 import matplotlib.pyplot as plt
 import numpy as np
-
-mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
-mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-
-# define swap function
-def swapMel(a, b, mel):
-	mel[a:b + 1] = mel[a:b + 1][::-1]
-	return mel
 
 # generates x arrays with random mutations from mel
 def mutate(mel, int, swapList):
@@ -28,7 +21,7 @@ def mutate(mel, int, swapList):
 		if a > b:
 			b, a = a, b
 
-		melTemp = swapMel(a,b,melTemp)
+		melTemp = helper.swapMel(a,b,melTemp)
 
 		swapList.append(melTemp)
 
@@ -123,7 +116,3 @@ def geneticAlgorithm(sampleSize, mel, mir):
 		print(count)
 
 	return generation
-
-solution = geneticAlgorithm(10)
-
-print(solution)
