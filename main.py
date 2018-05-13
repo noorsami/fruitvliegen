@@ -13,30 +13,19 @@ from helper import helper
 from pancakeSort import pancakeSort
 from beamSearch import beamSearch
 from randomSort import randomSort
+from genetic import geneticAlgorithm
 
-# ll = linkedList()
-# ll.addNode(data.mel)
-# ll.addNode(data.mir)
+print("\nWELCOME!\n\n When you want to run the pancake sorting algorithm type in: p \n\n When you want to run the genetic algorithm type in: g\n")
 
-# ll.listPrint()
+algorithm = input("Type in the algorithm that you want to run: \n\n")
 
-# for i in range(10)
-# 	print(data.mel[i])
+if algorithm == 'p':
+    pancake = pancakeSort(data.mel, data.mir)
+    print(pancake)
 
-# pancakeSort(data.mel, data.mir)
-# beamSearch(data.mel, data.mir)
-# randomSort(data.mel, data.mir)
+elif algorithm == 'g':
+    genetic = geneticAlgorithm(10, data.mel, data.mir)
+    print(genetic)
 
-# print(helper.gen(data.mel, 100))
-
-
-
-#pancakeSort(data.mel, data.mir)
-
-# pancakeSort(data.mel, data.mir)
-
-#beamSearch(data.mel, data.mir)
-#randomSort(data.mel, data.mir)
-
-
-# randomSort(data.mel, data.mir)
+else:
+    print("Error, unknown input")
