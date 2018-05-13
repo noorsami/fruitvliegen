@@ -33,8 +33,7 @@ def breadthFirst(mir,mel):
         melListHistory.append(len(newMelList))
     return melListHistory, swaps
 
-def experiment():
-    length = 9
+def experimentGraph(length):
     while length > 3:
         for j in range(10):
             title = "BreadthFirst vs Theoretical; N =" + str(length)
@@ -60,4 +59,19 @@ def experiment():
 
         length-=1
 
-experiment()
+# experiment(9)
+
+def experimentSwapCount():
+    length = 8
+    histData = []
+    for i in range(10**3):
+        gen1 = [*range(1,length + 1)]
+        gen2 = [*range(1,length + 1)]
+        rm.shuffle(gen2)
+        histData.append(breadthFirst(gen1,gen2)[1])
+    print(histData)
+    plt.hist(histData)
+    plt.xticks(np.arange(0, length+1, 1))
+    plt.show()
+
+# experimentSwapCount()
