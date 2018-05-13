@@ -107,7 +107,6 @@ venv.bak/
 .DS_Store
 
 # Test files
-testAlwan.py
 testJur.py
 testNordin.py
 testNordin0.py
