@@ -97,19 +97,38 @@ def score2(mel):
 # 	return table
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 table = genTable(data.mel, 10, listGen.genX)
 muTable(table, 10, mutate.random)
 # checkTable(table)
 printTable(table)
-
-
-# printTable(table)
-
-
-
-
-
-
-
-# print(data.mel)
-# print(mutate(data.mel))
