@@ -35,27 +35,29 @@ def breadthFirst(mir,mel):
 
 def experiment():
     length = 9
-    # while length > 3:
-    #     for i in range(10):
-    title = "BreadthFirst vs Theoretical; N =" + str(length)
-    gen1 = [*range(1,length + 1)]
-    gen2 = [*range(1,length + 1)]
-    rm.shuffle(gen2)
-    data = breadthFirst(gen1, gen2)
-    swapAmountList = np.zeros(len(data[0]))
-    swapAmount = length * (length - 1) / 2
+    while length > 3:
+        for j in range(10):
+            title = "BreadthFirst vs Theoretical; N =" + str(length)
+            gen1 = [*range(1,length + 1)]
+            gen2 = [*range(1,length + 1)]
+            rm.shuffle(gen2)
+            data = breadthFirst(gen1, gen2)
+            swapAmountList = np.zeros(len(data[0]))
+            swapAmount = length * (length - 1) / 2
 
-    for i in range(len(swapAmountList)):
-        swapAmountList[i] = swapAmount**i
-    print(swapAmountList)
-    print(data)
-    plt.plot(range(data[1] + 1),data[0], label = "breadthFirst")
-    plt.plot(range(data[1] + 1), swapAmountList, label = "Theoretical")
-    plt.xticks(np.arange(0, data[1]+1, 1))
-    plt.xlabel("Number of swaps")
-    plt.ylabel("Amount of swap-possibilities")
-    plt.title(title)
-    plt.legend()
-    plt.show()
-        # length-=1
+            for i in range(len(swapAmountList)):
+                swapAmountList[i] = swapAmount**i
+            fig = plt.figure()
+            plt.plot(range(data[1] + 1),data[0], label = "breadthFirst")
+            plt.plot(range(data[1] + 1), swapAmountList, label = "Theoretical")
+            plt.xticks(np.arange(0, data[1]+1, 1))
+            plt.xlabel("Number of swaps")
+            plt.ylabel("Amount of swap-possibilities")
+            plt.title(title)
+            plt.legend()
+            filename = title + "_#"+ str(j + 1) + ".png"
+            fig.savefig(filename, dpi=fig.dpi)
+
+        length-=1
+
 experiment()
