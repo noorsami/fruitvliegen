@@ -26,7 +26,7 @@ class helper:
 	    newMelList = []
 	    for i in range(len(mel)):
 	        for j in range(i):
-	            newMelList.append(helper.swapped(i,j,mel))
+	            newMelList.append(tuple(helper.swapped(i,j,mel)))
 
 	    return newMelList
 
