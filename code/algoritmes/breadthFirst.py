@@ -15,6 +15,16 @@ from helper import helper
 
 
 def breadthFirst(mir,mel):
+    '''
+        Wat de functie doet. 
+
+    Arguments:
+        type: wat voor informatie bevat deze var
+
+    Returns:
+        type: idem.
+
+    '''
     mir = tuple(mir)
     melList = [copy.copy(mel)]
     swaps = 0
