@@ -1,4 +1,5 @@
 def scoreNeighbours(mel):
+
     score = 0
     length = len(mel)
     for i in range(1, length - 1):
@@ -15,11 +16,11 @@ def scoreNeighboursModifier(mel):
     length = len(mel)
     n = 0
     for i in range(length - 1):
-        check= mel[i] - mel[i + 1]
+        check = mel[i] - mel[i + 1]
 
         if abs(check) == 1:
             n += 1
         else:
             score += n*n
-            n= 0
+            n = 0
     return score
