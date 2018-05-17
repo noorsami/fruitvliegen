@@ -19,9 +19,9 @@ print("\nWELCOME!\n\n When you want to run the pancake sorting algorithm type in
 
 algorithm = input("Type in the algorithm that you want to run: \n\n")
 
-if algorithm == 'p':
-    pancake = pancakeSort(data.mel, data.mir)
-    print(pancake)
+# if algorithm == 'p':
+#     pancake = pancakeSort(data.mel, data.mir)
+#     print(pancake)
 
 elif algorithm == 'g':
     genetic = geneticAlgorithm(1000, data.mel, data.mir)

@@ -11,7 +11,7 @@ sys.path.append(os.path.join(directory, "code", "algoritmes"))
 from helper import helper
 from datastructuur import data, node, linkedList
 from helper import helper
-from pancakeSort import pancakeSort
+# from pancakeSort import pancakeSort
 from beamSearch import beamSearch
 from randomSort import randomSort
 from genetic import geneticAlgorithm
@@ -24,62 +24,51 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
+from helper import helper
 
-# generates x arrays with random mutations from mel
-def mutate(mel, int, swapList):
+import random as rm
+import math as m
+import sys
+import copy
+import time
+import matplotlib.pyplot as plt
+import numpy as np
+
+def mutateGood(mel, int, swapList):
 
 	mel_len = len(mel)
 
 	for i in range(int):
-		melTemp = copy.copy(mel)
+
 		a = rm.randint(0, mel_len - 1)
 		b = rm.randint(0, mel_len - 1)
 
-		if a > b:
-			b, a = a, b
+		swappedMel = helper.swapped(a, b, mel)
 
-		melTemp = helper.swapMel(a,b,melTemp)
-
-		swapList.append(melTemp)
-
+		swapList.append(swappedMel)
 	return swapList
 
-# calculates score per children
-def score(mel, scoreList):
-	score = 0
-	for i in range(24):
+def scoreNeighbours(swapList, scoreList, mir):
 
-		# staat genoom op goede plek?
-		if mel[i] is i+1:
-			score += 1
-		# # is het rechtergenoom naast mel (mel +1)?
-		# if mel[i+1] is mel[i] + 1:
-		# 	score += 1
-		# # is het linkergenoom naast mel (mel-1)?
-		# if mel[i-1] is mel[i] - 1:
-		# 	score += 1
+	length = len(swapList)
+	for i in range(length):
 
-	scoreList.append(score)
+		score = 0
 
-	return score
+		for j in range(24):
 
-def score2(mel):
-	score = 0
-	for i in range(24):
+			checkLeft = swapList[i][j] - swapList[i][j - 1]
+			checkRight = swapList[i][j] - swapList[i][j + 1]
 
-		# staat genoom op goede plek?
-		if mel[i] is i+1:
-			score += 1
+			placeMel = swapList[i][j]
+			placeMir = mir[j]
 
-		if mel[i+1] is mel[i] + 1 and mel[i-1] is mel[i] - 1:
-			score += 1
+			if abs(checkLeft) == 1:
+				score += 1
+			if abs(checkRight) == 1:
+				score += 1
 
-	return score
-
-# appends score to scorelist
-def appendScore(swapList, scoreList):
-	for i in range(len(swapList)):
-		scoreList.append(scoreTest(swapList[i]))
+		scoreList.append(score)
 
 	return scoreList
 
@@ -89,6 +78,92 @@ def makeTuple(tupleSwap, scoreList, swapList):
 		tupleSwap.append((scoreList[i], swapList[i]))
 
 	return tupleSwap
+
+#_______________________________________________________________________________#
+
+def scoreTest(swapList, scoreList, mir):
+
+	length = len(swapList)
+
+	# iterate over array
+	for i in range(length):
+		score = 0
+		correctessCounter = 1
+
+		for j in range(24):
+			checkLeft = swapList[i][j - 1]
+			checkRight = swapList[i][j + 1]
+			#
+			# checkLeft = mel[i-1]
+			# checkRight = mel[i+1]
+
+			upperValue = swapList[i][j] + 1
+
+			if upperValue == 26:
+				upperValue = 25
+
+			lowerValue = swapList[i][j] - 1
+
+			# check values of right and left
+			tempScore = 0
+
+			if lowerValue > 0:
+				if swapList[i][j] == j:
+					correctessCounter += 1
+
+				if checkLeft == lowerValue or checkLeft == upperValue:
+					correctessCounter += 1
+
+				elif checkRight == upperValue:
+					# look for location of expected value in array & determine distance between expected location and where value is found
+					location = swapList[i].index(lowerValue)
+					distance = i - location
+					if distance < 0:
+						distance *= -1
+					tempScore += (distance*distance)
+
+				else:
+					# look for location of expected value in array & determine distance between expected location and where value is found
+					location = swapList[i].index(upperValue)
+					distance = i - location
+					if distance < 0:
+						distance *= -1
+					tempScore += (distance*distance)
+
+			if checkRight == upperValue or checkRight == lowerValue:
+				correctessCounter += 1
+
+			elif checkLeft == lowerValue:
+				# look for location of expected value in array & determine distance between expected location and where value is found
+				location = swapList[i].index(upperValue)
+				distance = i - location
+				if distance < 0:
+					distance *= -1
+				tempScore += (distance*distance)
+
+			else:
+				# look for location of expected value in array & determine distance between expected location and where value is found
+				if lowerValue > 0:
+					location = swapList[i].index(lowerValue)
+					distance = i - location
+				else:
+					distance = 0
+
+				if distance < 0:
+					distance *= -1
+				tempScore += (distance*distance)
+
+				tempScore /= correctessCounter
+				score += tempScore
+
+			#
+			# score *= -1
+
+			scoreList.append(score)
+	return scoreList
+
+#_______________________________________________________________________________#
+
 
 # genetic algorithm
 def geneticAlgorithm(sampleSize, mel, mir):
@@ -100,19 +175,32 @@ def geneticAlgorithm(sampleSize, mel, mir):
 	count = 0
 	bestMel = mel
 
-	while orderedTuple[-1][1] is not mir:
+	lastGen = mel
+
+	# visualization prints
+	# print("Start of with Mel:", mel)
+	# print("Run algorithm so that Mel turns in to Mir:", mir)
+	# time.sleep(0.5)
+	#
+	# print("Finding best mutated Mel per iteration out of the population size:", sampleSize)
+	# time.sleep(0.5)
+
+	while lastGen != mir:
 
 		# mutate from best mel X amount of new children
-		swapList = mutate(bestMel, sampleSize, [])
+		swapList = mutateGood(bestMel, sampleSize, [])
 
 		# calculate and append score to new children
-		scoreList = appendScore(swapList, [])
+		# scoreList = scoreNeighbours(swapList, [], mir)
+		scoreList = scoreTest(swapList, [], mir)
 
 		# manipulate data so that score and children are connected in a tuple
 		tupleSwap = makeTuple([], scoreList, swapList)
 
 		# order tuple from low score to high score
 		orderedTuple = sorted(tupleSwap)
+		# orderedTuple = tupleSwap.sort(reverse=True)
+		# print(orderedTuple)
 
 		# define new and previous best score
 		newBestScore = orderedTuple[-1][0]
@@ -120,157 +208,33 @@ def geneticAlgorithm(sampleSize, mel, mir):
 		prevBestScore = generation[-1][0]
 
 		# take the last item in ordered list tuple to get te best score and it's gene row
-		best = (orderedTuple[1][0], orderedTuple[1][1])
+		best = (orderedTuple[-1][0], orderedTuple[-1][1])
 
 		# if new generated gene row is better then previous append new as new best
 		if prevBestScore < newBestScore:
+
 			generation.append(best)
 
+			# visualization
+			print("Best Found [(score, genrow)]:", best, ", Mutation number:", count+1)
+			time.sleep(0.5)
+
 			# continue with new gene row to mutate
-			bestMel = orderedTuple[1][1]
+			bestMel = orderedTuple[-1][1]
+
+			lastGen = generation[-1][1]
 
 		count += 1
-		print(count)
 
-	return generation
-
-# genetic = geneticAlgorithm(10, data.mel, data.mir)
-# print(genetic)
-#
-#
+	return ("Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:"), generation, ("Amount of mutations needed:"), count
 
 
+# print(mutateGood(data.mel, 2, []))
+print(geneticAlgorithm(1000, data.mel, data.mir))
 
-
-# scorefunctie:
-
-# kijk ipv naar of de neighbours van een waarde correct zijn,
-# naar de afstand van de locatie van de getallen die neighbours moeten zijn tov de plek naast de waarde.
-
-def scoreNeighbours(mel):
-    score = 0
-    length = len(mel)
-    for i in range(1, length - 1):
-        checkLeft = mel[i] - mel[i - 1]
-        checkRight = mel[i] - mel[i + 1]
-        if abs(checkLeft) == 1:
-            score += 1
-        if abs(checkRight) == 1:
-            score += 1
-    return score
-
-
-#_______________________________________________________________________________#
-
-def scoreTest(mel):
-	score = 0
-	length = len(mel)
-
-	correctessCounter = 1
-	score = 0
-
-	# iterate over array
-	for i in range(1, length - 1):
-		checkLeft = mel[i-1]
-		checkRight = mel[i+1]
-
-		upperValue = mel[i] + 1
-		if upperValue == length +1:
-			upperValue = length
-
-		lowerValue = mel[i] - 1
-
-		# determine values that right and left should have
-			# both sides can be upper or lower
-			# upper = i + 1
-			# lower = i - 1
-
-		# check values of right and left
-		tempScore = 0
-
-		if lowerValue > 0:
-			if mel[i] == i:
-				correctessCounter += 1
-
-			if checkLeft == lowerValue or checkLeft == upperValue:
-				correctessCounter += 1
-
-			elif checkRight == upperValue:
-				# look for location of expected value in array & determine distance between expected location and where value is found
-				location = mel.index(lowerValue) + 1
-				distance = i - location
-				if distance < 0:
-					distance *= -1
-				tempScore += (distance*distance)
-
-			else:
-				# look for location of expected value in array & determine distance between expected location and where value is found
-				location = mel.index(upperValue) + 1
-				distance = i - location
-				if distance < 0:
-					distance *= -1
-				tempScore += (distance*distance)
-
-		if checkRight == upperValue or checkRight == lowerValue:
-			correctessCounter += 1
-
-		elif checkLeft == lowerValue:
-			# look for location of expected value in array & determine distance between expected location and where value is found
-			location = mel.index(upperValue) + 1
-			distance = i - location
-			if distance < 0:
-				distance *= -1
-			tempScore += (distance*distance)
-
-		else:
-			# look for location of expected value in array & determine distance between expected location and where value is found
-			if lowerValue > 0:
-				location = mel.index(lowerValue) + 1
-				distance = i - location
-			else:
-				distance = 0
-
-			if distance < 0:
-				distance *= -1
-			tempScore += (distance*distance)
-
-		tempScore /= correctessCounter
-		score += tempScore
-
-	return score
-
-#_______________________________________________________________________________#
-
-
-			# look for location of expected value in array & determine distance between expected location and where value is found
-
-
-
-
-	# if value is not correct ( i + 1 or i - 1) --> look for location of expected value in array
-	# determine distance between expected location and where value is found
-
-	# --> linear search function which returns the i of the array when the value is found
-	# --> location of value - location of expected value = score
-
-	# scoreLeft = distance of left expected values
-	# scoreRight = distance of right expected value
-
-
-	# score per Value = scoreLeft + scoreRight / 2
-
-
-
-
-
-
-
-melTest = [2,1,3]
-melTest2 = [9,8,7,6,5,4,3,2,1]
-melTarget = [1,2,3]
-print(scoreTest(melTest))
-print(scoreTest(melTest), melTest)
-print(scoreTest(melTest2), melTest2)
-print("Target: ", scoreTest(melTarget), melTarget)
-#
-# geneticAlgorithm(100, melTest, melTarget)
+# testArray1 = [2,3,1,4,5]
+# testArray2 = [3,2,1,5,4]
+# testArray3 = [1,2,3,4,5]
+# print(scoreTest2(testArray1))
+# print(scoreTest2(testArray2))
+# print(scoreTest2(testArray3))
