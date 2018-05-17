@@ -12,7 +12,6 @@ from helper import helper
 from datastructuur import data, node, linkedList
 from helper import helper
 # from pancakeSort import pancakeSort
-from beamSearch import beamSearch
 from randomSort import randomSort
 from genetic import geneticAlgorithm
 
