@@ -35,34 +35,43 @@ def score(mel, scoreList):
 		# staat genoom op goede plek?
 		if mel[i] is i+1:
 			score += 1
-		# is het rechtergenoom naast mel (mel +1)?
-		if mel[i+1] is mel[i] + 1:
-			score += 1
-		# is het linkergenoom naast mel (mel-1)?
-		if mel[i-1] is mel[i] - 1:
-			score += 1
+		# # is het rechtergenoom naast mel (mel +1)?
+		# if mel[i+1] is mel[i] + 1:
+		# 	score += 1
+		# # is het linkergenoom naast mel (mel-1)?
+		# if mel[i-1] is mel[i] - 1:
+		# 	score += 1
 
 	scoreList.append(score)
 
 	return score
 
-def score2(mel):
-	score = 0
-	for i in range(24):
+def scoreNeighbours(mel):
+    score = 0
+    length = len(mel)
+    for i in range(1, length - 1):
+        checkLeft = mel[i] - mel[i - 1]
+        checkRight = mel[i] - mel[i + 1]
+        if abs(checkLeft) == 1:
+            score += 1
+        if abs(checkRight) == 1:
+            score += 1
+    return score
 
-		# staat genoom op goede plek?
-		if mel[i] is i+1:
-			score += 1
 
-		if mel[i+1] is mel[i] + 1 and mel[i-1] is mel[i] - 1:
-			score += 1
 
-	return score
+
+
+
+
+	 
 
 # appends score to scorelist
 def appendScore(swapList, scoreList):
 	for i in range(len(swapList)):
-		scoreList.append(score(swapList[i], []))
+
+		scoreList.append(scoreTest(swapList[i]))
+		# scoreList.append(scoreNeighbours(swapList[i], []))
 
 	return scoreList
 
