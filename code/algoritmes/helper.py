@@ -28,7 +28,7 @@ class helper:
 			for j in range(i):
 				newMelList.append(tuple(helper.swapped(i,j,mel)))
 
-	return newMelList
+		return newMelList
 
 	# checks a list for dublicates and returns a list of lists
 	def noDublicates(list):

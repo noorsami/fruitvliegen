@@ -54,7 +54,6 @@ def swapAllSequence(melSequence):
 		newMelList.append(selfSwap)
 		for j in range(i):
 			newMelList.append(sequenceSwap(j,i,melSequence))
-
 	return newMelList
 
 def makeList(seq):
@@ -71,9 +70,10 @@ def breadthFirstWithSequences(mel,mir):
     melSet = set(tuple(copy.copy(mel)))
     melList = [tuple(copy.copy(mel))]
     swaps = 0
-    count = 0
     melListHistory = []
     q = queue.Queue()
+    breakpoints = []
+
     while mir not in melSet:
     	melListHistory.append(len(melList))
     	q.put(copy.copy(melList))
@@ -90,12 +90,10 @@ def breadthFirstWithSequences(mel,mir):
         			if swap not in melSet:
         				melSet.add(swap)
         				melList.append(swap)
-        			else:
-        				count+=1
 
 		
 
-    return melListHistory, swaps, count
+    return melListHistory, swaps
 
 
 
@@ -105,4 +103,4 @@ gen1 = [*range(1,length + 1)]
 gen2 = [*range(1, length + 1)]
 rm.shuffle(gen2)
 
-print(breadthFirstWithSequences(gen2,gen1))
+print(breadthFirstWithSequences([9,8,7,6,5,4,3,2,1],gen1))
