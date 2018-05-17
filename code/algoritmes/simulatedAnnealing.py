@@ -54,7 +54,7 @@ def simulatedAnnealing(mel, mir, failValue):
 
         mutatedMel = mutateSingle(curMel)
         mutatedScore = scoreNeighbours2(mutatedMel)
-        
+
         if mutatedScore > curScore:
             print("Found better mutation!")
 
@@ -93,18 +93,9 @@ def simulatedAnnealing(mel, mir, failValue):
     return history
 
 
+#mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
+#mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+#mir2 = [2, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
 
-
-
-
-
-
-
-mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
-mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-mir2 = [2, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-test1 = [1,2,3,5,4]
-test2 = [1,2,3,4,5]
-
-simulatedAnnealing(mel, mir, 1000)
+#simulatedAnnealing(mel, mir, 1000)
