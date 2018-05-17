@@ -2,42 +2,54 @@ from helper import helper
 import time
 import matplotlib.pyplot as plt
 
+
 def pancakeSort(mel, mir):
 
-	print("Start off with Mel:", mel)
-	print("Run algorithm so that Mel turns in to Mir:", mir)
+	# open results textfile
+	with open('resultaten/pancakeSort.txt', 'w') as f:
 
-	swapCount = 1
-	mel_len = len(mel)
-	mir_len = len(mir)
-	if mel_len is not mir_len:
-		message = "error, lists are not the same length"
-		return message
-	else:
-		for i in range(mel_len):
+		print('PANCAKE SORT', file=f)
 
-			## visualization
-			#plt.plot(mir, mel, mir, mir)
-			#plt.axis([1,25, 1, 25])
-			#plt.show()
+		# visualization
+		print("Start off with Mel:", mel)
+		print(' '.join(('Start off with Mel:', str(mel))), file=f)
 
-			# if position value in mel is not position value in mir
-			if mir[i] is not mel[i]:
-				# search from position through mel to find the value
-				for j in range(i,mel_len):
-					# when found swap
-					if mir[i] is mel[j]:
+		time.sleep(0.5)
 
-						mel = helper.swapMel(i,j,mel)
-						print("Swap", swapCount, ":", mel)
+		# visualization
+		print("Run algorithm so that Mel turns in to Mir:", mir)
+		print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir))), file=f)
+		time.sleep(0.5)
 
-						## visualization
-						#plt.show()
+		swapCount = 1
+		mel_len = len(mel)
+		mir_len = len(mir)
+		if mel_len is not mir_len:
+			message = "error, lists are not the same length"
+			return message
+		else:
+			for i in range(mel_len):
 
-						swapCount += 1
-						time.sleep(0.5)
+				# if position value in mel is not position value in mir
+				if mir[i] is not mel[i]:
+					# search from position through mel to find the value
+					for j in range(i,mel_len):
+						# when found swap
+						if mir[i] is mel[j]:
 
-	print("Number of swaps:", swapCount - 1)
-	print("Final Swap:")
+							mel = helper.swapMel(i,j,mel)
 
-	return mel
+							# visualization
+							print("Swap", swapCount, ":", mel)
+							print(' '.join(('Swap', str(swapCount), ":", str(mel))), file=f)
+
+							swapCount += 1
+							time.sleep(0.5)
+
+		# visualization
+		print("Number of swaps:", swapCount - 1)
+		print(' '.join(('Number of swaps:', str(swapCount - 1))), file=f)
+		print("Final Swap:")
+		print(' '.join(('Final Swap:', str(mel))), file=f)
+
+		return mel

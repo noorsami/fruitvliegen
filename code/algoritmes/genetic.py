@@ -1,5 +1,4 @@
 from helper import helper
-
 import random as rm
 import math as m
 import sys
@@ -8,61 +7,41 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
-# generates x arrays with random mutations from mel
-def mutate(mel, int, swapList):
+def mutateGood(mel, int, swapList):
 
 	mel_len = len(mel)
 
 	for i in range(int):
-		melTemp = copy.copy(mel)
+
 		a = rm.randint(0, mel_len - 1)
 		b = rm.randint(0, mel_len - 1)
 
-		if a > b:
-			b, a = a, b
+		swappedMel = helper.swapped(a, b, mel)
 
-		melTemp = helper.swapMel(a,b,melTemp)
-
-		swapList.append(melTemp)
+		swapList.append(swappedMel)
 
 	return swapList
 
-# calculates score per children
-def score(mel, scoreList):
-	score = 0
-	for i in range(24):
+def scoreNeighbours(swapList, scoreList, mir):
 
-		# staat genoom op goede plek?
-		if mel[i] is i+1:
-			score += 1
-		# is het rechtergenoom naast mel (mel +1)?
-		if mel[i+1] is mel[i] + 1:
-			score += 1
-		# is het linkergenoom naast mel (mel-1)?
-		if mel[i-1] is mel[i] - 1:
-			score += 1
 
-	scoreList.append(score)
+	length = len(swapList)
+	for i in range(length):
 
-	return score
+		score = 0
 
-def score2(mel):
-	score = 0
-	for i in range(24):
+		for j in range(24):
 
-		# staat genoom op goede plek?
-		if mel[i] is i+1:
-			score += 1
+			checkLeft = swapList[i][j] - swapList[i][j - 1]
+			checkRight = swapList[i][j] - swapList[i][j + 1]
 
-		if mel[i+1] is mel[i] + 1 and mel[i-1] is mel[i] - 1:
-			score += 1
+			# does position to check has the right neighbours? if yes add score
+			if abs(checkLeft) == 1:
+				score += 1
+			if abs(checkRight) == 1:
+				score += 1
 
-	return score
-
-# appends score to scorelist
-def appendScore(swapList, scoreList):
-	for i in range(len(swapList)):
-		scoreList.append(score(swapList[i], []))
+		scoreList.append(score)
 
 	return scoreList
 
@@ -74,45 +53,74 @@ def makeTuple(tupleSwap, scoreList, swapList):
 	return tupleSwap
 
 # genetic algorithm
-def geneticAlgorithm(sampleSize, mel, mir):
+def geneticAlgorithm(populationSize, mel, mir):
 
-	# define databases
-	generation = [(0,[])]
-	orderedTuple = [(0,[])]
+	# open results textfile
+	with open('resultaten/genetic.txt', 'w') as f:
 
-	count = 0
-	bestMel = mel
+		print('GENETIC ALGORITHM', file=f)
 
-	while orderedTuple[-1][1] is not mir:
+		# define databases
+		generation = [(0,[])]
+		orderedTuple = [(0,[])]
 
-		# mutate from best mel X amount of new children
-		swapList = mutate(bestMel, sampleSize, [])
+		count = 0
+		bestMel = mel
 
-		# calculate and append score to new children
-		scoreList = appendScore(swapList, [])
+		lastGen = mel
 
-		# manipulate data so that score and children are connected in a tuple
-		tupleSwap = makeTuple([], scoreList, swapList)
+		# visualization
+		print("Start of with Mel:", mel)
+		print(' '.join(('Start off with Mel:', str(mel))), file=f)
+		print("Run algorithm so that Mel turns in to Mir:", mir)
+		print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir))), file=f)
+		time.sleep(0.5)
 
-		# order tuple from low score to high score
-		orderedTuple = sorted(tupleSwap)
+		print("Finding best mutated Mel per iteration out of the population size:", populationSize)
+		print(' '.join(('Finding best mutated Mel per iteration out of the population size:', str(populationSize))), file=f)
+		time.sleep(0.5)
 
-		# define new and previous best score
-		newBestScore = orderedTuple[-1][0]
+		while lastGen != mir:
 
-		prevBestScore = generation[-1][0]
+			# mutate from best mel X amount of new children
+			swapList = mutateGood(bestMel, populationSize, [])
 
-		# take the last item in ordered list tuple to get te best score and it's gene row
-		best = (orderedTuple[-1][0], orderedTuple[-1][1])
+			# calculate and append score to new children
+			scoreList = scoreNeighbours(swapList, [], mir)
 
-		# if new generated gene row is better then previous append new as new best
-		if prevBestScore < newBestScore:
-			generation.append(best)
+			# manipulate data so that score and children are connected in a tuple
+			tupleSwap = makeTuple([], scoreList, swapList)
 
-			# continue with new gene row to mutate
-			bestMel = orderedTuple[-1][1]
+			# order tuple from low score to high score
+			orderedTuple = sorted(tupleSwap)
 
-		count += 1
-		print(count)
+			# define new and previous best score
+			newBestScore = orderedTuple[-1][0]
 
-	return generation
+			prevBestScore = generation[-1][0]
+
+			# take the last item in ordered list tuple to get te best score and it's gene row
+			best = (orderedTuple[-1][0], orderedTuple[-1][1])
+
+			# if new generated gene row is better then previous append new as new best
+			if prevBestScore < newBestScore:
+
+				generation.append(best)
+
+				# visualization
+				print("Best Found (score, [genrow]):", best, ", Mutation number:", count+1)
+				print(' '.join(('Best Found (score, [genrow]):', str(best), ", Mutation number:", str(count+1))), file=f)
+				time.sleep(0.5)
+
+				# continue with new gene row to mutate
+				bestMel = orderedTuple[-1][1]
+
+				lastGen = generation[-1][1]
+
+			count += 1
+
+		# visualization
+		print(' '.join(('Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:', str(generation))), file=f)
+		print(' '.join(('Amount of mutations needed:', str(count))), file=f)
+
+		return ("Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:"), generation, ("Amount of mutations needed:"), count
