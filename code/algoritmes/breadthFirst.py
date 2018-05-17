@@ -32,8 +32,9 @@ def breadthFirst(mir,mel):
     melListHistory = [1]
     count = 0
     q = queue.Queue()
-    while mir not in melList:
+    while mir not in melSet:
         q.put(copy.copy(melList))
+        melList = []
         while not q.empty():
             swaps+=1
             allGens = q.get()
@@ -46,8 +47,10 @@ def breadthFirst(mir,mel):
                     else:
                         count += 1
 
-        melListHistory.append(len(melList))
+        melListHistory.append(len(melSet))
     return melListHistory, swaps, count
+
+
 
 def experimentGraph(length):
     while length > 3:
@@ -62,7 +65,6 @@ def experimentGraph(length):
             swapAmountList[0] = 1
             for i in range(1,len(swapAmountList)):
                 swapAmountList[i] = (1 + swapAmount)*swapAmountList[i-1]
-            print(swapAmountList)
             fig = plt.figure()
             plt.plot(range(data[1] + 1),data[0], label = "breadthFirst")
             plt.plot(range(data[1] + 1), swapAmountList, label = "Theoretical")
@@ -94,4 +96,4 @@ def experimentSwapCount(length,amount):
     plt.xticks(np.arange(0, length+1, 1))
     plt.show()
 
-experimentSwapCount(8,100)
+# experimentSwapCount(5,10)
