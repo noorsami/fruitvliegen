@@ -8,6 +8,7 @@ sys.path.append(os.path.join(directory, "code"))
 sys.path.append(os.path.join(directory, "code", "classes"))
 sys.path.append(os.path.join(directory, "code", "algoritmes"))
 
+<<<<<<< HEAD
 from datastructuur import data
 from helper import helper
 from pancakeSort import pancakeSort
@@ -15,6 +16,16 @@ from randomSort import randomSort
 from genetic import geneticAlgorithm
 
 print("\nWELCOME!\n\n When you want to run the pancake sorting algorithm type in: p \n\n When you want to run the genetic algoritm type in: g\n")
+=======
+from datastructuur import data, node, linkedList
+from helper import helper
+from pancakeSort import pancakeSort
+from beamSearch import beamSearch
+from randomSort import randomSort
+from genetic import geneticAlgorithm
+
+print("\nWELCOME!\n\n When you want to run the pancake sorting algorithm type in: p \n\n When you want to run the genetic algorithm type in: g\n")
+>>>>>>> f359d7eac919c9caaa2b1afc1cccd3710ce60a6d
 
 algorithm = input("Type in the algorithm that you want to run: \n\n")
 
