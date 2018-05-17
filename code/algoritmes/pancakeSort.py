@@ -3,21 +3,22 @@ import time
 import matplotlib.pyplot as plt
 
 
-
 def pancakeSort(mel, mir):
 
-	with open(“resultaten/pancakeSort.txt”) as results:
+	# open results textfile
+	with open('resultaten/pancakeSort.txt', 'w') as f:
 
+		print('PANCAKE SORT', file=f)
+
+		# visualization
 		print("Start off with Mel:", mel)
-
-
-		results.write("Start off with Mel:", mel)
-
+		print(' '.join(('Start off with Mel:', str(mel))), file=f)
 
 		time.sleep(0.5)
-		print("Run algorithm so that Mel turns in to Mir:", mir)
 
-		results.write("Run algorithm so that Mel turns in to Mir:", mir)
+		# visualization
+		print("Run algorithm so that Mel turns in to Mir:", mir)
+		print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir))), file=f)
 		time.sleep(0.5)
 
 		swapCount = 1
@@ -37,17 +38,18 @@ def pancakeSort(mel, mir):
 						if mir[i] is mel[j]:
 
 							mel = helper.swapMel(i,j,mel)
+
+							# visualization
 							print("Swap", swapCount, ":", mel)
-							results.write("Swap", swapCount, ":", mel)
+							print(' '.join(('Swap', str(swapCount), ":", str(mel))), file=f)
 
 							swapCount += 1
 							time.sleep(0.5)
 
+		# visualization
 		print("Number of swaps:", swapCount - 1)
-		results.write("Number of swaps:", swapCount - 1)
+		print(' '.join(('Number of swaps:', str(swapCount - 1))), file=f)
 		print("Final Swap:")
+		print(' '.join(('Final Swap:', str(mel))), file=f)
 
-		results.write("Final Swap:", mel)
-
-
-	return mel
+		return mel
