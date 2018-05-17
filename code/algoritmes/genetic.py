@@ -1,5 +1,4 @@
 from helper import helper
-
 import random as rm
 import math as m
 import sys
@@ -8,30 +7,21 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
-# generates x arrays with random mutations from mel
-def mutate(mel, int, swapList):
-
+def mutateGood(mel, int, swapList):
 	mel_len = len(mel)
-
 	for i in range(int):
-		melTemp = copy.copy(mel)
 		a = rm.randint(0, mel_len - 1)
 		b = rm.randint(0, mel_len - 1)
 
-		if a > b:
-			b, a = a, b
+		swappedMel = helper.swapped(a, b, mel)
 
-		melTemp = helper.swapMel(a,b,melTemp)
-
-		swapList.append(melTemp)
+		swapList.append(swappedMel)
 
 	return swapList
 
-# calculates score per children
-def score(mel, scoreList):
-	score = 0
-	for i in range(24):
+def scoreNeighbours(swapList, scoreList):
 
+<<<<<<< HEAD
 		# staat genoom op goede plek?
 		if mel[i] is i+1:
 			score += 1
@@ -41,11 +31,16 @@ def score(mel, scoreList):
 		# # is het linkergenoom naast mel (mel-1)?
 		# if mel[i-1] is mel[i] - 1:
 		# 	score += 1
+=======
+	length = len(swapList)
+	for i in range(length):
+>>>>>>> 809742e2f05b93706d376d8992a5345599d34177
 
-	scoreList.append(score)
+		score = 0
 
-	return score
+		for j in range(24):
 
+<<<<<<< HEAD
 def scoreNeighbours(mel):
     score = 0
     length = len(mel)
@@ -72,6 +67,17 @@ def appendScore(swapList, scoreList):
 
 		scoreList.append(scoreTest(swapList[i]))
 		# scoreList.append(scoreNeighbours(swapList[i], []))
+=======
+			checkLeft = swapList[i][j] - swapList[i][j - 1]
+			checkRight = swapList[i][j] - swapList[i][j + 1]
+
+			if abs(checkLeft) == 1:
+				score += 1
+			if abs(checkRight) == 1:
+				score += 1
+
+		scoreList.append(score)
+>>>>>>> 809742e2f05b93706d376d8992a5345599d34177
 
 	return scoreList
 
@@ -95,10 +101,10 @@ def geneticAlgorithm(sampleSize, mel, mir):
 	while orderedTuple[-1][1] is not mir:
 
 		# mutate from best mel X amount of new children
-		swapList = mutate(bestMel, sampleSize, [])
+		swapList = mutateGood(bestMel, sampleSize, [])
 
 		# calculate and append score to new children
-		scoreList = appendScore(swapList, [])
+		scoreList = scoreNeighbours(swapList, [])
 
 		# manipulate data so that score and children are connected in a tuple
 		tupleSwap = makeTuple([], scoreList, swapList)
@@ -116,6 +122,7 @@ def geneticAlgorithm(sampleSize, mel, mir):
 
 		# if new generated gene row is better then previous append new as new best
 		if prevBestScore < newBestScore:
+
 			generation.append(best)
 
 			# continue with new gene row to mutate
@@ -123,5 +130,6 @@ def geneticAlgorithm(sampleSize, mel, mir):
 
 		count += 1
 		print(count)
+		print(generation)
 
 	return generation
