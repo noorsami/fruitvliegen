@@ -24,7 +24,7 @@ if algorithm == 'p':
     print(pancake)
 
 elif algorithm == 'g':
-    genetic = geneticAlgorithm(1000, data.mel, data.mir)
+    genetic = geneticAlgorithm(300, data.mel, data.mir)
     print(genetic)
 
 elif algorithm == 's':
