@@ -59,20 +59,27 @@ def isReversed(mel):
 			return False
 		return True
 
-# function for swap if reversed is true
+''' Function for swap if reversed is true. '''
 def swapMel(a, b, mel):
 	mel[a:b + 1] = mel[a:b + 1][::-1]
 	return mel
 
-# genetic algorithm
-def geneticAlgorithm(populationSize, mel, mir):
 
-	# open results textfile
+def populationBased(populationSize, mel, mir):
+	'''
+		Wat de functie doet.
+
+		Arguments:
+			type: wat voor informatie bevat deze var.
+
+		Returns:
+			type: idem
+	'''
+
 	#with open('resultaten/genetic.txt', 'w') as f:
 
 	#print('GENETIC ALGORITHM', file=f)
 
-	# define databases
 	generation = [(0,[])]
 	orderedTuple = [(0,[])]
 
@@ -114,7 +121,7 @@ def geneticAlgorithm(populationSize, mel, mir):
 		best = (orderedTuple[-1][0], orderedTuple[-1][1])
 
 		# if new generated gene row is better then previous append new as new best
-		if prevBestScore < newBestScore:
+		if prevBestScore <= newBestScore:
 
 			generation.append(best)
 
