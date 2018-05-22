@@ -53,7 +53,7 @@ def steepestAscendHillClimber(mir,mel):
                 		melList.append(swap)
 
     end = time.time()
-    print(end-start)       			
+    print(end-start)
     return melListHistory, swaps, breakpoints
 
 for i in range(10):
