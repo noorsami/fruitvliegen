@@ -39,52 +39,50 @@ class helper:
 		return noDublicate
 
 	def makeSequence(mel):
-		newMel = []
-		j = 0
-		for i in range(1,len(mel)):
-			if (abs(mel[i] - mel[i - 1]) is not 1):
-				newMel.append(mel[j:i])
-				j = i
-			newMel.append(mel[j:])
-		return newMel
+	    newMel = []
+	    j = 0
+	    for i in range(1,len(mel)):
+	        if (abs(mel[i] - mel[i - 1]) is not 1):
+	            newMel.append(mel[j:i])
+	            j = i
+	    newMel.append(mel[j:])
+	    
+	    return newMel
 
 	def sequenceSwap(start,end,melSequence):
-		if start > end:
-			start, end = end, start
+	    if start > end:
+	        start, end = end, start
 
-		melSequence = copy.copy(melSequence)
-		newMelSequence = melSequence[:start]
-		check = 0
+	    melSequence = copy.copy(melSequence)
+	    newMelSequence = melSequence[:start]
+	    check = 0
+	    if end is len(melSequence) - 1:
+	        newMelSequence.extend([melSequence[end][::-1]])
+	        end -= 1
+	        check +=1
+	    for i in range(end - start + 1):
+	        newMelSequence.append(melSequence[end - i][::-1])
+	    if not check:
+	        newMelSequence.extend(melSequence[end + 1:])
 
-		if end is len(melSequence) - 1:
-			newMelSequence.extend([melSequence[end][::-1]])
-			end -= 1
-			check +=1
-
-		for i in range(end - start + 1):
-			newMelSequence.append(melSequence[end - i][::-1])
-
-		if not check:
-			newMelSequence.extend(melSequence[end + 1:])
-
-		return newMelSequence
+	    return newMelSequence
 
 	def swapAllSequence(melSequence):
-		melSequence = copy.copy(melSequence)
-		newMelList = []
-		for i in range(len(melSequence)):
-			selfSwap = melSequence[:i] + [melSequence[i][::-1]] + melSequence[i+1:]
-			newMelList.append(selfSwap)
-			for j in range(i):
-				newMelList.append(sequenceSwap(j,i,melSequence))
+	    melSequence = copy.copy(melSequence)
+	    newMelList = []
+	    for i in range(len(melSequence)):
+	        selfSwap = melSequence[:i] + [melSequence[i][::-1]] + melSequence[i+1:]
 
-		return newMelList
+	        newMelList.append(selfSwap)
+	        for j in range(i):
+	            newMelList.append(helper.sequenceSwap(j,i,melSequence))
+	    return newMelList
 
 	def makeList(seq):
-		List = []
-		for i in seq:
-			for j in range(len(i)):
-				List.append(i[j])
-		if type(List[0]) is list:
-			makeList(List)
-		return tuple(List)
+	    List = []
+	    for i in seq:
+	        for j in range(len(i)):
+	            List.append(i[j])
+	    if type(List[0]) is list:
+	        makeList(List)
+	    return tuple(List)

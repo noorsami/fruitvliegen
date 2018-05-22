@@ -29,10 +29,10 @@ def breadthFirst(mir,mel):
     melSet = set(tuple(copy.copy(mel)))
     melList = [tuple(copy.copy(mel))]
     swaps = 0
-    melListHistory = [1]
-    count = 0
+    melListHistory = []
     q = queue.Queue()
     while mir not in melSet:
+        melListHistory.append(len(melSet))
         q.put(copy.copy(melList))
         melList = []
         while not q.empty():
@@ -44,17 +44,15 @@ def breadthFirst(mir,mel):
                     if swap not in melSet:
                         melSet.add(swap)
                         melList.append(swap)
-                    else:
-                        count += 1
 
-        melListHistory.append(len(melSet))
-    return melListHistory, swaps, count
+        
+    return melListHistory, swaps
 
 
 
 def experimentGraph(length):
     while length > 3:
-        for j in range(10):
+        for j in range(1):
             title = "BreadthFirst vs Theoretical; N = " + str(length)
             gen1 = [*range(1,length + 1)]
             gen2 = [*range(1,length + 1)]

@@ -1,6 +1,6 @@
 import time
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
 import random as rm
 import math as m
@@ -21,10 +21,10 @@ from breadthFirst import breadthFirst
 
 def steepestAscendHillClimber(mir,mel):
     mir = tuple(mir)
+    start = time.time()
     melSet = set(tuple(copy.copy(mel)))
     melList = [tuple(copy.copy(mel))]
     swaps = 0
-    count = 0
     melListHistory = []
     q = queue.Queue()
     breakpoints = []
@@ -51,26 +51,40 @@ def steepestAscendHillClimber(mir,mel):
                 		if swap not in melSet:
                 			melSet.add(swap)
                 			melList.append(swap)
-                	else:
-                		count+=1
-        			
-    return melListHistory, swaps, count
 
-# length = 25
-# gen1 = [*range(1,length + 1)]
-# gen2 = [*range(1,length + 1)]
-# rm.shuffle(gen2)
-# mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
-# mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-# print(hillClimber(mir,mel))
+    end = time.time()
+    print(end-start)
+    return melListHistory, swaps, breakpoints
 
-data  = [1, 235, 8784, 2740, 39997, 57155, 42241, 343473, 27862, 79871, 153052, 21481,5740, 9899, 3169, 1851, 525]
-length = 25
-fig = plt.figure()
-title = "steepestAscend; N = " + str(length)
-plt.plot(range(len(data)),data, label = "Sequences")
-plt.xticks(np.arange(0, len(data), 1))
-plt.xlabel("Number of swaps")
-plt.ylabel("Number of tried Sequences")
-plt.title(title)
-plt.show()
+for i in range(10):
+    length = 25
+    gen1 = [*range(1,length + 1)]
+    gen2 = [*range(1,length + 1)]
+    rm.shuffle(gen2)
+    print(steepestAscendHillClimber(gen1,gen2))
+
+def experimentGraph(length):
+    # while length > 3:
+    for j in range(10):
+        title = "steepestAscend; N = " + str(length)
+        gen1 = [*range(1,length + 1)]
+        gen2 = [*range(1,length + 1)]
+        rm.shuffle(gen2)
+        data = steepestAscendHillClimber(gen1, gen2)
+        fig = plt.figure()
+        plt.subplot(211)
+        plt.plot(range(data[1]),data[0], label = "steepestAscend")
+
+        plt.subplot(212)
+        plt.plot(data[2], data[0], label = "Theoretical")
+        plt.xticks(np.arange(0, data[1], 1))
+        plt.xlabel("Number of swaps")
+        plt.ylabel("Number of subarrays")
+        plt.title(title)
+        plt.legend()
+        filename = title + "_#"+ str(j + 1) + ".png"
+        fig.savefig(filename, dpi=fig.dpi)
+
+    length-=1
+
+# experimentGraph(25)

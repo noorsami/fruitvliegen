@@ -52,15 +52,38 @@ def makeTuple(tupleSwap, scoreList, swapList):
 
 	return tupleSwap
 
-# genetic algorithm
-def geneticAlgorithm(populationSize, mel, mir):
+# function to check is list is reversed
+def isReversed(mel):
+	for i in range( len(mel) - 1 ):
+		if mel[i] < mel[i+1]:
+			return False
+		return True
 
-	# open results textfile
-	with open('resultaten/genetic.txt', 'w') as f:
+''' Function for swap if reversed is true. '''
+def swapMel(a, b, mel):
+	mel[a:b + 1] = mel[a:b + 1][::-1]
+	return mel
 
-		print('GENETIC ALGORITHM', file=f)
 
-		# define databases
+def populationBased(populationSize, mel, mir):
+	'''
+		Wat de functie doet.
+
+		Arguments:
+			type: wat voor informatie bevat deze var.
+
+		Returns:
+			type: idem
+	'''
+
+	with open('resultaten/population.txt', 'w') as f:
+
+		print('POPULATION BASED ALGORITHM', file=f)
+		print('-----------------------------', file=f)
+		print('-----------------------------')
+		print('POPULATION BASED ALGORITHM')
+		print('-----------------------------')
+
 		generation = [(0,[])]
 		orderedTuple = [(0,[])]
 
@@ -69,7 +92,6 @@ def geneticAlgorithm(populationSize, mel, mir):
 
 		lastGen = mel
 
-		# visualization
 		print("Start of with Mel:", mel)
 		print(' '.join(('Start off with Mel:', str(mel))), file=f)
 		print("Run algorithm so that Mel turns in to Mir:", mir)
@@ -78,7 +100,6 @@ def geneticAlgorithm(populationSize, mel, mir):
 
 		print("Finding best mutated Mel per iteration out of the population size:", populationSize)
 		print(' '.join(('Finding best mutated Mel per iteration out of the population size:', str(populationSize))), file=f)
-		time.sleep(0.5)
 
 		while lastGen != mir:
 
@@ -103,11 +124,11 @@ def geneticAlgorithm(populationSize, mel, mir):
 			best = (orderedTuple[-1][0], orderedTuple[-1][1])
 
 			# if new generated gene row is better then previous append new as new best
-			if prevBestScore < newBestScore:
+			if prevBestScore <= newBestScore:
 
 				generation.append(best)
 
-				# visualization
+
 				print("Best Found (score, [genrow]):", best, ", Mutation number:", count+1)
 				print(' '.join(('Best Found (score, [genrow]):', str(best), ", Mutation number:", str(count+1))), file=f)
 				time.sleep(0.5)
@@ -119,8 +140,21 @@ def geneticAlgorithm(populationSize, mel, mir):
 
 			count += 1
 
-		# visualization
+			# check if reversed is true, if yes swap to ascending order
+			reversed = isReversed(lastGen)
+			if reversed == True:
+				swapMel(24,0,lastGen)
+
+
 		print(' '.join(('Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:', str(generation))), file=f)
 		print(' '.join(('Amount of mutations needed:', str(count))), file=f)
 
-		return ("Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:"), generation, ("Amount of mutations needed:"), count
+		print('-----------------------------')
+		print('-----------------------------', file=f)
+		print('RESULT')
+		print('RESULT', file=f)
+		print('-----------------------------')
+		print('-----------------------------', file=f)
+
+
+	return ("Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:"), generation, ("Amount of mutations needed:"), count
