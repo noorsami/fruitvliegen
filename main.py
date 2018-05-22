@@ -15,7 +15,7 @@ from randomSort import randomSort
 from population import populationBased
 from simulatedAnnealing import simulatedAnnealing
 
-print("\nWELCOME!\n\n When you want to run the pancake sorting algorithm type in: 1 \n\n When you want to run the genetic algoritm type in: 2 \n\n When you want to run the simulated annealing algorithm type in: 3\n")
+print("\nWELCOME!\n\n When you want to run the pancake sorting algorithm type in: 1 \n\n When you want to run the population based algorithm type in: 2 \n\n When you want to run the simulated annealing algorithm type in: 3\n")
 
 algorithm = input("Type in the algorithm that you want to run: \n\n")
 

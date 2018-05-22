@@ -76,77 +76,85 @@ def populationBased(populationSize, mel, mir):
 			type: idem
 	'''
 
-	#with open('resultaten/genetic.txt', 'w') as f:
+	with open('resultaten/population.txt', 'w') as f:
 
-	#print('GENETIC ALGORITHM', file=f)
+		print('POPULATION BASED ALGORITHM', file=f)
+		print('-----------------------------', file=f)
+		print('-----------------------------')
+		print('POPULATION BASED ALGORITHM')
+		print('-----------------------------')
 
-	generation = [(0,[])]
-	orderedTuple = [(0,[])]
+		generation = [(0,[])]
+		orderedTuple = [(0,[])]
 
-	count = 0
-	bestMel = mel
+		count = 0
+		bestMel = mel
 
-	lastGen = mel
+		lastGen = mel
 
-		# visualization
-		#print("Start of with Mel:", mel)
-		#print(' '.join(('Start off with Mel:', str(mel))), file=f)
-		#print("Run algorithm so that Mel turns in to Mir:", mir)
-		#print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir))), file=f)
-		#time.sleep(0.5)
+		print("Start of with Mel:", mel)
+		print(' '.join(('Start off with Mel:', str(mel))), file=f)
+		print("Run algorithm so that Mel turns in to Mir:", mir)
+		print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir))), file=f)
+		time.sleep(0.5)
 
-		#print("Finding best mutated Mel per iteration out of the population size:", populationSize)
-		#print(' '.join(('Finding best mutated Mel per iteration out of the population size:', str(populationSize))), file=f)
+		print("Finding best mutated Mel per iteration out of the population size:", populationSize)
+		print(' '.join(('Finding best mutated Mel per iteration out of the population size:', str(populationSize))), file=f)
 
-	while lastGen != mir:
+		while lastGen != mir:
 
 			# mutate from best mel X amount of new children
-		swapList = mutateGood(bestMel, populationSize, [])
+			swapList = mutateGood(bestMel, populationSize, [])
 
 			# calculate and append score to new children
-		scoreList = scoreNeighbours(swapList, [], mir)
+			scoreList = scoreNeighbours(swapList, [], mir)
 
 			# manipulate data so that score and children are connected in a tuple
-		tupleSwap = makeTuple([], scoreList, swapList)
+			tupleSwap = makeTuple([], scoreList, swapList)
 
 			# order tuple from low score to high score
-		orderedTuple = sorted(tupleSwap)
+			orderedTuple = sorted(tupleSwap)
 
 			# define new and previous best score
-		newBestScore = orderedTuple[-1][0]
+			newBestScore = orderedTuple[-1][0]
 
-		prevBestScore = generation[-1][0]
+			prevBestScore = generation[-1][0]
 
 			# take the last item in ordered list tuple to get te best score and it's gene row
-		best = (orderedTuple[-1][0], orderedTuple[-1][1])
+			best = (orderedTuple[-1][0], orderedTuple[-1][1])
 
-		# if new generated gene row is better then previous append new as new best
-		if prevBestScore <= newBestScore:
+			# if new generated gene row is better then previous append new as new best
+			if prevBestScore <= newBestScore:
 
-			generation.append(best)
+				generation.append(best)
 
-				# visualization
-				#print("Best Found (score, [genrow]):", best, ", Mutation number:", count+1)
-				#print(' '.join(('Best Found (score, [genrow]):', str(best), ", Mutation number:", str(count+1))), file=f)
-				#time.sleep(0.5)
+
+				print("Best Found (score, [genrow]):", best, ", Mutation number:", count+1)
+				print(' '.join(('Best Found (score, [genrow]):', str(best), ", Mutation number:", str(count+1))), file=f)
+				time.sleep(0.5)
 
 				# continue with new gene row to mutate
-			bestMel = orderedTuple[-1][1]
+				bestMel = orderedTuple[-1][1]
 
-			lastGen = generation[-1][1]
+				lastGen = generation[-1][1]
 
-		count += 1
+			count += 1
 
-		# check if reversed is true, if yes swap to ascending order
-		reversed = isReversed(lastGen)
-		if reversed == True:
-			swapMel(0,24,lastGen)
+			# check if reversed is true, if yes swap to ascending order
+			reversed = isReversed(lastGen)
+			if reversed == True:
+				swapMel(24,0,lastGen)
 
-		print(generation)
-		print(count)
-		# visualization
-		#print(' '.join(('Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:', str(generation))), file=f)
-		#print(' '.join(('Amount of mutations needed:', str(count))), file=f)
+
+		print(' '.join(('Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:', str(generation))), file=f)
+		print(' '.join(('Amount of mutations needed:', str(count))), file=f)
+
+		print('-----------------------------')
+		print('-----------------------------', file=f)
+		print('RESULT')
+		print('RESULT', file=f)
+		print('-----------------------------')
+		print('-----------------------------', file=f)
 
 
 	return ("Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:"), generation, ("Amount of mutations needed:"), count
