@@ -48,18 +48,14 @@ def breadthFirstWithSequences(mir,mel):
     return melListHistory, swaps
 
 def experimentGraph(length):
-    dataL1 = []
-    dataL2 = []
     while length > 3:
         for j in range(10):
-            title = "BreadthFirst vs Theoretical; N = " + str(length)
+            title = "BreadthFirst vs Sequences; N = " + str(length)
             gen1 = [*range(1,length + 1)]
             gen2 = [*range(1,length + 1)]
             rm.shuffle(gen2)
             data1 = breadthFirst(gen1, gen2)
             data2 = breadthFirstWithSequences(gen1,gen2)
-            dataL1.append(data1)
-            dataL2.append(data2)
             fig = plt.figure()
             plt.plot(range(data1[1]),data1[0], label = "breadthFirst")
             plt.plot(range(data2[1]), data2[0], label = "Sequences")
@@ -72,14 +68,12 @@ def experimentGraph(length):
             fig.savefig(filename, dpi=fig.dpi)
 
         length-=1
-    with open("Output.txt", "w") as text_file:
-        print("{}]],[[{}".format(dataL1).format(dataL2), file=text_file)
 
 length =15
-# experimentGraph(9)
-gen1 = [*range(1,length + 1)]
-gen2 = [*range(1,length + 1)]
-rm.shuffle(gen2)
+experimentGraph(9)
+# gen1 = [*range(1,length + 1)]
+# gen2 = [*range(1,length + 1)]
+# rm.shuffle(gen2)
 # mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
 # mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-print(breadthFirstWithSequences(gen1,gen2))
+# print(breadthFirstWithSequences(gen1,gen2))

@@ -37,20 +37,20 @@ def steepestAscendHillClimber(mir,mel):
 
         q.put(copy.copy(melList))
         melList = []
-        while not q.empty():
-            allGens = q.get()
-            swaps+=1
-            for gen in allGens:
-                seq = helper.makeSequence(gen)
-                allSwaps = helper.swapAllSequence(seq)
+        allGens = q.get()
+        swaps+=1
+        for gen in allGens:
+            seq = helper.makeSequence(gen)
+            allSwaps = helper.swapAllSequence(seq)
 
-                for swap in allSwaps:
-                	if len(swap) <= melLen:
-                		melLen = len(swap)
-                		swap = helper.makeList(swap)
-                		if swap not in melSet:
-                			melSet.add(swap)
-                			melList.append(swap)
+            for swap in allSwaps:
+                swap = helper.makeSequence(helper.makeList(swap))
+                if len(swap) <= melLen:
+                	melLen = len(swap)
+                	swap = helper.makeList(swap)
+                	if swap not in melSet:
+                		melSet.add(swap)
+                		melList.append(swap)
 
     end = time.time()
     print(end-start)       			

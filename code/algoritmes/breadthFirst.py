@@ -18,11 +18,11 @@ def breadthFirst(mir,mel):
     '''
         Wat de functie doet.
 
-    Arguments:
-        type: wat voor informatie bevat deze var
+        Arguments:
+            type: wat voor informatie bevat deze var
 
-    Returns:
-        type: idem.
+        Returns:
+            type: idem.
 
     '''
     mir = tuple(mir)
