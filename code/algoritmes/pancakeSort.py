@@ -11,14 +11,14 @@ def pancakeSort(mel, mir):
 		print('PANCAKE SORT', file=f)
 
 		# visualization
-		print("Start off with Mel:", mel)
+		print("Start off with:", mel)
 		print(' '.join(('Start off with Mel:', str(mel))), file=f)
 
 		time.sleep(0.5)
 
 		# visualization
 		print("Run algorithm so that Mel turns in to Mir:", mir)
-		print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir))), file=f)
+		print(' '.join(('Run algorithm so that genome-sequence turns in to Mir:', str(mir))), file=f)
 		time.sleep(0.5)
 
 		swapCount = 1

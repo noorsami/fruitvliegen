@@ -19,7 +19,7 @@ from helper import helper
 from breadthFirst import breadthFirst
 
 
-def steepestAscendHillClimber(mir,mel):
+def steepestDescendValleyAbseiler(mir,mel):
     mir = tuple(mir)
     start = time.time()
     melSet = set(tuple(copy.copy(mel)))
@@ -56,12 +56,12 @@ def steepestAscendHillClimber(mir,mel):
     print(end-start)
     return melListHistory, swaps, breakpoints
 
-for i in range(10):
-    length = 25
-    gen1 = [*range(1,length + 1)]
-    gen2 = [*range(1,length + 1)]
-    rm.shuffle(gen2)
-    print(steepestAscendHillClimber(gen1,gen2))
+# for i in range(10):
+#     length = 25
+#     gen1 = [*range(1,length + 1)]
+#     gen2 = [*range(1,length + 1)]
+#     rm.shuffle(gen2)
+#     print(steepestDescendValleyAbseiler(gen1,gen2))
 
 def experimentGraph(length):
     # while length > 3:
