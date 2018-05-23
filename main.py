@@ -30,11 +30,6 @@ if algorithm == '1':
     default = input("\n If you want to run the algorithm with default parameters, type 'd'.\n\n \
                         For running the algorithm on a test-set with 100 random genomes of length 25, type 't' \n\n")
 
-<<<<<<< HEAD
-elif algorithm == '2':
-    populationBased = populationBased(150, data.mel, data.mir)
-    print(populationBased)
-=======
     if default == 'd':
         print(pancakeSort(data.mel, data.mir))
     if default == 't':
@@ -55,9 +50,8 @@ if algorithm == '2':
                 For a population size of 150, type 's'\n\n \
                 For a population size of 300, type 'm'.\n\n \
                 For a population size of 500, type 'l'\n\n \
-                For a population size of 1000, type 'xl'\n\n)
+                For a population size of 1000, type 'xl'\n\n")
         print("TODO")
->>>>>>> 368956e28a3852a43c3997fc662be6a0c903f229
 
     if default == 't':
         tester.populationBased()
