@@ -19,7 +19,7 @@ from helper import helper
 from breadthFirst import breadthFirst
 
 
-def steepestDescendValleyAbseiler(mir,mel):
+def steepestAscendHillClimber(mir,mel):
     mir = tuple(mir)
     start = time.time()
     melSet = set(tuple(copy.copy(mel)))
@@ -37,31 +37,31 @@ def steepestDescendValleyAbseiler(mir,mel):
 
         q.put(copy.copy(melList))
         melList = []
-        allGens = q.get()
-        swaps+=1
-        for gen in allGens:
-            seq = helper.makeSequence(gen)
-            allSwaps = helper.swapAllSequence(seq)
+        while not q.empty():
+            allGens = q.get()
+            swaps+=1
+            for gen in allGens:
+                seq = helper.makeSequence(gen)
+                allSwaps = helper.swapAllSequence(seq)
 
-            for swap in allSwaps:
-                swap = helper.makeSequence(helper.makeList(swap))
-                if len(swap) <= melLen:
-                	melLen = len(swap)
-                	swap = helper.makeList(swap)
-                	if swap not in melSet:
-                		melSet.add(swap)
-                		melList.append(swap)
+                for swap in allSwaps:
+                	if len(swap) <= melLen:
+                		melLen = len(swap)
+                		swap = helper.makeList(swap)
+                		if swap not in melSet:
+                			melSet.add(swap)
+                			melList.append(swap)
 
     end = time.time()
     print(end-start)
     return melListHistory, swaps, breakpoints
 
-# for i in range(10):
-#     length = 25
-#     gen1 = [*range(1,length + 1)]
-#     gen2 = [*range(1,length + 1)]
-#     rm.shuffle(gen2)
-#     print(steepestDescendValleyAbseiler(gen1,gen2))
+for i in range(10):
+    length = 25
+    gen1 = [*range(1,length + 1)]
+    gen2 = [*range(1,length + 1)]
+    rm.shuffle(gen2)
+    print(steepestAscendHillClimber(gen1,gen2))
 
 def experimentGraph(length):
     # while length > 3:
