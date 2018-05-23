@@ -24,7 +24,7 @@ if algorithm == '1':
     print(pancake)
 
 elif algorithm == '2':
-    populationBased = populationBased(300, data.mel, data.mir)
+    populationBased = populationBased(150, data.mel, data.mir)
     print(populationBased)
 
 elif algorithm == '3':
