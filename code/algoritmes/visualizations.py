@@ -17,15 +17,15 @@ class visualize:
 
         sampleSizes = [50, 100, 150, 300, 500, 750, 1000]
 
-        x = tester.populationTester
+        test = tester.populationTester
 
-        populationMean = [x(sampleSizes[0]),
-                          x(sampleSizes[1]),
-                          x(sampleSizes[2]),
-                          x(sampleSizes[3]),
-                          x(sampleSizes[4]),
-                          x(sampleSizes[5]),
-                          x(sampleSizes[6])]
+        populationMean = [test(sampleSizes[0]),
+                          test(sampleSizes[1]),
+                          test(sampleSizes[2]),
+                          test(sampleSizes[3]),
+                          test(sampleSizes[4]),
+                          test(sampleSizes[5]),
+                          test(sampleSizes[6])]
 
         print(sampleSizes)
         print(populationMean)
@@ -39,6 +39,20 @@ class visualize:
         return sampleSizes, populationMean
 
 
-    def simulatedAnnealing():
+    def simulatedVisualizer():
 
         failValues = [1000, 10000, 100000]
+
+        test = tester.simulatedTester
+
+        simulatedMean = [test(failValues[0]),
+                         test(failValues[1]),
+                         test(failValues[2])]
+
+        print(failValues)
+
+        plt.plot(failValues, simulatedMean)
+        plt.ylabel('average amount of mutations needed')
+        plt.xlabel('fail value')
+        plt.title('100 times from random sequence to Miranda')
+        plt.show()

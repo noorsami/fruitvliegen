@@ -114,11 +114,7 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
 
     # Print full mutation history and the corresponding score for each mutation
     for i in range(len(scoreHistory)):
-<<<<<<< HEAD
         print("Mutation: ", swapHistory[i], "Score: ", scoreHistory[i], "Swaps: ", i)
     return history, len(scoreHistory)
-=======
-        print("Mutation: ", swapHistory[i], "Score: ", scoreHistory[i],
-              "Swaps: ", i)
+        print("Mutation: ", swapHistory[i], "Score: ", scoreHistory[i], "Swaps: ", i)
     return history
->>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3

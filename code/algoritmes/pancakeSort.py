@@ -49,19 +49,9 @@ def pancakeSort(mel, mir):
 		# Visualisation
 		print("Start off with:", mel)
 		print(' '.join(('Start off with Mel:', str(mel))), file=f)
-<<<<<<< HEAD
-
-		#time.sleep(0.5)
-
-		# visualization
-		print("Run algorithm so that Mel turns in to Mir:", mir)
-		print(' '.join(('Run algorithm so that genome-sequence turns in to Mir:', str(mir))), file=f)
-		#time.sleep(0.1)
-=======
 		print("Run algorithm so that Mel turns in to Mir:", mir)
 		print(' '.join(('Run algorithm so that genome-sequence turns in to Mir:'
 			    , str(mir))), file=f)
->>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
 
 		swapCount = 1
 		mel_len = len(mel)
@@ -90,13 +80,8 @@ def pancakeSort(mel, mir):
 							print(' '.join(('Swap', str(swapCount), ":",
 								  str(mel))), file=f)
 							swapCount += 1
-<<<<<<< HEAD
-							#time.sleep(0.5)
-		# visualization
-=======
 
 		# Visualisation
->>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
 		print("Number of swaps:", swapCount - 1)
 		print(' '.join(('Number of swaps:', str(swapCount - 1))), file=f)
 		print("Final Swap:")
