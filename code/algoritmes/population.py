@@ -80,19 +80,29 @@ def isReversed(mel):
 
 def populationBased(populationSize, mel, mir):
 	'''
-		Mutates N(populationSize) random gene rows from the mel, calculate the score per gene row,
-		choose best gene row, mutate from that best gene row N(populationSize).
-		This continues until best gene found is the solution (mir).
+	Mutates N(populationSize) random gene rows from the mel, calculate the
+	score per gene row, choose best gene row, mutate from that best gene row N
+	(populationSize). This continues until the best gene found is the solution
+	(mir).
+					Arguments:
+					------------------------------------------------------------
+	populationSize: Integer value that signifies the magnitude of the population
+	 				size.
+					------------------------------------------------------------
+	mel: 			The gene row list where to start from.
+					------------------------------------------------------------
+	mir: 			The gene row list where to finish.
+					------------------------------------------------------------
 
-		Arguments:
-			populationSize: Integer value that signifies the magnitude of the population size.
-			mel: The gene row list where to start from.
-			mir: The gene row list where to finish.
-
-		Returns:
-			Generation: List containing all best found generows and their scores that brought to the solution.
-			Count: Integer value that signifies the amount of mutations needed.
+					Returns:
+					------------------------------------------------------------
+	Generation: 	List containing all best found generows and their scores
+					that brought to the solution.
+					------------------------------------------------------------
+	Count: 			Integer value that signifies the amount of mutations needed.
+					------------------------------------------------------------
 	'''
+
 	with open('resultaten/population.txt', 'w') as f:
 
 		print('POPULATION BASED ALGORITHM', file=f)
@@ -104,11 +114,18 @@ def populationBased(populationSize, mel, mir):
 		print("Start of with Mel:", mel)
 		print(' '.join(('Start off with Mel:', str(mel))), file=f)
 		print("Run algorithm so that Mel turns in to Mir:", mir)
+<<<<<<< HEAD
 		print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir))), file=f)
 		#time.sleep(0.5)
+=======
+		print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir)))
+				, file=f)
+>>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
 
-		print("Finding best mutated Mel per iteration out of the population size:", populationSize)
-		print(' '.join(('Finding best mutated Mel per iteration out of the population size:', str(populationSize))), file=f)
+		print("Finding best mutated Mel per iteration out of the population"
+			+ "size:", populationSize)
+		print(' '.join(('Finding best mutated Mel per iteration out of the"
+			+ " population size:', str(populationSize))), file=f)
 
 		generation = [(0,())]
 
@@ -130,8 +147,14 @@ def populationBased(populationSize, mel, mir):
 			# calculate and append score to new children
 			scoreList = scoreNeighbours(swapList, [], mir)
 
+<<<<<<< HEAD
 			# manipulate data so that score and children are connected in a tuple
 			tupleSwap = makeTuple([], scoreList, swapList)
+=======
+			# manipulate data so that score and children are
+			# connected in a tuple
+			tupleSwap = makeTuple([], scoreList, swapList, pointsList)
+>>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
 
 			# order tuple from low score to high score
 			orderedTuple = sorted(tupleSwap)
@@ -141,22 +164,37 @@ def populationBased(populationSize, mel, mir):
 
 			prevBestScore = generation[-1][0]
 
+<<<<<<< HEAD
 			# take the last item in ordered list tuple to get te best score and it's gene row
 			best = (orderedTuple[-1][0], orderedTuple[-1][1])
+=======
+			# take the last item in ordered list tuple to get te best
+			# score and it's gene row
+			best = (orderedTuple[-1][0], orderedTuple[-1][1],
+			 		orderedTuple[-1][2])
+>>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
 
-			# if new generated gene row is better then previous append new as new best
+			# if new generated gene row is better then previous append
+			# new as new best
 			if prevBestScore <= newBestScore:
-
 				generation.append(best)
 
 				# continue with new gene row to mutate
 				bestMel = list(orderedTuple[-1][1])
-
 				lastGen = list(generation[-1][1])
+<<<<<<< HEAD
 
 				print("Best Found (score, [genrow]):", best, ", Mutation number:", count+1)
 				print(' '.join(('Best Found (score, [genrow]):', str(best), ", Mutation number:", str(count+1))), file=f)
 				#time.sleep(0.1)
+=======
+				points += orderedTuple[-1][2]
+
+				print("Best Found (score, [genrow], mutationPoints):", best,
+					  ", Mutation number:", count+1)
+				print(' '.join(('Best Found (score, [genrow], mutationPoints):'
+					  , str(best), ", Mutation number:", str(count+1))), file=f)
+>>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
 
 			count += 1
 
@@ -165,9 +203,14 @@ def populationBased(populationSize, mel, mir):
 		if reversed == True:
 			swapMel(24,0,lastGen)
 
+<<<<<<< HEAD
 
 		#time.sleep(0.5)
 		print(' '.join(('Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:', str(generation))), file=f)
+=======
+		print(' '.join(('Winning Generation[(score, genrow), (nextBestScore,'
+			+ 'nextBestGenRow), ...]:', str(generation))), file=f)
+>>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
 		print(' '.join(('Amount of mutations needed:', str(count))), file=f)
 
 		print('-----------------------------')
@@ -177,5 +220,11 @@ def populationBased(populationSize, mel, mir):
 		print('-----------------------------')
 		print('-----------------------------', file=f)
 
+<<<<<<< HEAD
 
 	return generation, count
+=======
+	return ("Winning Generation[(score, genrow),"
+	      + " (nextBestScore,' nextBestGenRow), ...]:"),
+		   generation, ("Amount of mutations needed:"), count
+>>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3

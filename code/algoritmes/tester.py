@@ -17,9 +17,9 @@ class tester:
     def pancakeTester():
         count = 0
         for i in range(100):
-            print("\n--------------------------------------")
-            print("              Set nr:" + str(i+1))
-            print("--------------------------------------\n")
+            print("\n-------------------------------------")
+            print("             Set nr:" + str(i+1))
+            print("-------------------------------------\n")
             randomSeq = [*range(1,26)]
             rm.shuffle(randomSeq)
             pancake = pancakeSort(randomSeq, data.mir)
@@ -32,9 +32,9 @@ class tester:
     def populationTester(sampleSize):
         count = 0
         for i in range(100):
-            print("\n--------------------------------------")
-            print("              Set nr:" + str(i+1))
-            print("--------------------------------------\n")
+            print("\n-------------------------------------")
+            print("             Set nr:" + str(i+1))
+            print("-------------------------------------\n")
             randomSeq = [*range(1,26)]
             rm.shuffle(randomSeq)
             population = populationBased(sampleSize, randomSeq, data.mir)
@@ -47,15 +47,20 @@ class tester:
     def simulatedAnnealing(failValue):
         count = 0
         for i in range(100):
-            print("\n--------------------------------------")
-            print("              Set nr:" + str(i+1))
-            print("--------------------------------------\n")
+            print("\n-------------------------------------")
+            print("             Set nr:" + str(i+1))
+            print("-------------------------------------\n")
             randomSeq = [*range(1,26)]
             rm.shuffle(randomSeq)
             print("Starting with: \n", randomSeq)
+<<<<<<< HEAD
             sim = simulatedAnnealing(randomSeq, data.mir, failValue, score.scoreNeighbours)
             print(sim[0])
             print(sim[1])
             count += sim[1]
         print("Average amount of mutations needed for this test:", count/100)
         return count/100
+=======
+            simulatedAnnealing(randomSeq, data.mir, 1000,
+                               score.scoreNeighbours)
+>>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
