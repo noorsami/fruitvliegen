@@ -84,5 +84,5 @@ class helper:
 	        for j in range(len(i)):
 	            List.append(i[j])
 	    if type(List[0]) is list:
-	        makeList(List)
+	        helper.makeList(List)
 	    return tuple(List)
