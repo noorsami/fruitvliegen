@@ -84,10 +84,6 @@ class helper:
 	        for j in range(len(i)):
 	            List.append(i[j])
 	    if type(List[0]) is list:
-<<<<<<< HEAD
 	        helper.makeList(List)
 	    return tuple(List)
-=======
-	        makeList(List)
-	    return tuple(List)
->>>>>>> fd54c6427e6008ea422c5678f209108ceb7a96e3
+
