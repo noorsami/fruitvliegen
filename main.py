@@ -33,7 +33,7 @@ if algorithm == '1':
     if default == 'd':
         print(pancakeSort(data.mel, data.mir))
     if default == 't':
-        tester.pancakeSort()
+        tester.randomTester(pancakeSort)
 
 ''' POPULATION BASED '''
 if algorithm == '2':
@@ -54,7 +54,7 @@ if algorithm == '2':
         print("TODO")
 
     if default == 't':
-        tester.populationBased()
+        tester.randomTester(populationBased)
     #
     # else:
     #     print("Error, unknown input")

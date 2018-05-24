@@ -12,7 +12,6 @@ from randomSort import randomSort
 from population import populationBased
 from simulatedAnnealing import simulatedAnnealing
 
-
 class tester:
 
     def pancakeSort():
@@ -29,7 +28,6 @@ class tester:
             count += pancake[1]
         print("Average amount of mutations needed for this test:", count/100)
 
-
     def populationBased():
         count = 0
         for i in range(100):
@@ -43,7 +41,6 @@ class tester:
             print(population[1])
             count += population[1]
         print("Average amount of mutations needed for this test:", count/100)
-
 
     def simulatedAnnealing():
         count = 0
