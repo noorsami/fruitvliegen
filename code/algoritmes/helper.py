@@ -4,7 +4,7 @@ import copy
 
 class helper:
 
-# basic helper functions
+	# basic helper functions
 	def randomGen():
 		a = rm.randint(0,24)
 		b = rm.randint(0,24)
@@ -46,7 +46,7 @@ class helper:
 	            newMel.append(mel[j:i])
 	            j = i
 	    newMel.append(mel[j:])
-	    
+
 	    return newMel
 
 	def sequenceSwap(start,end,melSequence):
