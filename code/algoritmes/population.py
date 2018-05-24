@@ -18,7 +18,7 @@ def swappedTest(i,j,mel):
 		i,j = j,i
 	return mel[:j] + mel[j:i + 1][::-1] + mel[1 + i:]
 
-def mutate(mel, int, swapList, mutationPoints):
+def mutate(mel, int, swapList):
 
 	mel_len = len(mel)
 
@@ -27,14 +27,11 @@ def mutate(mel, int, swapList, mutationPoints):
 		a = rm.randint(0, mel_len - 1)
 		b = rm.randint(0, mel_len - 1)
 
-		swapMagnitude = abs(a - b) + 1
-
 		swappedMel = swapped(a, b, mel)
 
 		swapList.append(tuple(swappedMel))
-		mutationPoints.append(swapMagnitude)
 
-	return swapList, mutationPoints
+	return swapList
 
 def scoreNeighbours(swapList, scoreList, mir):
 
@@ -59,10 +56,10 @@ def scoreNeighbours(swapList, scoreList, mir):
 	return scoreList
 
 # make an ordered tuple combining scoreList with swapList
-def makeTuple(tupleSwap, scoreList, swapList, pointsList):
+def makeTuple(tupleSwap, scoreList, swapList):
 	i = 0
 	for swap in swapList:
-		tupleSwap.append((scoreList[i], swap, pointsList[i]))
+		tupleSwap.append((scoreList[i], swap))
 		i+=1
 
 	return tupleSwap
@@ -121,9 +118,9 @@ def populationBased(populationSize, mel, mir):
 				, file=f)
 
 		print("Finding best mutated Mel per iteration out of the population"
-			+ "size:", populationSize)
-		print(' '.join(('Finding best mutated Mel per iteration out of the"
-			+ " population size:', str(populationSize))), file=f)
+		+ "size:", populationSize)
+		print(' '.join(('Finding best mutated Mel per iteration out of the'
+		+ 'population size:', str(populationSize))), file=f)
 
 		generation = [(0,())]
 
@@ -133,16 +130,11 @@ def populationBased(populationSize, mel, mir):
 
 		lastGen = mel
 
-		points = 0
 
 		while lastGen != mir:
 
 			# mutate from best mel X amount of new children
-			swapsAndPoints = mutate(bestMel, populationSize, [], [])
-
-			swapList = swapsAndPoints[0]
-
-			pointsList = swapsAndPoints[1]
+			swapList = mutate(bestMel, populationSize, [])
 
 			# make a set of the swapList so it deletes doubles
 			swapList = set(swapList)
@@ -192,7 +184,6 @@ def populationBased(populationSize, mel, mir):
 		print(' '.join(('Winning Generation[(score, genrow), (nextBestScore,'
 			+ 'nextBestGenRow), ...]:', str(generation))), file=f)
 		print(' '.join(('Amount of mutations needed:', str(count))), file=f)
-		print(' '.join(('Mutation points:', str(points))), file=f)
 
 		print('-----------------------------')
 		print('-----------------------------', file=f)
@@ -202,5 +193,4 @@ def populationBased(populationSize, mel, mir):
 		print('-----------------------------', file=f)
 
 	return ("Winning Generation[(score, genrow),"
-	      + " (nextBestScore,' nextBestGenRow), ...]:"),
-		   generation, ("Amount of mutations needed:"), count
+	      + " (nextBestScore, nextBestGenRow), ...]:"),generation, ("Amount of mutations needed:"), count

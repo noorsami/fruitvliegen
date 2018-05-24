@@ -87,4 +87,4 @@ def pancakeSort(mel, mir):
 		print("Final Swap:")
 		print(' '.join(('Final Swap:', str(mel))), file=f)
 
-		return mel
+		return mel, swapCount - 1
