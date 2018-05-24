@@ -103,7 +103,7 @@ if algorithm == '3':
             print("Error, unknown input")
 
     elif default == 't':
-        tester.simulatedAnnealing(1000)
+        tester.simulatedTester(1000)
 
     # else:
     #     print("Error, unknown input")

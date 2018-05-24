@@ -63,7 +63,7 @@ def steepestDescendValleyAbseiler(mir,mel):
                 # make a new sequence of the swap
                 swap = helper.makeSequence(helper.makeList(swap))
 
-                # check if the new sequence is smaller than the last 
+                # check if the new sequence is smaller than the last
                 # smallest sequence
                 if len(swap) <= melLen:
                 	melLen = len(swap)
