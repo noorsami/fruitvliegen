@@ -25,25 +25,42 @@ def breadthFirst(mir,mel):
             type: idem.
 
     '''
+
+    # make variable useable
     mir = tuple(mir)
+
+    # copy to avoid pointer conflicts
     melSet = set(tuple(copy.copy(mel)))
     melList = [tuple(copy.copy(mel))]
     swaps = 0
+
+    # amount of swaps each iteration
     melListHistory = []
     q = queue.Queue()
+
     while mir not in melSet:
+
         melListHistory.append(len(melSet))
+
+        # put everything in the queue and clear the previous generation
         q.put(copy.copy(melList))
         melList = []
-        while not q.empty():
-            swaps+=1
-            allGens = q.get()
-            for gen in allGens:
-                allSwaps = helper.swapAll(gen)
-                for swap in allSwaps:
-                    if swap not in melSet:
-                        melSet.add(swap)
-                        melList.append(swap)
+        swaps+=1
+        allGens = q.get()
+
+        # iterate over all gens
+
+        for gen in allGens:
+
+            allSwaps = helper.swapAll(gen)
+
+
+            for swap in allSwaps:
+
+                # to avoid duplicates
+                if swap not in melSet:
+                    melSet.add(swap)
+                    melList.append(swap)
 
         
     return melListHistory, swaps
