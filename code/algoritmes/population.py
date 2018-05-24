@@ -166,7 +166,7 @@ def populationBased(populationSize, mel, mir):
 			swapMel(24,0,lastGen)
 
 
-		time.sleep(0.5)
+		#time.sleep(0.5)
 		print(' '.join(('Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:', str(generation))), file=f)
 		print(' '.join(('Amount of mutations needed:', str(count))), file=f)
 

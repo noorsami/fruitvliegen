@@ -14,7 +14,7 @@ from simulatedAnnealing import simulatedAnnealing
 
 class tester:
 
-    def pancakeSort():
+    def pancakeTester():
         count = 0
         for i in range(100):
             print("\n--------------------------------------")
@@ -27,8 +27,9 @@ class tester:
             print(pancake[1])
             count += pancake[1]
         print("Average amount of mutations needed for this test:", count/100)
+        return count/100
 
-    def populationBased():
+    def populationTester(sampleSize):
         count = 0
         for i in range(100):
             print("\n--------------------------------------")
@@ -36,13 +37,14 @@ class tester:
             print("--------------------------------------\n")
             randomSeq = [*range(1,26)]
             rm.shuffle(randomSeq)
-            population = populationBased(150, randomSeq, data.mir)
+            population = populationBased(sampleSize, randomSeq, data.mir)
             print(population[0])
             print(population[1])
             count += population[1]
         print("Average amount of mutations needed for this test:", count/100)
+        return count/100
 
-    def simulatedAnnealing():
+    def simulatedAnnealing(failValue):
         count = 0
         for i in range(100):
             print("\n--------------------------------------")
@@ -51,8 +53,9 @@ class tester:
             randomSeq = [*range(1,26)]
             rm.shuffle(randomSeq)
             print("Starting with: \n", randomSeq)
-            sim = simulatedAnnealing(randomSeq, data.mir, 1000, score.scoreNeighbours)
+            sim = simulatedAnnealing(randomSeq, data.mir, failValue, score.scoreNeighbours)
             print(sim[0])
             print(sim[1])
             count += sim[1]
         print("Average amount of mutations needed for this test:", count/100)
+        return count/100

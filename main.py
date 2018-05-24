@@ -17,6 +17,7 @@ from population import populationBased
 from simulatedAnnealing import simulatedAnnealing
 from steepestDescendValleyAbseiler import steepestDescendValleyAbseiler
 from tester import tester
+from visualizations import visualize
 
 print("\nWELCOME!\n\n When you want to run the pancake sorting algorithm type in: 1 \
                  \n\n When you want to run the population based algorithm type in: 2 \
@@ -33,7 +34,8 @@ if algorithm == '1':
     if default == 'd':
         print(pancakeSort(data.mel, data.mir))
     if default == 't':
-        tester.randomTester(pancakeSort)
+        #tester.pancakeSort()
+        visualize.populationVisualizer()
 
 ''' POPULATION BASED '''
 if algorithm == '2':
@@ -42,7 +44,7 @@ if algorithm == '2':
                         For running the algorithm (with default parameters) on a test-set with 100 random genomes of length 25, type 't'  \n\n")
 
     if default == 'd':
-        print(populationBased(300, data.mel, data.mir))
+        print(populationBased(150, data.mel, data.mir))
 
     if default == 'c':
         print("\nDefine the population size you would like the algorithm to use.\n\n \
@@ -54,7 +56,7 @@ if algorithm == '2':
         print("TODO")
 
     if default == 't':
-        tester.randomTester(populationBased)
+        tester.populationTester(150)
     #
     # else:
     #     print("Error, unknown input")
@@ -100,7 +102,7 @@ if algorithm == '3':
             print("Error, unknown input")
 
     elif default == 't':
-        tester.simulatedAnnealing()
+        tester.simulatedAnnealing(1000)
 
     # else:
     #     print("Error, unknown input")
