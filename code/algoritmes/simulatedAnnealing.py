@@ -72,7 +72,7 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
     scoreHistory = [0]
 
     print('---------------------------------------')
-    print('SIMULATED ANNEALING: LIVE VISUALISATION')
+    print('SIMULATED ANNEALING: LIVE VISUALIZATION')
     print('---------------------------------------')
 
     ''' Repeat the algorithm until mel has been transformed into mir. '''
@@ -120,4 +120,4 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
     ''' Print the full mutation history and the corresponding score for each mutation. '''
     for i in range(len(scoreHistory)):
         print("Mutation: ", swapHistory[i], "Score: ", scoreHistory[i], "Swaps: ", i)
-    return history
+    return history, len(scoreHistory)

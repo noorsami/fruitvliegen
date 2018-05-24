@@ -18,7 +18,7 @@ def swappedTest(i,j,mel):
 		i,j = j,i
 	return mel[:j] + mel[j:i + 1][::-1] + mel[1 + i:]
 
-def mutate(mel, int, swapList, mutationPoints):
+def mutate(mel, int, swapList):
 
 	mel_len = len(mel)
 
@@ -27,14 +27,11 @@ def mutate(mel, int, swapList, mutationPoints):
 		a = rm.randint(0, mel_len - 1)
 		b = rm.randint(0, mel_len - 1)
 
-		swapMagnitude = abs(a - b) + 1
-
 		swappedMel = swapped(a, b, mel)
 
 		swapList.append(tuple(swappedMel))
-		mutationPoints.append(swapMagnitude)
 
-	return swapList, mutationPoints
+	return swapList
 
 def scoreNeighbours(swapList, scoreList, mir):
 
@@ -59,10 +56,10 @@ def scoreNeighbours(swapList, scoreList, mir):
 	return scoreList
 
 # make an ordered tuple combining scoreList with swapList
-def makeTuple(tupleSwap, scoreList, swapList, pointsList):
+def makeTuple(tupleSwap, scoreList, swapList):
 	i = 0
 	for swap in swapList:
-		tupleSwap.append((scoreList[i], swap, pointsList[i]))
+		tupleSwap.append((scoreList[i], swap))
 		i+=1
 
 	return tupleSwap
@@ -108,7 +105,7 @@ def populationBased(populationSize, mel, mir):
 		print(' '.join(('Start off with Mel:', str(mel))), file=f)
 		print("Run algorithm so that Mel turns in to Mir:", mir)
 		print(' '.join(('Run algorithm so that Mel turns in to Mir:', str(mir))), file=f)
-		time.sleep(0.5)
+		#time.sleep(0.5)
 
 		print("Finding best mutated Mel per iteration out of the population size:", populationSize)
 		print(' '.join(('Finding best mutated Mel per iteration out of the population size:', str(populationSize))), file=f)
@@ -121,16 +118,11 @@ def populationBased(populationSize, mel, mir):
 
 		lastGen = mel
 
-		points = 0
 
 		while lastGen != mir:
 
 			# mutate from best mel X amount of new children
-			swapsAndPoints = mutate(bestMel, populationSize, [], [])
-
-			swapList = swapsAndPoints[0]
-
-			pointsList = swapsAndPoints[1]
+			swapList = mutate(bestMel, populationSize, [])
 
 			# make a set of the swapList so it deletes doubles
 			swapList = set(swapList)
@@ -139,7 +131,7 @@ def populationBased(populationSize, mel, mir):
 			scoreList = scoreNeighbours(swapList, [], mir)
 
 			# manipulate data so that score and children are connected in a tuple
-			tupleSwap = makeTuple([], scoreList, swapList, pointsList)
+			tupleSwap = makeTuple([], scoreList, swapList)
 
 			# order tuple from low score to high score
 			orderedTuple = sorted(tupleSwap)
@@ -150,7 +142,7 @@ def populationBased(populationSize, mel, mir):
 			prevBestScore = generation[-1][0]
 
 			# take the last item in ordered list tuple to get te best score and it's gene row
-			best = (orderedTuple[-1][0], orderedTuple[-1][1], orderedTuple[-1][2])
+			best = (orderedTuple[-1][0], orderedTuple[-1][1])
 
 			# if new generated gene row is better then previous append new as new best
 			if prevBestScore <= newBestScore:
@@ -162,11 +154,9 @@ def populationBased(populationSize, mel, mir):
 
 				lastGen = list(generation[-1][1])
 
-				points += orderedTuple[-1][2]
-
-				print("Best Found (score, [genrow], mutationPoints):", best, ", Mutation number:", count+1)
-				print(' '.join(('Best Found (score, [genrow], mutationPoints):', str(best), ", Mutation number:", str(count+1))), file=f)
-				time.sleep(0.1)
+				print("Best Found (score, [genrow]):", best, ", Mutation number:", count+1)
+				print(' '.join(('Best Found (score, [genrow]):', str(best), ", Mutation number:", str(count+1))), file=f)
+				#time.sleep(0.1)
 
 			count += 1
 
@@ -179,7 +169,6 @@ def populationBased(populationSize, mel, mir):
 		time.sleep(0.5)
 		print(' '.join(('Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:', str(generation))), file=f)
 		print(' '.join(('Amount of mutations needed:', str(count))), file=f)
-		print(' '.join(('Mutation points:', str(points))), file=f)
 
 		print('-----------------------------')
 		print('-----------------------------', file=f)
@@ -189,4 +178,4 @@ def populationBased(populationSize, mel, mir):
 		print('-----------------------------', file=f)
 
 
-	return ("Winning Generation[(score, genrow), (nextBestScore, nextBestGenRow), ...]:"), generation, ("Amount of mutations needed:"), count
+	return generation, count
