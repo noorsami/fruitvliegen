@@ -8,8 +8,8 @@ from datastructuur import data
 from helper import helper
 from score import score
 from pancakeSort import pancakeSort
-from population import populationBased
-from simulatedAnnealing import simulatedAnnealing
+from survivalOfFittest import populationBased
+from strictDonkey import simulatedAnnealing
 
 class tester:
     '''

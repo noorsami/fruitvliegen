@@ -12,8 +12,9 @@ from datastructuur import data
 from helper import helper
 from score import score
 from pancakeSort import pancakeSort
-from population import populationBased
-from simulatedAnnealing import simulatedAnnealing
+from survivalOfFittest import populationBased
+from strictDonkey import simulatedAnnealing
+from BranchandBound import branchAndBound
 from steepestDescendValleyAbseiler import steepestDescendValleyAbseiler
 from tester import tester
 from visualizations import visualize
@@ -21,14 +22,22 @@ from visualizations import visualize
 algorithm = input("\n   WELCOME!\n\n"
     + "|--------------------------------------------------------------------"
     + "-------------------|\n"
-    + "\n| When you want to run the pancake sorting algorithm type in: 1"
+    + "\n| When you want to run the Pancake Sorting algorithm type in: 1"
     + "                         |"
-    + "\n\n| When you want to run the population based algorithm type in: 2"
-    + "                        |"
-    + "\n\n| When you want to run the simulated annealing algorithm type in: 3"
-    + "                     |"
+    + "\n\n| When you want to run the Survival of the Fittest algorithm "
+    + " type in: 2                |"
+
+    + "\n\n| When you want to run the Strict Donkey Hillclimber algorithm"
+    + " type in: 3               |"
+
     + "\n\n| When you want to run the Steepest Descend Valley Abseiler"
-    + " algorithm, type in: 4       |\n\n"
+    + " algorithm, type in: 4       |"
+    + "\n\n| When you want to run the Branch and Bound algorithm,"
+    + " type in: 5                       |\n"
+    + "|            !(WARNING CAN TAKE ALL NIGHT...)!                  "
+    + "                        |"
+    + "\n\n| When you want a combined visualization of the results,"
+    + " type in: 6                     |\n\n"
     + "|--------------------------------------------------------------------"
     + "-------------------|\n"
     + "\n\nType in the algorithm that you want to run: ")
@@ -64,8 +73,15 @@ if algorithm == '2':
                   + " on a test-set with 100 random      |\n"
                   + "| genomes of length 25, type 't'                        "
                   + "                                 |\n\n"
+                  + "| For running the algorithm 100 times"
+                  + " with (default parameters)"
+                  + ", type 'dt'               |\n\n"
                   + "| For running the algorithm on a test-set"
-                  + " with visualisation, type 'v'                   |\n\n"
+                  + " with visualisation, type 'tv'                  |\n\n"
+                  + "| For running the algorithm on the Mel set 100 times"
+                  + " with different parameters and       |\n"
+                  + "| a visualisation, type 'dv'                            "
+                  + "                                 |\n\n"
                   + "|-------------------------------------------------------"
                   + "---------------------------------|\n\n"
                   + "\n\nType in how you want to run the algorithm: ")
@@ -106,14 +122,14 @@ if algorithm == '2':
     if default == 't':
         tester.populationTester(150, [*range(1,26)])
 
+    if default == 'dt':
+        tester.populationTester(150, data.mel)
+
     #visualize.populationVisualizer()
     # else:
     #     print("Error, unknown input")
     if default == 'tv':
         visualize.populationVisualizer([*range(1,26)])
-
-    if default == 'dt':
-        tester.populationTester(150, data.mel)
 
     if default == 'dv':
         visualize.populationVisualizer(data.mel)
@@ -130,8 +146,15 @@ if algorithm == '3':
                   + " on a test-set with 100 random      |\n"
                   + "| genomes of length 25, type 't'                        "
                   + "                                 |\n\n"
+                  + "| For running the algorithm 100 times"
+                  + " with (default parameters)"
+                  + ", type 'dt'               |\n\n"
                   + "| For running the algorithm on a test-set"
-                  + " with visualisation, type 'v'                   |\n\n"
+                  + " with visualisation, type 'tv'                  |\n\n"
+                  + "| For running the algorithm on the Mel set 100 times"
+                  + " with different parameters and       |\n"
+                  + "| a visualisation, type 'dv'                            "
+                  + "                                 |\n\n"
                   + "|-------------------------------------------------------"
                   + "---------------------------------|\n\n"
                   + "\n\nType in how you want to run the algorithm: ")
@@ -216,17 +239,24 @@ if algorithm == '3':
     elif default == 't':
         tester.simulatedTester(1000, [*range(1,26)])
 
+    elif default == 'dt':
+        tester.simulatedTester(1000, data.mel)
 
-    elif default == 'v':
+    elif default == 'tv':
         visualize.simulatedVisualizer([*range(1,26)])
+
+    elif default == 'dv':
+        visualize.simulatedVisualizer(data.mel)
 
 
 ''' STEEPEST DESCEND VALLEY ABSEILER '''
 if algorithm == '4':
-    print(steepestDescendValleyAbseiler(data.mir, data.mel))
-#
-# else:
-#     print("Error, unknown input")
+    visualize.SDVAVisualizer(data.mir, data.mel)
 
+''' BRANCH AND BOUND '''
 if algorithm == '5':
+    print(branchAndBound(2, len(data.mel), data.mir, data.mel))
+
+''' VISUALIZATION OF ALL ALGORITHMS COMBINED '''
+if algorithm == '6':
     visualize.combinedVisualizer(data.mel, data.mir)

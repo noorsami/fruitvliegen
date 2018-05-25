@@ -1,7 +1,7 @@
 from helper import helper
 import random as rm
 
-''' Simulated annealing algorithm '''
+''' Strict Donkey Hillclimber algorithm '''
 def simulatedAnnealing(mel, mir, failValue, scoreFunction):
     '''
     A probabilistic algorithm for approximating the global optimum of a given

@@ -93,10 +93,7 @@ class helper:
 	    newMel.append(mel[j:])
 
 	    return newMel
-<<<<<<< HEAD
-=======
 
->>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030
 	''' Checks a list for dublicates and returns a list of lists '''
 	def noDublicates(list):
 		listSet = set(tuple(item) for item in list)

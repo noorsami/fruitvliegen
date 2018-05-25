@@ -8,6 +8,7 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
+''' Survival of the Fittest algorithm'''
 def populationBased(populationSize, mel, mir):
 	'''
 	A population based optimization algorithm based on genetic algorithms,
@@ -41,11 +42,11 @@ def populationBased(populationSize, mel, mir):
 
 	with open("resultaten/population.txt", "w") as f:
 
-		print("POPULATION BASED ALGORITHM", file=f)
-		print("-----------------------------", file=f)
-		print("-----------------------------")
-		print("POPULATION BASED ALGORITHM")
-		print("-----------------------------")
+		print("SURVIVAL OF THE FITTEST ALGORITHM", file=f)
+		print("---------------------------------", file=f)
+		print("---------------------------------")
+		print("SURVIVAL OF THE FITTEST ALGORITHM")
+		print("---------------------------------")
 
 		print("Start of with Mel:", mel)
 		print(" ".join(("Start off with Mel:", str(mel))), file=f)
@@ -67,8 +68,6 @@ def populationBased(populationSize, mel, mir):
 
 			# mutate from best mel X amount of new children
 			swapList = helper.mutate(bestMel, populationSize, [])
-
-			print(populationSize)
 
 			# make a set of the swapList so it deletes doubles
 			swapList = set(swapList)
@@ -119,8 +118,7 @@ def populationBased(populationSize, mel, mir):
 		print("-----------------------------")
 		print("-----------------------------", file=f)
 		print("RESULT")
-		print("RESULT", file=f)
 		print("-----------------------------")
-		print("-----------------------------", file=f)
+
 
 	return generation, count

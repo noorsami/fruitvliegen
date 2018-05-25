@@ -9,14 +9,28 @@ from helper import helper
 def branchAndBound(solutions, bound, mir, mel):
 
     '''
-        This function tries a branch and bound approach to change one list in another using swaps.
-        It doesn't break a series of numbers which differs only 1 with its neighbours
+        This function tries a branch and bound approach to change one list in
+        another using swaps. It doesn't break a series of numbers which differs
+        only 1 with its neighbours.
 
-        Arguments: amount of solutions wanted (int), bound for how deep the search goes (int),
-                    the two lists which need to be changed
+                      Arguments:
+                      ----------------------------------------------------------
+    solutions:        amount of solutions wanted (int)
+                      ----------------------------------------------------------
+    bound:            for how deep the search goes (int)
+                      ----------------------------------------------------------
+    mel:              The genome sequence of the Drosophila Melanogaster, with
+                      which the algorithm starts it's mutation sequence.
+                      ----------------------------------------------------------
+    mir:              The genome sequence of the Drosophila Miranda, which is
+                      the intended target of the mutations on the Melanogaster.
+                      The algorithm stops once it has mutated the Melanogaster
+                      into the genome sequence of the Miranda.
+                      ----------------------------------------------------------
 
-        Returns: the solutionhistory
-
+                      Returns:
+                      ----------------------------------------------------------
+    History:          All the gene sequences that led to the solution(s)
     '''
     stack = []
     mir = [tuple(mir)]
@@ -24,9 +38,10 @@ def branchAndBound(solutions, bound, mir, mel):
     stack.append([randSeq])
     history = []
 
-
     # while stack not empty and solutions > 1
     while stack and solutions:
+
+        print('running....')
 
         current = stack.pop()
 
@@ -49,7 +64,6 @@ def branchAndBound(solutions, bound, mir, mel):
                     bound = len(current)
                     solutions -= 1
 
-
-
                 stack.append(current + [swap])
+
     return history

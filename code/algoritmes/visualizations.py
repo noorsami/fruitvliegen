@@ -8,8 +8,8 @@ from helper import helper
 from tester import tester
 from score import score
 from pancakeSort import pancakeSort
-from population import populationBased
-from simulatedAnnealing import simulatedAnnealing
+from survivalOfFittest import populationBased
+from strictDonkey import simulatedAnnealing
 from steepestDescendValleyAbseiler import steepestDescendValleyAbseiler
 
 class visualize:
@@ -33,6 +33,8 @@ class visualize:
         '''
         sampleSizes = [50, 100, 150, 300, 500, 750, 1000]
 
+        tickers = ['50', '100', '150', '300', '500', '750', '1000']
+
         test = tester.populationTester
 
         populationMean = [test(sampleSizes[0], startingPoint),
@@ -46,7 +48,7 @@ class visualize:
         print(sampleSizes)
         print(populationMean)
 
-        plt.bar(sampleSizes, populationMean, align = 'center')
+        plt.bar(tickers, populationMean, align = 'center')
         plt.title("100 times from random sequence to Miranda")
         plt.ylabel("average amount of mutations needed")
         plt.xlabel("sample size")
@@ -76,6 +78,8 @@ class visualize:
 
         failValues = [1000, 10000, 100000]
 
+        tickers = ['1000', '10000', '100000']
+
         test = tester.simulatedTester
 
         simulatedMean = [test(failValues[0], startingPoint),
@@ -83,8 +87,9 @@ class visualize:
                          test(failValues[2], startingPoint)]
 
         print(failValues)
+        print(simulatedMean)
 
-        plt.bar(failValues, simulatedMean, align = 'center')
+        plt.bar(tickers, simulatedMean, align = 'center')
         plt.title("100 times from random sequence to Miranda")
         plt.ylabel("average amount of mutations needed")
         plt.xlabel("fail value")
@@ -132,10 +137,38 @@ class visualize:
 
 
     def SDVAVisualizer(mir,mel):
+        '''
+            Function for the visualization of the mean amount of mutations
+            needed when running the algorithm in default.
+            It takes the melanogaster and the miranda as arguments and runs
+            them through the different algorithm testers.
+            Takes the output for the execution of the visualization.
+
+        	              Arguments:
+            	          ------------------------------------------------------
+            mel:          The genome sequence of the Drosophila Melanogaster,
+                          with which the algorithm starts it's mutation sequence.
+            	          ------------------------------------------------------
+            mir:          The genome sequence of the Drosophila Miranda, which
+                          is the intended target of the sorts on
+                          the Melanogaster.The algorithm stops once it has
+                          sorted the Melanogaster-sequence into the genome
+                          sequence of the Miranda.
+
+                          Returns:
+                          ------------------------------------------------------
+            Plots:        Barchart with on the X axis the different algorithms
+                          and on the Y axis the amount of mutations needed.
+
+        '''
+
         data = steepestDescendValleyAbseiler(mir,mel)
         history = data[0]
         swaps = data[1]
         swapLen = data[2]
+
+        print(history)
+        print(swaps)
 
         fig = plt.figure()
         title = "steepestDescend; N = " + str(len(mir))

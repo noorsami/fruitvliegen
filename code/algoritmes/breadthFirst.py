@@ -23,7 +23,7 @@ def breadthFirst(mir,mel):
                     Returns:
                     ------------------------------------------------------------
         History:    All the genes that where formed on the way from Mel to Mir.
-        
+
         Swaps:      The amount of mutations needed for the solution.
     '''
 
@@ -62,7 +62,3 @@ def breadthFirst(mir,mel):
                     melList.append(swap)
 
     return melListHistory, swaps
-<<<<<<< HEAD
-
-=======
->>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030
