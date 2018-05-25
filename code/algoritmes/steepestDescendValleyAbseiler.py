@@ -74,4 +74,6 @@ def steepestDescendValleyAbseiler(mir,mel):
                 		melSet.add(swap)
                 		melList.append(swap)
 
+
+    print("melListHistory: " + str(melListHistory) + ", Swaps: " + str(swaps) + ", BreakPoints: " + str(breakpoints))
     return melListHistory, swaps, breakpoints

@@ -1,42 +1,14 @@
-
 import random as rm
 import copy
 
 class helper:
 
-	# basic helper functions
-	def randomGen():
-		a = rm.randint(0,24)
-		b = rm.randint(0,24)
-		return a, b
-
-	def swapMel(a,b,mel):
-		mel[a:b + 1] = mel[a:b + 1][::-1]
-		return mel
-
-	def swapped(i,j,mel):
-		if j > i:
-			i,j = j,i
-
-		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
-
-
-	# returns all possible swaps
-	def swapAll(mel):
-		newMelList = []
-		for i in range(len(mel)):
-			for j in range(i):
-				newMelList.append(tuple(helper.swapped(i,j,mel)))
-
-		return newMelList
-
-	# checks a list for dublicates and returns a list of lists
-	def noDublicates(list):
-		listSet = set(tuple(item) for item in list)
-		noDublicate = []
-		for item in listSet:
-			noDublicate.append(item)
-		return noDublicate
+	''' function to check is list is reversed '''
+	def isReversed(mel):
+		for i in range( len(mel) - 1 ):
+			if mel[i] < mel[i+1]:
+				return False
+			return True
 
 	def makeSequence(mel):
 	    newMel = []
@@ -46,13 +18,53 @@ class helper:
 	            newMel.append(mel[j:i])
 	            j = i
 	    newMel.append(mel[j:])
-
 	    return newMel
+
+	def mutate(mel, int, swapList):
+		mel_len = len(mel)
+		for i in range(int):
+			a = rm.randint(0, mel_len - 1)
+			b = rm.randint(0, mel_len - 1)
+			swappedMel = helper.swapped(a, b, mel)
+			swapList.append(tuple(swappedMel))
+		return swapList
+
+	''' Mutates a single mel with random values '''
+	def mutateSingle(mel):
+	    mel_len = len(mel)
+	    a = rm.randint(0, mel_len - 1)
+	    b = rm.randint(0, mel_len - 1)
+	    swappedMel = helper.swapped(a,b,mel)
+	    return swappedMel
+
+	def makeList(seq):
+	    List = []
+	    for i in seq:
+	        for j in range(len(i)):
+	            List.append(i[j])
+	    if type(List[0]) is list:
+	        helper.makeList(List)
+	    return tuple(List)
+
+	''' Makes an ordered tuple combining scoreList with swapList '''
+	def makeTuple(tupleSwap, scoreList, swapList):
+		i = 0
+		for swap in swapList:
+			tupleSwap.append((scoreList[i], swap))
+			i+=1
+		return tupleSwap
+
+	''' Checks a list for dublicates and returns a list of lists '''
+	def noDublicates(list):
+		listSet = set(tuple(item) for item in list)
+		noDublicate = []
+		for item in listSet:
+			noDublicate.append(item)
+		return noDublicate
 
 	def sequenceSwap(start,end,melSequence):
 	    if start > end:
 	        start, end = end, start
-
 	    melSequence = copy.copy(melSequence)
 	    newMelSequence = melSequence[:start]
 	    check = 0
@@ -64,8 +76,15 @@ class helper:
 	        newMelSequence.append(melSequence[end - i][::-1])
 	    if not check:
 	        newMelSequence.extend(melSequence[end + 1:])
-
 	    return newMelSequence
+
+	''' returns all possible swaps '''
+	def swapAll(mel):
+		newMelList = []
+		for i in range(len(mel)):
+			for j in range(i):
+				newMelList.append(tuple(helper.swapped(i,j,mel)))
+		return newMelList
 
 	def swapAllSequence(melSequence):
 	    melSequence = copy.copy(melSequence)
@@ -78,50 +97,17 @@ class helper:
 	            newMelList.append(helper.sequenceSwap(j,i,melSequence))
 	    return newMelList
 
-	def makeList(seq):
-	    List = []
-	    for i in seq:
-	        for j in range(len(i)):
-	            List.append(i[j])
-	    if type(List[0]) is list:
-	        helper.makeList(List)
-	    return tuple(List)
+	def swapMel(a,b,mel):
+		mel[a:b + 1] = mel[a:b + 1][::-1]
+		return mel
+
+	def swapped(i,j,mel):
+		if j > i:
+			i,j = j,i
+
+		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
 
 	def swapped(i,j,mel):
 		if j > i:
 			i,j = j,i
 		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
-
-	def mutate(mel, int, swapList):
-
-		mel_len = len(mel)
-
-		for i in range(int):
-			a = rm.randint(0, mel_len - 1)
-			b = rm.randint(0, mel_len - 1)
-			swappedMel = helper.swapped(a, b, mel)
-			swapList.append(tuple(swappedMel))
-		return swapList
-
-	# make an ordered tuple combining scoreList with swapList
-	def makeTuple(tupleSwap, scoreList, swapList):
-		i = 0
-		for swap in swapList:
-			tupleSwap.append((scoreList[i], swap))
-			i+=1
-		return tupleSwap
-
-	# function to check is list is reversed
-	def isReversed(mel):
-		for i in range( len(mel) - 1 ):
-			if mel[i] < mel[i+1]:
-				return False
-			return True
-
-	''' Function for mutating a single mel with random values '''
-	def mutateSingle(mel):
-	    mel_len = len(mel)
-	    a = rm.randint(0, mel_len - 1)
-	    b = rm.randint(0, mel_len - 1)
-	    swappedMel = helper.swapped(a,b,mel)
-	    return swappedMel
