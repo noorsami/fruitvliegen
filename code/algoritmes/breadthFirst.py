@@ -1,9 +1,4 @@
-import random as rm
-import math as m
 import copy
-import time
-import matplotlib.pyplot as plt
-import numpy as np
 import queue
 
 import os, sys
@@ -16,14 +11,13 @@ from helper import helper
 
 def breadthFirst(mir,mel):
     '''
-        Wat de functie doet.
+        This function tries a breadth first approach to change 2 lists from one to the other using swaps 
+            without dupicates
 
-        Arguments:
-            type: wat voor informatie bevat deze var
+        arguments: 2 lists, first mir then mel
 
-        Returns:
-            type: idem.
-
+        returns: A list with the size of each generation and the amount of swaps needed to go from the first list
+                to the second
     '''
 
     # make variable useable
@@ -53,8 +47,6 @@ def breadthFirst(mir,mel):
         for gen in allGens:
 
             allSwaps = helper.swapAll(gen)
-
-
             for swap in allSwaps:
 
                 # to avoid duplicates
@@ -66,49 +58,3 @@ def breadthFirst(mir,mel):
     return melListHistory, swaps
 
 
-
-def experimentGraph(length):
-    while length > 3:
-        for j in range(1):
-            title = "BreadthFirst vs Theoretical; N = " + str(length)
-            gen1 = [*range(1,length + 1)]
-            gen2 = [*range(1,length + 1)]
-            rm.shuffle(gen2)
-            data = breadthFirst(gen1, gen2)
-            swapAmountList = np.zeros(len(data[0]))
-            swapAmount = length * (length - 1) / 2
-            swapAmountList[0] = 1
-            for i in range(1,len(swapAmountList)):
-                swapAmountList[i] = (1 + swapAmount)*swapAmountList[i-1]
-            fig = plt.figure()
-            plt.plot(range(data[1] + 1),data[0], label = "breadthFirst")
-            plt.plot(range(data[1] + 1), swapAmountList, label = "Theoretical")
-            plt.xticks(np.arange(0, data[1]+1, 1))
-            plt.xlabel("Number of swaps")
-            plt.ylabel("Amount of swap-possibilities")
-            plt.title(title)
-            plt.legend()
-            filename = title + "_#"+ str(j + 1) + ".png"
-            fig.savefig(filename, dpi=fig.dpi)
-
-        length-=1
-
-# experimentGraph(9)
-
-def experimentSwapCount(length,amount):
-    histData = []
-    title = "Histogram of " + str(amount) + " breadthFirst algorithms"
-    for i in range(amount):
-        gen1 = [*range(1,length + 1)]
-        gen2 = [*range(1,length + 1)]
-        rm.shuffle(gen2)
-        histData.append(breadthFirst(gen1,gen2)[1])
-
-    plt.hist(histData)
-    plt.xlabel("Number of swaps")
-    plt.ylabel("Amount of solutions")
-    plt.title(title)
-    plt.xticks(np.arange(0, length+1, 1))
-    plt.show()
-
-# experimentSwapCount(5,10)
