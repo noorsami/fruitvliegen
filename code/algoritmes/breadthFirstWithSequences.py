@@ -18,30 +18,44 @@ from helper import helper
 from breadthFirst import breadthFirst
 
 def breadthFirstWithSequences(mir,mel):
+
+    # make variables useable
     mir = tuple(mir)
+
+    # copy to avoid pointer conflicts
     melSet = set(tuple(copy.copy(mel)))
     melList = [tuple(copy.copy(mel))]
     swaps = 0
+
+    # amount of swaps each iteration
     melListHistory = []
     q = queue.Queue()
-    breakpoints = []
 
     while mir not in melSet:
-        melListHistory.append(len(melList))
-        q.put(copy.copy(melList))
-        melList = []
-        while not q.empty():
-            allGens = q.get()
-            swaps+=1
-            for gen in allGens:
-                seq = helper.makeSequence(gen)
-                allSwaps = helper.swapAllSequence(seq)
 
-                for swap in allSwaps:
-                    swap = helper.makeList(swap)
-                    if swap not in melSet:
-                        melSet.add(swap)
-                        melList.append(swap)
+        melListHistory.append(len(melList))
+
+        # put the swaps in the queue
+        q.put(copy.copy(melList))
+
+        # clear the swaps of the last generation
+        melList = []
+        allGens = q.get()
+        swaps+=1
+
+        for gen in allGens:
+            seq = helper.makeSequence(gen)
+            allSwaps = helper.swapAllSequence(seq)
+
+            for swap in allSwaps:
+
+                # make a list of the swap in order to add it to the set
+                swap = helper.makeList(swap)
+
+                # to avoid duplicates
+                if swap not in melSet:
+                    melSet.add(swap)
+                    melList.append(swap)
 
 
 

@@ -49,7 +49,6 @@ def steepestDescendValleyAbseiler(mir,mel):
 
         # clear the swaps of the last generation
         melList = []
-
         allGens = q.get()
         swaps+=1
 

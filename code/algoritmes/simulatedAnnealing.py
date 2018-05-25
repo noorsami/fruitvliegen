@@ -65,9 +65,9 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
     swapHistory = [mel]
     scoreHistory = [0]
 
-    print('---------------------------------------')
-    print('SIMULATED ANNEALING: LIVE VISUALIZATION')
-    print('---------------------------------------')
+    print("---------------------------------------")
+    print("SIMULATED ANNEALING: LIVE VISUALIZATION")
+    print("---------------------------------------")
 
     # Repeat the algorithm until mel has been transformed into mir
     while curMel != mir:
@@ -92,7 +92,7 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
             failCount += 1
             marge = int(failValue * 0.001)
             if failCount % failValue in range(0, marge):
-                print((4 * "                 ") +"Trying different route.")
+                print((4 * "                 ")+"Trying different route.")
                 curMel = mutatedMel
                 curScore = mutatedScore
                 print(curMel)
@@ -105,9 +105,9 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
         if mutatedScore < curScore:
             failCount += 1
 
-    print('--------------------------------')
-    print('SIMULATED ANNEALING: SWAPHISTORY')
-    print('--------------------------------')
+    print("--------------------------------")
+    print("SIMULATED ANNEALING: SWAPHISTORY")
+    print("--------------------------------")
 
     # Create a list with the history of every accepted mutation and it's score
     history = makeTuple([], scoreHistory, swapHistory)
@@ -116,5 +116,5 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
     for i in range(len(scoreHistory)):
         print("Mutation: ", swapHistory[i], "Score: ", scoreHistory[i], "Swaps: ", i)
     return history, len(scoreHistory)
-        print("Mutation: ", swapHistory[i], "Score: ", scoreHistory[i], "Swaps: ", i)
-    return history
+    #     print("Mutation: ", swapHistory[i], "Score: ", scoreHistory[i], "Swaps: ", i)
+    # return history

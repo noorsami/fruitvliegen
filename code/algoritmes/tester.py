@@ -46,7 +46,7 @@ class tester:
 
     def simulatedTester(failValue):
         count = 0
-        for i in range(100):
+        for i in range(10):
             print("\n-------------------------------------")
             print("             Set nr:" + str(i+1))
             print("-------------------------------------\n")

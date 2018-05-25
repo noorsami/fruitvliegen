@@ -31,9 +31,10 @@ class visualize:
         print(populationMean)
 
         plt.plot(sampleSizes, populationMean)
-        plt.ylabel('average amount of mutations needed')
-        plt.xlabel('sample size')
-        plt.title('100 times from random gen sequence to the Drosophila Miranda (N=25)')
+        plt.ylabel("average amount of mutations needed")
+        plt.xlabel("sample size")
+        plt.title("100 times from random gen sequence to the "
+                + "Drosophila Miranda (N=25)")
         plt.show()
 
         return sampleSizes, populationMean
@@ -52,7 +53,7 @@ class visualize:
         print(failValues)
 
         plt.plot(failValues, simulatedMean)
-        plt.ylabel('average amount of mutations needed')
-        plt.xlabel('fail value')
-        plt.title('100 times from random sequence to Miranda')
+        plt.ylabel("average amount of mutations needed")
+        plt.xlabel("fail value")
+        plt.title("100 times from random sequence to Miranda")
         plt.show()
