@@ -79,13 +79,13 @@ def makeScore(scoreList):
     return score2 + score1 + score0
 
 
-length = 123
+length = 8
 gen1 = [*range(1,length + 1)]
 gen2 = [*range(1,length + 1)]
 rm.shuffle(gen2)
 mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
 mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-for i in branchAndBound(1,14,mir,mel):
+for i in branchAndBound(3,14,gen1,gen2):
     print(i)
 
 

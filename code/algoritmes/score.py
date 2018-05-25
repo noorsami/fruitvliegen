@@ -30,10 +30,20 @@ class score:
         return score
 
     def scoreNeighboursModifier(mel):
+        '''
+            This scorefunction searches a list and gives a score for n**2 with n the length
+            of a series of number which differ 1
+
+            Argument: A list
+
+            returns: A score (int)
+        '''
 
         score = 0
         length = len(mel)
         n = 0
+
+        # length-1 because it compares 2 elements
         for i in range(length - 1):
             check = mel[i] - mel[i + 1]
 
@@ -65,7 +75,7 @@ class score:
     	for swap in swapList:
     		score = 0
             # for each item in the list
-    		for j in range(24):
+    		for j in range(len(mir)-1):
 
                 # checks the values from the left and the right of index
     			checkLeft = swap[j] - swap[j - 1]

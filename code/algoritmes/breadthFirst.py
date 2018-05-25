@@ -11,11 +11,26 @@ from helper import helper
 
 def breadthFirst(mir,mel):
     '''
+<<<<<<< HEAD
         This function tries a breadth first approach to change 2 lists from one to the other using swaps
+=======
+<<<<<<< HEAD
+        This function tries a breadth first approach to change 2 lists from one to the other using swaps 
             without dupicates
 
         arguments: 2 lists, first mir then mel
 
+=======
+<<<<<<< HEAD
+        
+=======
+        This function tries a breadth first approach to change 2 lists from one to the other using swaps 
+>>>>>>> 31964aecabf725688fcd2579d913953de92d7977
+            without dupicates
+
+        arguments: 2 lists, first mir then mel
+
+>>>>>>> 5251ee6ac225d5469ad5f2ba0435c10896c1a0f1
         returns: A list with the size of each generation and the amount of swaps needed to go from the first list
                 to the second
     '''
@@ -54,5 +69,20 @@ def breadthFirst(mir,mel):
                     melSet.add(swap)
                     melList.append(swap)
 
+<<<<<<< HEAD
 
     return melListHistory, swaps
+=======
+        
+    return melListHistory, swaps
+<<<<<<< HEAD
+
+
+=======
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 330cb844fba62ab1c39e3be6ec15f83891350681
+>>>>>>> 5251ee6ac225d5469ad5f2ba0435c10896c1a0f1
+>>>>>>> 31964aecabf725688fcd2579d913953de92d7977
