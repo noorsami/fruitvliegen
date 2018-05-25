@@ -5,23 +5,26 @@ import copy
 class helper:
 
 	'''
-
+		This class has helper functions which are useable throughout the code
 	'''
 
 	def swapMel(a,b,mel):
-		# swap 
+		# reverses mel[a:b+1] 
 		mel[a:b + 1] = mel[a:b + 1][::-1]
 		return mel
 
 	def swapped(i,j,mel):
+		# reverses mel[j:len(mel)-i]
 		if j > i:
 			i,j = j,i
 
 		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
 
 
-	# returns all possible swaps
+	
 	def swapAll(mel):
+		# returns all possible swaps as tuple
+
 		newMelList = []
 		for i in range(len(mel)):
 			for j in range(i):
@@ -29,15 +32,9 @@ class helper:
 
 		return newMelList
 
-	# checks a list for dublicates and returns a list of lists
-	def noDublicates(list):
-		listSet = set(tuple(item) for item in list)
-		noDublicate = []
-		for item in listSet:
-			noDublicate.append(item)
-		return noDublicate
-
 	def makeSequence(mel):
+		# makes a list of lists out of a list the innerlists consists
+		# of numbers which only differ one from its neighbours
 	    newMel = []
 	    j = 0
 	    for i in range(1,len(mel)):
@@ -49,6 +46,8 @@ class helper:
 	    return newMel
 
 	def sequenceSwap(start,end,melSequence):
+		# reverses a sequence of more from makeSequence 
+
 	    if start > end:
 	        start, end = end, start
 
@@ -67,6 +66,8 @@ class helper:
 	    return newMelSequence
 
 	def swapAllSequence(melSequence):
+		# returns all possible swaps of a melSequence
+
 	    melSequence = copy.copy(melSequence)
 	    newMelList = []
 	    for i in range(len(melSequence)):
@@ -78,6 +79,8 @@ class helper:
 	    return newMelList
 
 	def makeList(seq):
+		# returns a list instead of a list of lists
+		
 	    List = []
 	    for i in seq:
 	        for j in range(len(i)):
@@ -85,11 +88,6 @@ class helper:
 	    if type(List[0]) is list:
 	        helper.makeList(List)
 	    return tuple(List)
-
-	def swapped(i,j,mel):
-		if j > i:
-			i,j = j,i
-		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
 
 	def mutate(mel, int, swapList):
 

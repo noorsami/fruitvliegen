@@ -73,3 +73,8 @@ class visualize:
         plt.title("Algorithm vs. Algorithm")
         plt.ylabel("Amount of mutations needed")
         plt.show()
+
+
+    def SDVAVisualizer(mel, mir):
+        data = steepestDescendValleyAbseiler(mir,mel)
+        
