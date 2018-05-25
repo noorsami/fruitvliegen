@@ -1,20 +1,6 @@
 from helper import helper
 import random as rm
 
-''' Function for mutating a single mel with random values '''
-def mutateSingle(mel):
-    mel_len = len(mel)
-    a = rm.randint(0, mel_len - 1)
-    b = rm.randint(0, mel_len - 1)
-    swappedMel = helper.swapped(a,b,mel)
-    return swappedMel
-
-''' Function to make a tuple-list for every mutation and score '''
-def makeTuple(tupleSwap, scoreList, swapList):
-	for i in range(len(swapList)):
-		tupleSwap.append((scoreList[i], swapList[i]))
-	return tupleSwap
-
 ''' Simulated annealing algorithm '''
 def simulatedAnnealing(mel, mir, failValue, scoreFunction):
     '''
@@ -71,7 +57,7 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
 
     # Repeat the algorithm until mel has been transformed into mir
     while curMel != mir:
-        mutatedMel = mutateSingle(curMel)
+        mutatedMel = helper.mutateSingle(curMel)
         mutatedScore = scoreFunction(mutatedMel)
 
         # If the newly generated score is higher than the current,
@@ -110,7 +96,7 @@ def simulatedAnnealing(mel, mir, failValue, scoreFunction):
     print("--------------------------------")
 
     # Create a list with the history of every accepted mutation and it's score
-    history = makeTuple([], scoreHistory, swapHistory)
+    history = helper.makeTuple([], scoreHistory, swapHistory)
 
     # Print full mutation history and the corresponding score for each mutation
     for i in range(len(scoreHistory)):
