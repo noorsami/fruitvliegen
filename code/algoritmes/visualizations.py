@@ -13,19 +13,19 @@ from simulatedAnnealing import simulatedAnnealing
 
 class visualize:
 
-    def populationVisualizer():
+    def populationVisualizer(startingPoint):
 
         sampleSizes = [50, 100, 150, 300, 500, 750, 1000]
 
         test = tester.populationTester
 
-        populationMean = [test(sampleSizes[0]),
-                          test(sampleSizes[1]),
-                          test(sampleSizes[2]),
-                          test(sampleSizes[3]),
-                          test(sampleSizes[4]),
-                          test(sampleSizes[5]),
-                          test(sampleSizes[6])]
+        populationMean = [test(sampleSizes[0], startingPoint),
+                          test(sampleSizes[1], startingPoint),
+                          test(sampleSizes[2], startingPoint),
+                          test(sampleSizes[3], startingPoint),
+                          test(sampleSizes[4], startingPoint),
+                          test(sampleSizes[5], startingPoint),
+                          test(sampleSizes[6], startingPoint)]
 
         print(sampleSizes)
         print(populationMean)

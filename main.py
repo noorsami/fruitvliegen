@@ -49,7 +49,10 @@ if algorithm == '2':
                   + " \n\n For running the algorithm (with default parameters)"
                   + " on a test-set with 100 random genomes of length 25,"
                   + " type 't'\n\n For running the algorithm on a test-set"
-                  + " with visualisation, type 'v' \n\n")
+                  + " with visualisation, type 'tv' \n\n For running the"
+                  + " algorithm 100 times with default parameters, type 'dt'"
+                  + " \n\n For running the algorithm 100 times with different"
+                  + " parameters with visualization, type 'dv' \n\n")
 
     if default == 'd':
         print(populationBased(150, data.mel, data.mir))
@@ -72,8 +75,14 @@ if algorithm == '2':
     #visualize.populationVisualizer()
     # else:
     #     print("Error, unknown input")
-    if default == 'v':
-        visualize.populationVisualizer()
+    if default == 'tv':
+        visualize.populationVisualizer([*range(1,26)])
+
+    if default == 'dt':
+        tester.populationTester(150, data.mel)
+
+    if default == 'dv':
+        visualize.populationVisualizer(data.mel)
 
 ''' SIMULATED ANNEALING '''
 if algorithm == '3':
