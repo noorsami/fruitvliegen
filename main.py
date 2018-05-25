@@ -38,15 +38,9 @@ if algorithm == '1':
     if default == 'd':
         print(pancakeSort(data.mel, data.mir))
     if default == 't':
-<<<<<<< HEAD
-        #tester.pancakeSort()
-        visualize.simulatedVisualizer()
-        #visualize.populationVisualizer()
-=======
-        tester.pancakeSort()
+        tester.pancakeTester([*range(1,26)])
         # visualize.simulatedVisualizer()
         #visualize.populationVisualizer
->>>>>>> 63552bfee5ed84989e0488630c5c19b901ff1e57
 
 ''' POPULATION BASED '''
 if algorithm == '2':
@@ -73,8 +67,8 @@ if algorithm == '2':
         print("TODO")
 
     if default == 't':
-        tester.populationTester(150)
-    
+        tester.populationTester(150, [*range(1,26)])
+
     #visualize.populationVisualizer()
     # else:
     #     print("Error, unknown input")

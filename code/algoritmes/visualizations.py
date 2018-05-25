@@ -33,8 +33,7 @@ class visualize:
         plt.plot(sampleSizes, populationMean)
         plt.ylabel("average amount of mutations needed")
         plt.xlabel("sample size")
-        plt.title("100 times from random gen sequence to the "
-                + "Drosophila Miranda (N=25)")
+        plt.title("100 times from random sequence to Miranda")
         plt.show()
 
         return sampleSizes, populationMean
