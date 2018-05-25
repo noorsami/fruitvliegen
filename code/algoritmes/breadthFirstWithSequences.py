@@ -20,7 +20,7 @@ from breadthFirst import breadthFirst
 def breadthFirstWithSequences(mir,mel):
 
     '''
-        This function tries a breadth first approach to change 2 lists from one to the other using swaps 
+        This function tries a breadth first approach to change 2 lists from one to the other using swaps
             without dupicates, where the lists are turned into a list of lists, called sequences. The algorithm
             then changes and reverses the order of the list of sequences
 

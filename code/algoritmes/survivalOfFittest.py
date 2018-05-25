@@ -99,7 +99,7 @@ def populationBased(populationSize, mel, mir):
 				bestMel = list(orderedTuple[-1][1])
 				lastGen = list(generation[-1][1])
 
-				print("Best Found (score, [genrow], mutationPoints):", best,
+				print("Best Found (score, [genrow]):", best,
 					  ", Mutation number:", count+1)
 				print(" ".join(("Best Found (score, [genrow], mutationPoints):"
 					  , str(best), ", Mutation number:", str(count+1))), file=f)
