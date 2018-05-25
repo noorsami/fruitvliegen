@@ -31,20 +31,14 @@ class score:
 
     	length = len(swapList)
     	for swap in swapList:
-
     		score = 0
-
     		for j in range(24):
-
     			checkLeft = swap[j] - swap[j - 1]
     			checkRight = swap[j] - swap[j + 1]
-
     			# does position to check has the right neighbours? if yes add score
     			if abs(checkLeft) == 1:
     				score += 1
     			if abs(checkRight) == 1:
     				score += 1
-
     		scoreList.append(score)
-
     	return scoreList

@@ -29,7 +29,9 @@ algorithm = input("\n   WELCOME!\n\n"
     + "\n\n| When you want to run the simulated annealing algorithm type in: 3"
     + "                     |"
     + "\n\n| When you want to run the Steepest Descend Valley Abseiler"
-    + " algorithm, type in: 4       |\n\n"
+    + " algorithm, type in: 4       |"
+    + "\n\n| When you want to run a visualisation of all algorithms,"
+    + " type in: 5                    |\n\n"
     + "|--------------------------------------------------------------------"
     + "-------------------|\n"
     + "\n\nType in the algorithm that you want to run: ")
@@ -54,7 +56,7 @@ if algorithm == '1':
     elif default == 't':
         tester.pancakeTester()
 
-''' POPULATION BASED '''
+''' POPULATION BASED ''' # tv/ dt/ dv
 if algorithm == '2':
     default = input("|-------------------------------------------------------"
                   + "---------------------------------|\n"
@@ -67,7 +69,11 @@ if algorithm == '2':
                   + "| genomes of length 25, type 't'                        "
                   + "                                 |\n\n"
                   + "| For running the algorithm on a test-set"
-                  + " with visualisation, type 'v'                   |\n\n"
+                  + " with visualisation, type 'tv'                  |\n\n"
+                  + "| If you want to run the algorithm 100 times with"
+                  + " different population sizes             |\n"
+                  + "| and a visualisation, type 'dv'                 "
+                  + "                                        |\n\n"
                   + "|-------------------------------------------------------"
                   + "---------------------------------|\n\n"
                   + "\n\nType in how you want to run the algorithm: ")
@@ -105,19 +111,13 @@ if algorithm == '2':
         elif popSize == 'xl':
             print(populationBased(500, data.mel, data.mir))
 
-    if default == 't':
+    elif default == 't':
         tester.populationTester(150, [*range(1,26)])
 
-    #visualize.populationVisualizer()
-    # else:
-    #     print("Error, unknown input")
-    if default == 'tv':
+    elif default == 'tv':
         visualize.populationVisualizer([*range(1,26)])
 
-    if default == 'dt':
-        tester.populationTester(150, data.mel)
-
-    if default == 'dv':
+    elif default == 'dv':
         visualize.populationVisualizer(data.mel)
 
 ''' SIMULATED ANNEALING '''
@@ -133,7 +133,11 @@ if algorithm == '3':
                   + "| genomes of length 25, type 't'                        "
                   + "                                 |\n\n"
                   + "| For running the algorithm on a test-set"
-                  + " with visualisation, type 'v'                   |\n\n"
+                  + " with visualisation, type 'tv'                   |\n\n"
+                  + "| If you want to run the algorithm 100 times with"
+                  + " different fail values                  |\n"
+                  + "| and a visualisation, type 'dv'                 "
+                  + "                                        |\n\n"
                   + "|-------------------------------------------------------"
                   + "---------------------------------|\n\n"
                   + "\n\nType in how you want to run the algorithm: ")
@@ -218,10 +222,11 @@ if algorithm == '3':
     elif default == 't':
         tester.simulatedTester(1000, [*range(1,26)])
 
-
-    elif default == 'v':
+    elif default == 'tv':
         visualize.simulatedVisualizer([*range(1,26)])
 
+    elif default == 'dv':
+        visalize.simulatedVisualizer(data.mel)
 
 ''' STEEPEST DESCEND VALLEY ABSEILER '''
 if algorithm == '4':
@@ -229,6 +234,6 @@ if algorithm == '4':
 #
 # else:
 #     print("Error, unknown input")
-
+''' COMBINED VISUALISATION '''
 if algorithm == '5':
     visualize.combinedVisualizer(data.mel, data.mir)
