@@ -36,8 +36,6 @@ algorithm = input("\n   WELCOME!\n\n"
     + "-------------------|\n"
     + "\n\nType in the algorithm that you want to run: ")
 
-
-
 ''' PANCAKESORT '''
 if algorithm == '1':
     default = input("|-------------------------------------------------------"
@@ -56,7 +54,7 @@ if algorithm == '1':
     elif default == 't':
         tester.pancakeTester()
 
-''' POPULATION BASED ''' # tv/ dt/ dv
+''' POPULATION BASED '''
 if algorithm == '2':
     default = input("|-------------------------------------------------------"
                   + "---------------------------------|\n"
@@ -231,9 +229,7 @@ if algorithm == '3':
 ''' STEEPEST DESCEND VALLEY ABSEILER '''
 if algorithm == '4':
     print(steepestDescendValleyAbseiler(data.mir, data.mel))
-#
-# else:
-#     print("Error, unknown input")
+
 ''' COMBINED VISUALISATION '''
 if algorithm == '5':
     visualize.combinedVisualizer(data.mel, data.mir)
