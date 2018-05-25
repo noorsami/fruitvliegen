@@ -68,6 +68,8 @@ def populationBased(populationSize, mel, mir):
 			# mutate from best mel X amount of new children
 			swapList = helper.mutate(bestMel, populationSize, [])
 
+			print(populationSize)
+
 			# make a set of the swapList so it deletes doubles
 			swapList = set(swapList)
 

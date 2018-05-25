@@ -12,7 +12,6 @@ from datastructuur import data
 from helper import helper
 from score import score
 from pancakeSort import pancakeSort
-from randomSort import randomSort
 from population import populationBased
 from simulatedAnnealing import simulatedAnnealing
 from steepestDescendValleyAbseiler import steepestDescendValleyAbseiler
@@ -52,7 +51,7 @@ if algorithm == '1':
         print(pancakeSort(data.mel, data.mir))
 
     elif default == 't':
-        tester.pancakeTester()
+        tester.pancakeTester([*range(1,26)])
 
 ''' POPULATION BASED '''
 if algorithm == '2':
@@ -77,7 +76,7 @@ if algorithm == '2':
                   + "\n\nType in how you want to run the algorithm: ")
 
     if default == 'd':
-        print(populationBased(150, data.mel, data.mir))
+        print(populationBased(300, data.mel, data.mir))
 
     elif default == 'c':
         popSize = input("|----------------------------------------------------"

@@ -7,16 +7,6 @@ class helper:
 		This class has helper functions which are useable throughout the code
 	'''
 
-	def swapMel(a,b,mel):
-		# reverses mel[a:b+1]
-		mel[a:b + 1] = mel[a:b + 1][::-1]
-		return mel
-
-	def swapped(i,j,mel):
-		# reverses mel[j:len(mel)-i]
-		if j > i:
-			i,j = j,i
-
 	''' function to check is list is reversed '''
 	def isReversed(mel):
 		for i in range( len(mel) - 1 ):
@@ -35,12 +25,17 @@ class helper:
 	    return newMel
 
 	def mutate(mel, int, swapList):
+
 		mel_len = len(mel)
+
 		for i in range(int):
 			a = rm.randint(0, mel_len - 1)
 			b = rm.randint(0, mel_len - 1)
+
 			swappedMel = helper.swapped(a, b, mel)
+
 			swapList.append(tuple(swappedMel))
+
 		return swapList
 
 	''' Mutates a single mel with random values '''
@@ -144,9 +139,6 @@ class helper:
 	    if type(List[0]) is list:
 	        helper.makeList(List)
 	    return tuple(List)
-
-	def mutate(mel, int, swapList):
-		mel_len = len(mel)
 
 	def swapMel(a,b,mel):
 		mel[a:b + 1] = mel[a:b + 1][::-1]

@@ -8,7 +8,6 @@ from datastructuur import data
 from helper import helper
 from score import score
 from pancakeSort import pancakeSort
-from randomSort import randomSort
 from population import populationBased
 from simulatedAnnealing import simulatedAnnealing
 

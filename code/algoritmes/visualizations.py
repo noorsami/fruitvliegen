@@ -7,7 +7,6 @@ from helper import helper
 from tester import tester
 from score import score
 from pancakeSort import pancakeSort
-from randomSort import randomSort
 from population import populationBased
 from simulatedAnnealing import simulatedAnnealing
 from steepestDescendValleyAbseiler import steepestDescendValleyAbseiler
@@ -133,4 +132,3 @@ class visualize:
 
     def SDVAVisualizer(mel, mir):
         data = steepestDescendValleyAbseiler(mir,mel)
-        
