@@ -1,4 +1,5 @@
 from helper import helper
+from score import score
 import random as rm
 import math as m
 import sys
@@ -7,83 +8,18 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-def swapped(i,j,mel):
-	if j > i:
-		i,j = j,i
-	return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
-
-def swappedTest(i,j,mel):
-	if j > i:
-		i,j = j,i
-	return mel[:j] + mel[j:i + 1][::-1] + mel[1 + i:]
-
-def mutate(mel, int, swapList):
-
-	mel_len = len(mel)
-
-	for i in range(int):
-
-		a = rm.randint(0, mel_len - 1)
-		b = rm.randint(0, mel_len - 1)
-
-		swappedMel = swapped(a, b, mel)
-
-		swapList.append(tuple(swappedMel))
-
-	return swapList
-
-def scoreNeighbours(swapList, scoreList, mir):
-
-	length = len(swapList)
-	for swap in swapList:
-
-		score = 0
-
-		for j in range(24):
-
-			checkLeft = swap[j] - swap[j - 1]
-			checkRight = swap[j] - swap[j + 1]
-
-			# does position to check has the right neighbours? if yes add score
-			if abs(checkLeft) == 1:
-				score += 1
-			if abs(checkRight) == 1:
-				score += 1
-
-		scoreList.append(score)
-
-	return scoreList
-
-# make an ordered tuple combining scoreList with swapList
-def makeTuple(tupleSwap, scoreList, swapList):
-	i = 0
-	for swap in swapList:
-		tupleSwap.append((scoreList[i], swap))
-		i+=1
-
-	return tupleSwap
-
-
-def swapMel(a, b, mel):
-
-	mel[a:b + 1] = mel[a:b + 1][::-1]
-
-	return mel
-
-# function to check is list is reversed
-def isReversed(mel):
-	for i in range( len(mel) - 1 ):
-		if mel[i] < mel[i+1]:
-			return False
-		return True
-
 def populationBased(populationSize, mel, mir):
 	'''
-	Mutates N(populationSize) random gene rows from the mel, calculate the
-	score per gene row, choose best gene row, mutate from that best gene row N
-	(populationSize). This continues until the best gene found is the solution
-	(mir).
+	A population based optimization algorithm based on genetic algorithms,
+	which are metaheuristics inspired by the process of natural selection.
+	The optimization consists of mutating the genome sequence of the
+	Drosophila Melanogaster into the Drosophila Miranda.
+
+	The algorithm mutates N(populationSize) random gene rows from the mel,
+	then calculate the score per gene row and chooses, based on that score,
+	the best gene row. This continues witch each new mutation, until the best
+	gene found is the solution (mir).
+
 					Arguments:
 					------------------------------------------------------------
 	populationSize: Integer value that signifies the magnitude of the population
@@ -130,17 +66,17 @@ def populationBased(populationSize, mel, mir):
 		while lastGen != mir:
 
 			# mutate from best mel X amount of new children
-			swapList = mutate(bestMel, populationSize, [])
+			swapList = helper.mutate(bestMel, populationSize, [])
 
 			# make a set of the swapList so it deletes doubles
 			swapList = set(swapList)
 
 			# calculate and append score to new children
-			scoreList = scoreNeighbours(swapList, [], mir)
+			scoreList = score.scoreNeighboursList(swapList, [], mir)
 
 			# manipulate data so that score and children are
 			# connected in a tuple
-			tupleSwap = makeTuple([], scoreList, swapList)
+			tupleSwap = helper.makeTuple([], scoreList, swapList)
 
 			# order tuple from low score to high score
 			orderedTuple = sorted(tupleSwap)
@@ -170,7 +106,7 @@ def populationBased(populationSize, mel, mir):
 			count += 1
 
 		# check if reversed is true, if yes swap to ascending order
-		reversed = isReversed(lastGen)
+		reversed = helper.isReversed(lastGen)
 		if reversed == True:
 			swapMel(24,0,lastGen)
 
