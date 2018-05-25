@@ -130,7 +130,6 @@ def populationBased(populationSize, mel, mir):
 
 		lastGen = mel
 
-
 		while lastGen != mir:
 
 			# mutate from best mel X amount of new children
@@ -144,7 +143,7 @@ def populationBased(populationSize, mel, mir):
 
 			# manipulate data so that score and children are
 			# connected in a tuple
-			tupleSwap = makeTuple([], scoreList, swapList, pointsList)
+			tupleSwap = makeTuple([], scoreList, swapList)
 
 			# order tuple from low score to high score
 			orderedTuple = sorted(tupleSwap)
@@ -156,8 +155,7 @@ def populationBased(populationSize, mel, mir):
 
 			# take the last item in ordered list tuple to get te best
 			# score and it's gene row
-			best = (orderedTuple[-1][0], orderedTuple[-1][1],
-			 		orderedTuple[-1][2])
+			best = (orderedTuple[-1][0], orderedTuple[-1][1])
 
 			# if new generated gene row is better then previous append
 			# new as new best
@@ -167,7 +165,6 @@ def populationBased(populationSize, mel, mir):
 				# continue with new gene row to mutate
 				bestMel = list(orderedTuple[-1][1])
 				lastGen = list(generation[-1][1])
-				points += orderedTuple[-1][2]
 
 				print("Best Found (score, [genrow], mutationPoints):", best,
 					  ", Mutation number:", count+1)
@@ -192,5 +189,4 @@ def populationBased(populationSize, mel, mir):
 		print('-----------------------------')
 		print('-----------------------------', file=f)
 
-	return ("Winning Generation[(score, genrow),"
-	      + " (nextBestScore, nextBestGenRow), ...]:"),generation, ("Amount of mutations needed:"), count
+	return generation, count

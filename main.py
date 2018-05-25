@@ -36,7 +36,7 @@ if algorithm == '1':
     if default == 't':
         #tester.pancakeSort()
         visualize.simulatedVisualizer()
-        #visualize.populationVisualizer
+        #visualize.populationVisualizer()
 
 ''' POPULATION BASED '''
 if algorithm == '2':
@@ -58,7 +58,8 @@ if algorithm == '2':
 
     if default == 't':
         tester.populationTester(150)
-    #
+    
+    #visualize.populationVisualizer()
     # else:
     #     print("Error, unknown input")
 
