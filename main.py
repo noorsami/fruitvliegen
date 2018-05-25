@@ -34,7 +34,6 @@ algorithm = input("\n   WELCOME!\n\n"
     + "\n\nType in the algorithm that you want to run: ")
 
 
-
 ''' PANCAKESORT '''
 if algorithm == '1':
     default = input("|-------------------------------------------------------"
