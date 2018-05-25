@@ -1,6 +1,6 @@
 # Fruitvliegen
 
-Drosophila Melanogaster en Drosophila Miranda zijn fruitvliegsoorten waarvan het genoom goed bestudeerd is. Voor deze twee soorten geldt dat de genen voor beide soorten identiek zijn, maar wel in een andere volgorde staan. 
+Drosophila Melanogaster en Drosophila Miranda zijn fruitvliegsoorten waarvan het genoom goed bestudeerd is. Voor deze twee soorten geldt dat de genen voor beide soorten identiek zijn, maar wel in een andere volgorde staan.
 Zoals hier te zien:
 ![](doc/rijen.png)
 
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ### Structuur (Structure)
 
-Alle Python scripts staan in de folder Code. In de map Data zitten alle input waardes en in de map resultaten worden alle resultaten opgeslagen door de code.
+Alle Python scripts staan in de folder Code. In de map Data zitten alle input waardes en in de map resultaten worden resultaten opgeslagen door de code.
 
 ### Test (Testing)
 
