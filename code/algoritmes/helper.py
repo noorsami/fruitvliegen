@@ -4,13 +4,12 @@ import copy
 
 class helper:
 
-	# basic helper functions
-	def randomGen():
-		a = rm.randint(0,24)
-		b = rm.randint(0,24)
-		return a, b
+	'''
+
+	'''
 
 	def swapMel(a,b,mel):
+		# swap 
 		mel[a:b + 1] = mel[a:b + 1][::-1]
 		return mel
 
