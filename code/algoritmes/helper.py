@@ -87,3 +87,41 @@ class helper:
 	        helper.makeList(List)
 	    return tuple(List)
 
+	def swapped(i,j,mel):
+		if j > i:
+			i,j = j,i
+		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
+
+	def mutate(mel, int, swapList):
+
+		mel_len = len(mel)
+
+		for i in range(int):
+			a = rm.randint(0, mel_len - 1)
+			b = rm.randint(0, mel_len - 1)
+			swappedMel = helper.swapped(a, b, mel)
+			swapList.append(tuple(swappedMel))
+		return swapList
+
+	# make an ordered tuple combining scoreList with swapList
+	def makeTuple(tupleSwap, scoreList, swapList):
+		i = 0
+		for swap in swapList:
+			tupleSwap.append((scoreList[i], swap))
+			i+=1
+		return tupleSwap
+
+	# function to check is list is reversed
+	def isReversed(mel):
+		for i in range( len(mel) - 1 ):
+			if mel[i] < mel[i+1]:
+				return False
+			return True
+
+	''' Function for mutating a single mel with random values '''
+	def mutateSingle(mel):
+	    mel_len = len(mel)
+	    a = rm.randint(0, mel_len - 1)
+	    b = rm.randint(0, mel_len - 1)
+	    swappedMel = helper.swapped(a,b,mel)
+	    return swappedMel

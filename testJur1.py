@@ -237,3 +237,30 @@ print(geneticAlgorithm(1000, data.mel, data.mir))
 # print(scoreTest2(testArray1))
 # print(scoreTest2(testArray2))
 # print(scoreTest2(testArray3))
+
+
+def experimentGraph(length):
+    # while length > 3:
+    for j in range(10):
+        title = "steepestAscend; N = " + str(length)
+        gen1 = [*range(1,length + 1)]
+        gen2 = [*range(1,length + 1)]
+        rm.shuffle(gen2)
+        data = steepestAscendHillClimber(gen1, gen2)
+        fig = plt.figure()
+        plt.subplot(211)
+        plt.plot(range(data[1]),data[0], label = "steepestAscend")
+
+        plt.subplot(212)
+        plt.plot(data[2], data[0], label = "Theoretical")
+        plt.xticks(np.arange(0, data[1], 1))
+        plt.xlabel("Number of swaps")
+        plt.ylabel("Number of subarrays")
+        plt.title(title)
+        plt.legend()
+        filename = title + "_#"+ str(j + 1) + ".png"
+        fig.savefig(filename, dpi=fig.dpi)
+
+    length-=1
+
+# experimentGraph(25)
