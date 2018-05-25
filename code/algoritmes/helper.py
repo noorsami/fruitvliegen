@@ -106,8 +106,3 @@ class helper:
 			i,j = j,i
 
 		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
-
-	def swapped(i,j,mel):
-		if j > i:
-			i,j = j,i
-		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
