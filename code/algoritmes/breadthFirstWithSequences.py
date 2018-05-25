@@ -57,42 +57,4 @@ def breadthFirstWithSequences(mir,mel):
                     melSet.add(swap)
                     melList.append(swap)
 
-
-
     return melListHistory, swaps
-
-def experimentGraph(length):
-    while length > 3:
-        for j in range(10):
-            title = "BreadthFirst vs Sequences; N = " + str(length)
-            gen1 = [*range(1,length + 1)]
-            gen2 = [*range(1,length + 1)]
-            rm.shuffle(gen2)
-            data1 = breadthFirst(gen1, gen2)
-            data2 = breadthFirstWithSequences(gen1,gen2)
-            fig = plt.figure()
-            plt.plot(range(data1[1]),data1[0], label = "breadthFirst")
-            plt.plot(range(data2[1]), data2[0], label = "Sequences")
-            plt.xticks(np.arange(0, data1[1], 1))
-            plt.xlabel("Number of swaps")
-            plt.ylabel("Number of tried swaps")
-            plt.title(title)
-            plt.legend()
-            filename = title + "_#"+ str(j + 1) + ".png"
-            fig.savefig(filename, dpi=fig.dpi)
-
-        length-=1
-
-length =15
-experimentGraph(9)
-# gen1 = [*range(1,length + 1)]
-# gen2 = [*range(1,length + 1)]
-# rm.shuffle(gen2)
-# mel = [23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]
-# mir = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-# print(breadthFirstWithSequences(gen1,gen2))
-<<<<<<< HEAD
-=======
-
-print(helper.makeSequence([23, 1, 2, 11, 24, 22, 19, 6, 10, 7, 25, 20, 5, 8, 18, 12, 13, 14, 15, 16, 17, 21, 3, 4, 9]))
->>>>>>> 839c010db824c965c3efe5087289bcbd0980dc68
