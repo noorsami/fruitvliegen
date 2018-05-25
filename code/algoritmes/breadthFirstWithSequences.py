@@ -69,6 +69,4 @@ def breadthFirstWithSequences(mir,mel):
                     melSet.add(swap)
                     melList.append(swap)
 
-
-
     return melListHistory, swaps
