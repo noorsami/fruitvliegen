@@ -58,13 +58,9 @@ class score:
     	length = len(swapList)
     	for swap in swapList:
     		score = 0
-<<<<<<< HEAD
 
     		for j in range(len(mir)-1):
 
-=======
-    		for j in range(24):
->>>>>>> 5251ee6ac225d5469ad5f2ba0435c10896c1a0f1
     			checkLeft = swap[j] - swap[j - 1]
     			checkRight = swap[j] - swap[j + 1]
     			# does position to check has the right neighbours? if yes add score

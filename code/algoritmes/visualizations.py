@@ -2,6 +2,7 @@ import random as rm
 import math as m
 import copy
 import matplotlib.pyplot as plt
+import numpy as np
 
 from helper import helper
 from tester import tester
@@ -131,6 +132,24 @@ class visualize:
         plt.show()
 
 
-    def SDVAVisualizer(mel, mir):
+    def SDVAVisualizer(mir,mel):
         data = steepestDescendValleyAbseiler(mir,mel)
+        history = data[0]
+        swaps = data[1]
+        swapLen = data[2]
+
+        fig = plt.figure()
+        title = "steepestDescend; N = " + str(len(mir))
+        plt.subplot(211)
+        plt.plot(range(len(history)),history, label = "Sequences")
+        plt.xticks(np.arange(0, len(history), 1))
+        plt.xlabel("Number of swaps")
+        plt.ylabel("Number of sequences in generation")
+        plt.title(title)
+        plt.subplot(212)
+        plt.plot(range(len(swapLen)),swapLen, label = "Sequences")
+        plt.xticks(np.arange(0, len(swapLen), 1))
+        plt.xlabel("Number of swaps")
+        plt.ylabel("Length of smallest sequence")
+        plt.show()
         

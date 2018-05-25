@@ -65,7 +65,7 @@ def steepestDescendValleyAbseiler(mir,mel):
         melList = []
         allGens = q.get()
         swaps+=1
-
+        print(swaps)
         # iterate over all gens
         for gen in allGens:
             seq = helper.makeSequence(gen)
