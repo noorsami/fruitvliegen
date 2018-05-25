@@ -11,25 +11,20 @@ from helper import helper
 
 def breadthFirst(mir,mel):
     '''
-<<<<<<< HEAD
-        This function tries a breadth first approach to change 2 lists from one to the other using swaps 
-            without dupicates
+        This function tries a breadth first approach to change 2 lists from one
+        to the other using swaps without duplicates.
 
-        arguments: 2 lists, first mir then mel
+                    Arguments:
+                    ------------------------------------------------------------
+        mir:        The gene sequence of the Melanogaster.
 
-=======
-<<<<<<< HEAD
+        mel:        The gene sequence of the Miranda.
+
+                    Returns:
+                    ------------------------------------------------------------
+        History:    All the genes that where formed on the way from Mel to Mir.
         
-=======
-        This function tries a breadth first approach to change 2 lists from one to the other using swaps 
-            without dupicates
-
-        arguments: 2 lists, first mir then mel
->>>>>>> 330cb844fba62ab1c39e3be6ec15f83891350681
-
->>>>>>> 5251ee6ac225d5469ad5f2ba0435c10896c1a0f1
-        returns: A list with the size of each generation and the amount of swaps needed to go from the first list
-                to the second
+        Swaps:      The amount of mutations needed for the solution.
     '''
 
     # make variable useable
@@ -66,6 +61,8 @@ def breadthFirst(mir,mel):
                     melSet.add(swap)
                     melList.append(swap)
 
-        
     return melListHistory, swaps
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030

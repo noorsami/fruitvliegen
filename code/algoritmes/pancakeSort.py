@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 ''' Pancake sorting algorithm. '''
 def pancakeSort(mel, mir):
 	'''
-	Pancake sorting is a informal term for the mathematical problem of soring a
-	disordered stack of pancaakes in order of size when a spatula can be
+	Pancake sorting is a informal term for the mathematical problem of sorting a
+	disordered stack of pancakes in order of size when a spatula can be
 	inserted at any point in the stack and used to flip all pancakes above it.
 	It is a variation of the sorting problem in which the only allowed operation
 	is to reverse the elements of some prefix of the sequence.

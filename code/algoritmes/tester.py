@@ -24,7 +24,7 @@ class tester:
 
                         Returns:
                         ----------------------------------------------------
-        Count:          The avarage amount of mutations needed from the 100
+        Count:          The average amount of mutations needed from the 100
                         times the algorithm is running.
     '''
     def pancakeTester(startingPoint):
@@ -89,7 +89,7 @@ class tester:
 
             sim = simulatedAnnealing(startingPoint, data.mir, failValue,
                                      score.scoreNeighbours)
-                                     
+
             print(sim[0])
             print(sim[1])
 

@@ -8,7 +8,7 @@ class helper:
 	'''
 
 	def swapMel(a,b,mel):
-		# reverses mel[a:b+1] 
+		# reverses mel[a:b+1]
 		mel[a:b + 1] = mel[a:b + 1][::-1]
 		return mel
 
@@ -16,6 +16,10 @@ class helper:
 		# reverses mel[j:len(mel)-i]
 		if j > i:
 			i,j = j,i
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030
 	''' function to check is list is reversed '''
 	def isReversed(mel):
 		for i in range( len(mel) - 1 ):
@@ -50,7 +54,10 @@ class helper:
 	    swappedMel = helper.swapped(a,b,mel)
 	    return swappedMel
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030
 	def swapAll(mel):
 		# returns all possible swaps as tuple
 
@@ -58,6 +65,10 @@ class helper:
 		for i in range(len(mel)):
 			for j in range(i):
 				newMelList.append(tuple(helper.swapped(i,j,mel)))
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030
 	def makeList(seq):
 	    List = []
 	    for i in seq:
@@ -87,6 +98,10 @@ class helper:
 	    newMel.append(mel[j:])
 
 	    return newMel
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030
 	''' Checks a list for dublicates and returns a list of lists '''
 	def noDublicates(list):
 		listSet = set(tuple(item) for item in list)
@@ -96,7 +111,7 @@ class helper:
 		return noDublicate
 
 	def sequenceSwap(start,end,melSequence):
-		# reverses a sequence of more from makeSequence 
+		# reverses a sequence of more from makeSequence
 
 	    if start > end:
 	        start, end = end, start
@@ -123,7 +138,6 @@ class helper:
 
 	def swapAllSequence(melSequence):
 		# returns all possible swaps of a melSequence
-
 	    melSequence = copy.copy(melSequence)
 	    newMelList = []
 	    for i in range(len(melSequence)):
@@ -136,7 +150,6 @@ class helper:
 
 	def makeList(seq):
 		# returns a list instead of a list of lists
-		
 	    List = []
 	    for i in seq:
 	        for j in range(len(i)):
@@ -146,7 +159,6 @@ class helper:
 	    return tuple(List)
 
 	def mutate(mel, int, swapList):
-
 		mel_len = len(mel)
 
 	def swapMel(a,b,mel):
@@ -156,10 +168,13 @@ class helper:
 	def swapped(i,j,mel):
 		if j > i:
 			i,j = j,i
+<<<<<<< HEAD
 
 		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
 
 	def swapped(i,j,mel):
 		if j > i:
 			i,j = j,i
+=======
+>>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030
 		return mel[:j] + mel[j:len(mel) - i + j + 1][::-1] + mel[len(mel)+ j - i + 1:]
