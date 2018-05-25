@@ -24,7 +24,7 @@ print("\nWELCOME!"
     + "\n\n When you want to run the population based algorithm type in: 2"
     + "\n\n When you want to run the simulated annealing algorithm type in: 3"
     + "\n\n When you want to run the Steepest Descend Valley Abseiler algorithm"
-    + ", type in: 4\n")
+    + ", type in: 4\n\n For direct result visualization type in: 5 \n")
 
 algorithm = input("Type in the algorithm that you want to run: \n\n")
 
@@ -148,12 +148,12 @@ if algorithm == '3':
             print("Error, unknown input")
 
     elif default == 't':
-        tester.simulatedTester(1000)
+        tester.simulatedTester(1000, [*range(1,26)])
 
     # else:
     #     print("Error, unknown input")
     elif default == 'v':
-        visualize.simulatedVisualizer()
+        visualize.simulatedVisualizer([*range(1,26)])
 
 
 ''' STEEPEST DESCEND VALLEY ABSEILER '''
@@ -162,3 +162,6 @@ if algorithm == '4':
 #
 # else:
 #     print("Error, unknown input")
+
+if algorithm == '5':
+    visualize.combinedVisualizer(data.mel, data.mir)

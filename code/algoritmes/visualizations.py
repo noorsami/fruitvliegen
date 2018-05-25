@@ -10,6 +10,7 @@ from pancakeSort import pancakeSort
 from randomSort import randomSort
 from population import populationBased
 from simulatedAnnealing import simulatedAnnealing
+from steepestDescendValleyAbseiler import steepestDescendValleyAbseiler
 
 class visualize:
 
@@ -39,15 +40,15 @@ class visualize:
         return sampleSizes, populationMean
 
 
-    def simulatedVisualizer():
+    def simulatedVisualizer(startingPoint):
 
         failValues = [1000, 10000, 100000]
 
         test = tester.simulatedTester
 
-        simulatedMean = [test(failValues[0]),
-                         test(failValues[1]),
-                         test(failValues[2])]
+        simulatedMean = [test(failValues[0], startingPoint),
+                         test(failValues[1], startingPoint),
+                         test(failValues[2], startingPoint)]
 
         print(failValues)
 
@@ -55,4 +56,20 @@ class visualize:
         plt.ylabel("average amount of mutations needed")
         plt.xlabel("fail value")
         plt.title("100 times from random sequence to Miranda")
+        plt.show()
+
+    def combinedVisualizer(mel, mir):
+
+        population = tester.populationTester(300, mel)
+        simulated = tester.simulatedTester(1000, mel)
+        steepest = steepestDescendValleyAbseiler(mir, mel)
+        pancake = pancakeSort(mel, mir)
+
+
+        x = ['pancakeSort', 'populationBased', 'simulatedAnnealing', 'SDVA']
+        y = [pancake[1], population, simulated, steepest[1]]
+
+        plt.bar(x, y, align = 'center')
+        plt.title("Algorithm vs. Algorithm")
+        plt.ylabel("Amount of mutations needed")
         plt.show()

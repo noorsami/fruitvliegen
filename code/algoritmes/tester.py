@@ -46,16 +46,16 @@ class tester:
         print("Average amount of mutations needed for this test:", count/100)
         return count/100
 
-    def simulatedTester(failValue):
+    def simulatedTester(failValue, startingPoint):
         count = 0
-        for i in range(10):
+        for i in range(100):
             print("\n-------------------------------------")
             print("             Set nr:" + str(i+1))
             print("-------------------------------------\n")
-            randomSeq = [*range(1,26)]
-            rm.shuffle(randomSeq)
-            print("Starting with: \n", randomSeq)
-            sim = simulatedAnnealing(randomSeq, data.mir, failValue,
+            if startingPoint != data.mel:
+                rm.shuffle(startingPoint)
+            print("Starting with: \n", startingPoint)
+            sim = simulatedAnnealing(startingPoint, data.mir, failValue,
                                      score.scoreNeighbours)
             print(sim[0])
             print(sim[1])
