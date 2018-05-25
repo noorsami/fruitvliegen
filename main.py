@@ -19,7 +19,6 @@ from steepestDescendValleyAbseiler import steepestDescendValleyAbseiler
 from tester import tester
 from visualizations import visualize
 
-<<<<<<< HEAD
 algorithm = input("\n   WELCOME!\n\n"
     + "|--------------------------------------------------------------------"
     + "-------------------|\n"
@@ -35,14 +34,6 @@ algorithm = input("\n   WELCOME!\n\n"
     + "-------------------|\n"
     + "\n\nType in the algorithm that you want to run: ")
 
-=======
-print("\nWELCOME!"
-    + "\n\n When you want to run the pancake sorting algorithm type in: 1"
-    + "\n\n When you want to run the population based algorithm type in: 2"
-    + "\n\n When you want to run the simulated annealing algorithm type in: 3"
-    + "\n\n When you want to run the Steepest Descend Valley Abseiler algorithm"
-    + ", type in: 4\n\n For direct result visualization type in: 5 \n")
->>>>>>> bc8635b453666c055d292adeb4168f958131935f
 
 
 ''' PANCAKESORT '''
@@ -59,7 +50,6 @@ if algorithm == '1':
 
     if default == 'd':
         print(pancakeSort(data.mel, data.mir))
-<<<<<<< HEAD
 
     elif default == 't':
         tester.pancakeTester()
@@ -81,24 +71,6 @@ if algorithm == '2':
                   + "|-------------------------------------------------------"
                   + "---------------------------------|\n\n"
                   + "\n\nType in how you want to run the algorithm: ")
-=======
-    if default == 't':
-        tester.pancakeTester([*range(1,26)])
-        # visualize.simulatedVisualizer()
-        #visualize.populationVisualizer
-
-''' POPULATION BASED '''
-if algorithm == '2':
-    default = input("\n If you want to run the algorithm once with the default"
-                  + " parameters, type 'd'.\n\n For custom parameters, type 'c'"
-                  + " \n\n For running the algorithm (with default parameters)"
-                  + " on a test-set with 100 random genomes of length 25,"
-                  + " type 't'\n\n For running the algorithm on a test-set"
-                  + " with visualisation, type 'tv' \n\n For running the"
-                  + " algorithm 100 times with default parameters, type 'dt'"
-                  + " \n\n For running the algorithm 100 times with different"
-                  + " parameters with visualization, type 'dv' \n\n")
->>>>>>> bc8635b453666c055d292adeb4168f958131935f
 
     if default == 'd':
         print(populationBased(150, data.mel, data.mir))
@@ -133,15 +105,6 @@ if algorithm == '2':
         elif popSize == 'xl':
             print(populationBased(500, data.mel, data.mir))
 
-<<<<<<< HEAD
-    elif default == 't':
-        tester.populationTester(150)
-    #
-    # else:
-    #     print("Error, unknown input")
-    elif default == 'v':
-        visualize.populationVisualizer()
-=======
     if default == 't':
         tester.populationTester(150, [*range(1,26)])
 
@@ -156,7 +119,6 @@ if algorithm == '2':
 
     if default == 'dv':
         visualize.populationVisualizer(data.mel)
->>>>>>> bc8635b453666c055d292adeb4168f958131935f
 
 ''' SIMULATED ANNEALING '''
 if algorithm == '3':
@@ -258,31 +220,15 @@ if algorithm == '3':
 
 
     elif default == 'v':
-<<<<<<< HEAD
-        visualize.simulatedVisualizer()
-    else:
-        print("Error, unknown input")
-=======
         visualize.simulatedVisualizer([*range(1,26)])
 
->>>>>>> bc8635b453666c055d292adeb4168f958131935f
 
 ''' STEEPEST DESCEND VALLEY ABSEILER '''
 if algorithm == '4':
     print(steepestDescendValleyAbseiler(data.mir, data.mel))
-<<<<<<< HEAD
-
-
-
-
-
-else:
-    print("Error, unknown input")
-=======
 #
 # else:
 #     print("Error, unknown input")
 
 if algorithm == '5':
     visualize.combinedVisualizer(data.mel, data.mir)
->>>>>>> bc8635b453666c055d292adeb4168f958131935f
