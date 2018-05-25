@@ -62,3 +62,7 @@ def breadthFirst(mir,mel):
                     melList.append(swap)
 
     return melListHistory, swaps
+<<<<<<< HEAD
+
+=======
+>>>>>>> ea4fc7bf77dd7ce7d9f9e775e206292d0892d030
